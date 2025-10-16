@@ -160,9 +160,9 @@ const PAGES = {
     
     c: c,
     
-    about: about,
+    about: About,
     
-    business-dashboard: business-dashboard,
+    business-dashboard: BusinessDashboard,
     
 }
 
