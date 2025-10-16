@@ -76,9 +76,9 @@ import ClaimVerify from "./ClaimVerify";
 
 import c from "./c";
 
-import about from "./about";
+import About from "./about";
 
-import business-dashboard from "./business-dashboard";
+import BusinessDashboard from "./business-dashboard";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
