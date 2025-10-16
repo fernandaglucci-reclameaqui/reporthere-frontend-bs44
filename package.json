@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+  "build": "vite build",
+  "prebuild": "node scripts/scan-imports.js",
+  "lint": "eslint .",
+  "preview": "vite preview"
+},
   "dependencies": {
     "@base44/sdk": "^0.1.2",
     "@hookform/resolvers": "^4.1.2",
