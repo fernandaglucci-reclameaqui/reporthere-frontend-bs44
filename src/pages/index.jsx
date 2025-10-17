@@ -80,10 +80,6 @@ import ClaimVerify from "./ClaimVerify";
 
 import c from "./c";
 
-import About from "./about";
-
-import BusinessDashboard from "./business-dashboard";
-
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
