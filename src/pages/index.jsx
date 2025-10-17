@@ -273,7 +273,7 @@ function PagesContent() {
                 
                 <Route path="/about" element={<about />} />
                 
-                <Route path="/business-dashboard" element={<business-dashboard />} />
+                <Route path="/business-dashboard" element={<BusinessDashboard />} />
                 
             </Routes>
         </Layout>
