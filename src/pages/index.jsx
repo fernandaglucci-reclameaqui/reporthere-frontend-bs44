@@ -1,3 +1,7 @@
+import About from "./about.jsx";
+
+import BusinessDashboard from "./business-dashboard.jsx";
+
 import Layout from "./Layout.jsx";
 
 import Home from "./Home";
