@@ -10,7 +10,8 @@ const exts = new Set([".js", ".jsx", ".ts", ".tsx"]);
 const ignoreDirs = new Set(["node_modules", ".git", ".vercel", "dist", "build"]);
 const htmlTags = new Set(["a","abbr","address","area","article","aside","audio","b","base","bdi","bdo","blockquote","body","br","button","canvas","caption","cite","code","col","colgroup","data","datalist","dd","del","details","dfn","dialog","div","dl","dt","em","embed","fieldset","figcaption","figure","footer","form","h1","h2","h3","h4","h5","h6","head","header","hr","html","i","iframe","img","input","ins","kbd","label","legend","li","link","main","map","mark","meta","meter","nav","noscript","object","ol","optgroup","option","output","p","picture","pre","progress","q","rp","rt","ruby","s","samp","script","section","select","slot","small","source","span","strong","style","sub","summary","sup","table","tbody","td","template","textarea","tfoot","th","thead","time","title","tr","track","u","ul","var","video","wbr","path","svg","g"]);
 
-const issues = [];
+const errors = [];
+const warnings = [];
 function walk(dir) {
   for (const name of fs.readdirSync(dir)) {
     const fp = path.join(dir, name);
@@ -27,13 +28,13 @@ function walk(dir) {
         const spec = m[1];
         const def = spec.match(/^([A-Za-z0-9_$-]+)(\s*,|\s*$)/);
         if (def && def[1].includes("-"))
-          issues.push(`${fp}:${ln}  ❌ imported identifier has hyphen: "${def[1]}". Use PascalCase (e.g., BusinessDashboard).`);
+          errors.push(`${fp}:${ln}  ❌ imported identifier has hyphen: "${def[1]}". Use PascalCase (e.g., BusinessDashboard).`);
         const named = spec.match(/\{([^}]+)\}/);
         if (named) {
           named[1].split(",").forEach(s => {
             const alias = s.trim().split(/\s+as\s+/i).pop().trim();
             if (alias.includes("-"))
-              issues.push(`${fp}:${ln}  ❌ named import alias has hyphen: "${alias}".`);
+              errors.push(`${fp}:${ln}  ❌ named import alias has hyphen: "${alias}".`);
           });
         }
       }
@@ -43,18 +44,21 @@ function walk(dir) {
         const tag = t[1];
         if (htmlTags.has(tag)) continue;
         if (tag.includes("-"))
-          issues.push(`${fp}:${ln}  ❌ JSX tag "<${tag}>" has hyphen. Use PascalCase (e.g., <BusinessDashboard />).`);
+          errors.push(`${fp}:${ln}  ❌ JSX tag "<${tag}>" has hyphen. Use PascalCase (e.g., <BusinessDashboard />).`);
         else
-          issues.push(`${fp}:${ln}  ⚠️ JSX tag "<${tag}>" starts lowercase. Components must be PascalCase (e.g., <About />).`);
+          warnings.push(`${fp}:${ln}  ⚠️ JSX tag "<${tag}>" starts lowercase. Components must be PascalCase (e.g., <About />).`);
       }
     });
   }
 }
 walk(process.cwd());
 
-if (issues.length) {
-  console.log(`\nFound ${issues.length} issue(s):\n` + issues.join("\n"));
+if (warnings.length) {
+  console.log(`\nFound ${warnings.length} warning(s):\n` + warnings.join("\n"));
+}
+if (errors.length) {
+  console.log(`\nFound ${errors.length} critical error(s):\n` + errors.join("\n"));
   process.exit(1);
 } else {
-  console.log("✅ No obvious hyphen/lowercase component issues found.");
+  console.log("\n✅ No critical errors found. Build can proceed.");
 }
