@@ -164,9 +164,9 @@ const PAGES = {
     
     c: c,
     
-    import About from "./about.jsx";
+    About: About,
     
-    import BusinessDashboard from "./business-dashboard.jsx";
+    BusinessDashboard: BusinessDashboard,
     
 }
 
