@@ -2,6 +2,10 @@ import About from "./about.jsx";
 
 import BusinessDashboard from "./business-dashboard.jsx";
 
+import Login from "./Login.jsx";
+
+import Signup from "./Signup.jsx";
+
 import Layout from "./Layout.jsx";
 
 import Home from "./Home";
@@ -164,6 +168,10 @@ const PAGES = {
     
     BusinessDashboard: BusinessDashboard,
     
+    Login: Login,
+    
+    Signup: Signup,
+    
 }
 
 function _getCurrentPage(url) {
@@ -270,6 +278,10 @@ function PagesContent() {
                 <Route path="/about" element={<about />} />
                 
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
+                
+                <Route path="/login" element={<Login />} />
+                
+                <Route path="/signup" element={<Signup />} />
                 
             </Routes>
         </Layout>
