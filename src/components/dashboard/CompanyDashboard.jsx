@@ -1,6 +1,6 @@
 
 import React, { useEffect, useMemo, useState } from "react";
-import { base44 } from "@/api/base44Client";
+import { supabase } from "@/api/supabaseClient";
 import { createPageUrl } from "@/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -119,7 +119,8 @@ export default function CompanyDashboard({ company }) {
       setLoading(true);
       
       // Fetch all complaints for KPI calculation first
-      const allCompanyComplaints = await base44.entities.Complaint.filter({ company_id: company.id });
+      const { Complaint } = await import('@/api/entities');
+      const allCompanyComplaints = await Complaint.filter({ company_id: company.id });
       const calculatedKpis = calculateKpis(allCompanyComplaints);
       setKpis(calculatedKpis);
 
@@ -143,7 +144,8 @@ export default function CompanyDashboard({ company }) {
           // A backend function would be better for a real 'q' search
       }
       
-      const { data: complaintItems, total: totalCount } = await base44.entities.Complaint.list(filterConfig, '-created_date', pageSize, (page - 1) * pageSize);
+      const complaintItems = await Complaint.list('-created_date', pageSize, (page - 1) * pageSize);
+      const totalCount = complaintItems.length;
       
       // Client-side search for 'q' as a temporary measure
       const searchedItems = q ? complaintItems.filter(c => c.title.toLowerCase().includes(q.toLowerCase())) : complaintItems;

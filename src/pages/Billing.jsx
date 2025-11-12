@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '@/api/entities';
 import { Company } from '@/api/entities';
 import { Subscription } from '@/api/entities';
-import { base44 } from '@/api/base44Client';
+// base44 removed - using Supabase entities
 import { createPageUrl } from '@/utils';
 import { Loader2, CheckCircle, Package, CreditCard, Building, ArrowLeft, ExternalLink, HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -64,7 +64,8 @@ export default function BillingPage() {
     const handleCheckout = async (sku) => {
         setIsProcessing(true);
         try {
-            const { data } = await base44.functions.invoke('createBillingCheckout', {
+            const { createBillingCheckout } = await import('@/api/functions');
+            const data = await createBillingCheckout({
                 sku: sku,
                 companyId: company.id,
                 success_url: `${window.location.origin}${createPageUrl('BillingSuccess')}`,
@@ -81,7 +82,8 @@ export default function BillingPage() {
     const handlePortal = async () => {
         setIsProcessing(true);
         try {
-            const { data } = await base44.functions.invoke('createBillingPortal');
+            const { createBillingPortal } = await import('@/api/functions');
+            const data = await createBillingPortal();
             window.location.href = data.portal_url;
         } catch (error) {
             console.error("Portal creation failed:", error);

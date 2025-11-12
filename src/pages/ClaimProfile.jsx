@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { base44 } from '@/api/base44Client';
+// base44 removed - using Supabase entities
 import { User } from '@/api/entities';
 import { Company } from '@/api/entities';
 import { CompanyClaim } from '@/api/entities';
@@ -103,7 +103,7 @@ export default function ClaimProfile() {
             const newClaim = await CompanyClaim.create(claimData);
             
             const updatedCompaniesClaimed = Array.from(new Set([...(user.companies_claimed || []), companyIdToClaim]));
-            await base44.auth.updateMe({
+            await User.updateMe({
                 user_type: 'business',
                 companies_claimed: updatedCompaniesClaimed
             });
