@@ -203,6 +203,8 @@ function PagesContent() {
                 
                 <Route path="/FileComplaint" element={<FileComplaint />} />
                 
+                <Route path="/filecomplaint" element={<FileComplaint />} />
+                
                 <Route path="/Companies" element={<Companies />} />
                 
                 <Route path="/CompanyProfile" element={<CompanyProfile />} />
@@ -279,7 +281,11 @@ function PagesContent() {
                 
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
                 
+                <Route path="/Login" element={<Login />} />
+                
                 <Route path="/login" element={<Login />} />
+                
+                <Route path="/Signup" element={<Signup />} />
                 
                 <Route path="/signup" element={<Signup />} />
                 
