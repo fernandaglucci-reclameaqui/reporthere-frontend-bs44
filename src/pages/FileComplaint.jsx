@@ -194,6 +194,15 @@ export default function FileComplaint() {
     }
   };
 
+  const generatePassword = () => {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%';
+    let password = '';
+    for (let i = 0; i < 12; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+  };
+
   const handleSubmit = async () => {
     if (!formData.termsAccepted) {
       setError("Please accept the Terms of Service");
@@ -206,11 +215,35 @@ export default function FileComplaint() {
     try {
       // Check if user is logged in
       let user = await User.me().catch(() => null);
+      let generatedPassword = null;
       
       if (!user) {
-        // Create account or redirect to login
-        await User.loginWithRedirect(window.location.href);
-        return;
+        // Auto-create account with generated password
+        generatedPassword = generatePassword();
+        
+        try {
+          await User.signUp({
+            email: formData.email,
+            password: generatedPassword,
+            full_name: formData.fullName,
+            user_type: 'consumer'
+          });
+          
+          // Auto-login after signup
+          await User.signIn({ 
+            email: formData.email, 
+            password: generatedPassword 
+          });
+          
+          // Get the newly created user
+          user = await User.me();
+          
+        } catch (signupError) {
+          console.error("Auto-signup failed:", signupError);
+          setError("Failed to create account. Please try again or sign up manually.");
+          setSubmitting(false);
+          return;
+        }
       }
 
       // Find or create company
@@ -256,10 +289,18 @@ export default function FileComplaint() {
       
       // Send notification
       try {
+        let emailBody = `Hi ${formData.fullName},\n\nYour complaint against ${formData.companyName} has been submitted and is under review.\n\nComplaint ID: ${newComplaint.id}\n\n`;
+        
+        if (generatedPassword) {
+          emailBody += `We created an account for you to track your complaint:\n\nEmail: ${formData.email}\nPassword: ${generatedPassword}\n\nPlease log in and change your password at your earliest convenience:\nhttps://reporthere-frontend-bs44.vercel.app/login\n\n`;
+        }
+        
+        emailBody += `Thank you,\nReportHere Team`;
+        
         await SendEmail({
           to: formData.email,
-          subject: "Complaint Submitted Successfully",
-          body: `Hi ${formData.fullName},\n\nYour complaint against ${formData.companyName} has been submitted and is under review.\n\nComplaint ID: ${newComplaint.id}\n\nThank you,\nReportHere Team`
+          subject: generatedPassword ? "Account Created & Complaint Submitted" : "Complaint Submitted Successfully",
+          body: emailBody
         });
       } catch (emailError) {
         console.error("Email failed:", emailError);
