@@ -282,7 +282,7 @@ export default function FileComplaint() {
         amount_involved: formData.amountInvolved ? parseFloat(formData.amountInvolved) : null,
         incident_date: formData.incidentDate || null,
         attachments: formData.attachments,
-        status: "pending",
+        status: "submitted",
         severity: "medium"
       };
 
