@@ -90,6 +90,7 @@ export default function FileComplaint() {
     // Step 2: Company
     companyName: "",
     companyId: null,
+    companyEmail: "",
     category: "",
     incidentDate: "",
     
@@ -287,21 +288,33 @@ export default function FileComplaint() {
 
       const newComplaint = await Complaint.create(complaintData);
       
-      // Send notification
+      // Send notifications
       try {
-        let emailBody = `Hi ${formData.fullName},\n\nYour complaint against ${formData.companyName} has been submitted and is under review.\n\nComplaint ID: ${newComplaint.id}\n\n`;
+        // Customer notification
+        let customerEmailBody = `Hi ${formData.fullName},\n\nYour complaint against ${formData.companyName} has been submitted successfully!\n\nComplaint ID: ${newComplaint.id}\n\nWhat happens next:\n• Your complaint will be reviewed and published within 24-48 hours\n• Once published, the company will be notified\n• When the company responds, you'll receive an email notification\n• You can track updates anytime by logging into your account\n\n`;
         
         if (generatedPassword) {
-          emailBody += `We created an account for you to track your complaint:\n\nEmail: ${formData.email}\nPassword: ${generatedPassword}\n\nPlease log in and change your password at your earliest convenience:\nhttps://reporthere-frontend-bs44.vercel.app/login\n\n`;
+          customerEmailBody += `We created an account for you to track your complaint:\n\nEmail: ${formData.email}\nPassword: ${generatedPassword}\n\nPlease log in and change your password at your earliest convenience:\nhttps://reporthere-frontend-bs44.vercel.app/login\n\n`;
         }
         
-        emailBody += `Thank you,\nReportHere Team`;
+        customerEmailBody += `Thank you for using ReportHere!\n\nBest regards,\nThe ReportHere Team`;
         
         await SendEmail({
           to: formData.email,
           subject: generatedPassword ? "Account Created & Complaint Submitted" : "Complaint Submitted Successfully",
-          body: emailBody
+          body: customerEmailBody
         });
+        
+        // Company notification (if email provided)
+        if (formData.companyEmail && formData.companyEmail.trim()) {
+          const companyEmailBody = `Dear ${formData.companyName} Team,\n\nA new complaint has been filed against your company on ReportHere.\n\nComplaint Details:\n• Complaint ID: ${newComplaint.id}\n• Category: ${formData.category}\n• Customer: ${formData.fullName}\n• Date Filed: ${new Date().toLocaleDateString()}\n\nSummary:\n${formData.title}\n\nTo respond to this complaint and maintain your company's reputation, please visit:\nhttps://reporthere-frontend-bs44.vercel.app/ComplaintDetail?id=${newComplaint.id}\n\nResponding promptly to customer complaints helps build trust and shows your commitment to customer satisfaction.\n\nBest regards,\nThe ReportHere Team`;
+          
+          await SendEmail({
+            to: formData.companyEmail,
+            subject: `New Complaint Filed - Action Required [ID: ${newComplaint.id}]`,
+            body: companyEmailBody
+          });
+        }
       } catch (emailError) {
         console.error("Email failed:", emailError);
       }
@@ -446,6 +459,19 @@ export default function FileComplaint() {
                       ))}
                     </div>
                   )}
+                </div>
+
+                <div>
+                  <Label htmlFor="companyEmail" className="text-base font-semibold">Company Email (Optional)</Label>
+                  <Input
+                    id="companyEmail"
+                    type="email"
+                    value={formData.companyEmail}
+                    onChange={(e) => setFormData({...formData, companyEmail: e.target.value})}
+                    placeholder="support@company.com"
+                    className="mt-2 h-12 text-lg"
+                  />
+                  <p className="text-sm text-gray-500 mt-1">💡 Have the company's email? We'll notify them immediately!</p>
                 </div>
 
                 <div>
