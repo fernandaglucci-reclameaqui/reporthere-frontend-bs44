@@ -160,23 +160,46 @@ class SupabaseAuth {
    * @returns {Promise<Object>} User object
    */
   async signUp({ email, password, ...metadata }) {
+    console.log('SignUp attempt:', { email, metadata });
+    
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: metadata
+        data: metadata,
+        emailRedirectTo: window.location.origin
       }
     });
     
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase auth.signUp error:', error);
+      throw error;
+    }
+    
+    console.log('SignUp response:', data);
     
     // Create profile
     if (data.user) {
-      await supabase.from('profiles').insert([{
+      const profileData = {
         id: data.user.id,
         email: data.user.email,
         ...metadata
-      }]);
+      };
+      
+      console.log('Creating profile:', profileData);
+      
+      const { data: profileResult, error: profileError } = await supabase
+        .from('profiles')
+        .insert([profileData])
+        .select()
+        .single();
+      
+      if (profileError) {
+        console.error('Profile creation error:', profileError);
+        // Don't throw - auth user was created successfully
+      } else {
+        console.log('Profile created:', profileResult);
+      }
     }
     
     return data.user;
