@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams, Link } from "react-router-dom";
+import { useLocation, useParams, useSearchParams, Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Complaint } from "@/api/entities";
 import { Company } from "@/api/entities";
@@ -69,6 +69,7 @@ const ErrorState = ({ error, onRetry }) => (
 export default function ComplaintDetail() {
   const location = useLocation(); // Keep location for handleRetry in ErrorState if user refreshes before new logic loads
   const params = useParams();
+  const [searchParams] = useSearchParams();
   const [complaint, setComplaint] = useState(null);
   const [company, setCompany] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
@@ -96,7 +97,8 @@ export default function ComplaintDetail() {
     setIsCompanyMember(false); // Reset on new load
 
     try {
-      const id = params.id;
+      // Try to get ID from query parameter first, then from path parameter
+      const id = searchParams.get('id') || params.id;
       if (!id) {
         throw new Error("No complaint ID provided");
       }
