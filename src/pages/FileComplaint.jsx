@@ -219,6 +219,25 @@ export default function FileComplaint() {
       let generatedPassword = null;
       
       if (!user) {
+        // Check if user already exists
+        try {
+          // Try to check if email exists in profiles table
+          const { data: existingProfile } = await supabase
+            .from('profiles')
+            .select('email')
+            .eq('email', formData.email)
+            .single();
+          
+          if (existingProfile) {
+            // User exists but not logged in
+            setError(`An account with ${formData.email} already exists. Please sign in to file a complaint.`);
+            setSubmitting(false);
+            return;
+          }
+        } catch (checkError) {
+          // Profile doesn't exist, continue with signup
+        }
+        
         // Auto-create account with generated password
         generatedPassword = generatePassword();
         
@@ -241,7 +260,12 @@ export default function FileComplaint() {
           
         } catch (signupError) {
           console.error("Auto-signup failed:", signupError);
-          setError("Failed to create account. Please try again or sign up manually.");
+          // Check if it's a duplicate email error
+          if (signupError.message && signupError.message.includes('already registered')) {
+            setError(`An account with ${formData.email} already exists. Please sign in to file a complaint.`);
+          } else {
+            setError("Failed to create account. Please try again or sign up manually.");
+          }
           setSubmitting(false);
           return;
         }
