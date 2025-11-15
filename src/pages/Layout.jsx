@@ -174,9 +174,16 @@ export default function Layout({ children, currentPageName }) {
   }, [location.pathname, location.search]); // More specific dependency
 
   const handleLogout = async () => {
-    await User.logout();
-    setUser(null);
-    navigate(createPageUrl("home"));
+    try {
+      await User.signOut();
+      setUser(null);
+      navigate(createPageUrl("home"));
+    } catch (error) {
+      console.error('Logout failed:', error);
+      // Force logout even if API call fails
+      setUser(null);
+      navigate(createPageUrl("home"));
+    }
   };
 
   const handleLogin = async () => {
