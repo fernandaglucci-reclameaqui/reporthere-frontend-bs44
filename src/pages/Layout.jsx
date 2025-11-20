@@ -242,11 +242,10 @@ export default function Layout({ children, currentPageName }) {
                 {/* Logo - SHIELD ONLY */}
                 <Link to={createPageUrl("home")} className="flex items-center gap-2">
                 <img 
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68cf655520c2199be90281b3/550231a20_transparentshield.png" 
-                    alt="ReportHere Shield" 
-                    className="h-10 w-auto"
+                    src="/reporthere-logo.png" 
+                    alt="ReportHere Logo" 
+                    className="h-14 w-auto"
                 />
-                <span className="text-2xl font-bold text-gray-800 tracking-tight hidden sm:inline">ReportHere</span>
                 </Link>
 
                 {/* Main Navigation (Desktop) */}
