@@ -14,7 +14,7 @@ export async function getCompanyPlan(company_id){
 export async function countRepliesThisMonth(company_id){
   if (!company_id) return 0;
   const since = new Date(); since.setDate(1); since.setHours(0,0,0,0);
-  const rows = await CompanyReplyLog.filter({ company_id, created_at: { $gte: since.toISOString() } }, "-created_at", 2000);
+  const rows = await CompanyReplyLog.filter({ company_id, created_date: { $gte: since.toISOString() } }, "-created_date", 2000);
   return rows.length;
 }
 

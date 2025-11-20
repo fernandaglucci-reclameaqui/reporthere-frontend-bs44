@@ -36,7 +36,7 @@ ${items.map(p => `<item>
   <title>${escapeXml(p.title)}</title>
   <link>${origin}${createPageUrl("BlogPost")}?slug=${p.slug||p.id}</link>
   <guid isPermaLink="false">${p.id}</guid>
-  <pubDate>${new Date(p.created_at).toUTCString()}</pubDate>
+  <pubDate>${new Date(p.created_date).toUTCString()}</pubDate>
   <description>${escapeXml(p.body_markdown.substring(0, 250))}...</description>
 </item>`).join("\n")}
 </channel>
