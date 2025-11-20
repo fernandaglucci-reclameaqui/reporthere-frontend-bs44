@@ -285,9 +285,6 @@ function SuccessRedirect() {
     const [countdown, setCountdown] = useState(5);
 
     useEffect(() => {
-        // Clear user cache to force re-fetch on next page load
-        User.clearCache();
-    
         if (countdown <= 0) {
             navigate(createPageUrl('business-dashboard'));
             return;
