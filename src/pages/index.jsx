@@ -6,6 +6,8 @@ import Login from "./Login.jsx";
 
 import Signup from "./Signup.jsx";
 
+import Pricing from "./Pricing.jsx";
+
 import Layout from "./Layout.jsx";
 
 import Home from "./Home";
@@ -172,6 +174,8 @@ const PAGES = {
     
     Signup: Signup,
     
+    Pricing: Pricing,
+    
 }
 
 function _getCurrentPage(url) {
@@ -288,6 +292,10 @@ function PagesContent() {
                 <Route path="/Signup" element={<Signup />} />
                 
                 <Route path="/signup" element={<Signup />} />
+                
+                <Route path="/Pricing" element={<Pricing />} />
+                
+                <Route path="/pricing" element={<Pricing />} />
                 
             </Routes>
         </Layout>
