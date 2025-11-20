@@ -444,6 +444,17 @@ export default function Layout({ children, currentPageName }) {
                         </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
+                    
+                    {/* Temporary logout button - visible fix while debugging dropdown */}
+                    <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={handleLogout} 
+                        className="text-red-600 hover:bg-red-50 hover:text-red-700 ml-2"
+                        title="Logout"
+                    >
+                        <LogOut className="w-4 h-4" />
+                    </Button>
                     </>
                 ) : (
                     <div className="flex items-center gap-3">
