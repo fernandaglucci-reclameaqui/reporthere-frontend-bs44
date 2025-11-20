@@ -91,14 +91,16 @@ export default function ClaimProfile() {
             const claimData = {
                 company_id: companyIdToClaim,
                 company_name: companyNameToClaim,
-                requester_user_id: user.id,
+                user_id: user.id,
                 requester_email: user.email,
-                company_website: website,
-                requester_role: role,
-                evidence_urls: evidence ? evidence.split(',').map(url => url.trim()).filter(Boolean) : [],
-                notes: notes,
-                status: 'approved',
-                authorized_declaration: true
+                verification_method: 'email',
+                verification_data: {
+                    website: website,
+                    role: role,
+                    evidence: evidence ? evidence.split(',').map(url => url.trim()).filter(Boolean) : []
+                },
+                admin_notes: notes || '',
+                status: 'approved'
             };
             const newClaim = await CompanyClaim.create(claimData);
             
