@@ -18,9 +18,9 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-[#F5FBF6]">
-      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-10 px-6 py-12 md:flex-row md:py-20">
+      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-6 px-6 py-12 md:flex-row md:py-16">
         {/* Left: copy + search */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full md:w-5/12">
           <h1 className="text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
             Had a Bad Experience?
             <br />
@@ -67,13 +67,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: people image - fixed overflow */}
-        <div className="relative w-full md:w-1/2">
+        {/* Right: people image - bigger and transparent */}
+        <div className="relative w-full md:w-7/12 -mb-12 md:-mb-16">
           <div className="relative mx-auto w-full">
             <img
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/108907386/VApOOnzBDZqFbGCe.png"
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/108907386/PlWqdZRDhcFvAOVW.png"
               alt="Happy customers using ReportHere"
-              className="h-auto w-full object-contain"
+              className="h-auto w-full object-contain scale-110 md:scale-125"
             />
           </div>
         </div>
