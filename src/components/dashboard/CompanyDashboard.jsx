@@ -100,7 +100,7 @@ export default function CompanyDashboard({ company }) {
       const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
       const resolvedLast30d = allComplaints.filter(c => c.status === 'resolved' && new Date(c.closed_at) > thirtyDaysAgo).length;
-      const newThisWeek = allComplaints.filter(c => new Date(c.created_date) > sevenDaysAgo).length;
+      const newThisWeek = allComplaints.filter(c => new Date(c.created_at) > sevenDaysAgo).length;
       const open = allComplaints.filter(c => ['published', 'responded', 'waiting_company', 'waiting_customer'].includes(c.status)).length;
       const overdue = allComplaints.filter(c => c.sla_due_at && new Date(c.sla_due_at) < now && c.status !== 'resolved').length;
       
@@ -144,7 +144,7 @@ export default function CompanyDashboard({ company }) {
           // A backend function would be better for a real 'q' search
       }
       
-      const complaintItems = await Complaint.list('-created_date', pageSize, (page - 1) * pageSize);
+      const complaintItems = await Complaint.list('-created_at', pageSize, (page - 1) * pageSize);
       const totalCount = complaintItems.length;
       
       // Client-side search for 'q' as a temporary measure

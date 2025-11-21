@@ -19,7 +19,7 @@ export default function AdminAnalytics(){
       }, {});
       setAllCompanies(companyMap);
 
-      const last = await Complaint.list("-created_date", 1000);
+      const last = await Complaint.list("-created_at", 1000);
       setTotComplaints(last.length);
 
       const counts = {};

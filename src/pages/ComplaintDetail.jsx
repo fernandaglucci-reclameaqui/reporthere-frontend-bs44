@@ -201,7 +201,7 @@ export default function ComplaintDetail() {
               <Separator orientation="vertical" className="h-4" />
               <span>Status: {getStatusBadge(complaint.status)}</span>
               <Separator orientation="vertical" className="h-4" />
-              <span>Filed: {new Date(complaint.created_date).toLocaleDateString()}</span>
+              <span>Filed: {new Date(complaint.created_at).toLocaleDateString()}</span>
               {complaint.amount_involved && (
                 <>
                   <Separator orientation="vertical" className="h-4" />
@@ -222,7 +222,7 @@ export default function ComplaintDetail() {
               </CardTitle>
               <CardDescription className="flex items-center gap-1 text-xs">
                 <Clock className="w-3 h-3" />
-                Filed on {new Date(complaint.created_date).toLocaleDateString()}
+                Filed on {new Date(complaint.created_at).toLocaleDateString()}
               </CardDescription>
             </CardHeader>
             <CardContent>

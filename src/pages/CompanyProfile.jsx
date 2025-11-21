@@ -54,7 +54,7 @@ export default function CompanyPublicPage() {
             <li key={it.id} className="p-4 border-b last:border-b-0 hover:bg-gray-50">
                <Link to={createPageUrl(`complaint/${it.id}`)}>
                     <div className="font-medium text-gray-800">{it.title}</div>
-                    <div className="text-xs text-gray-500 mt-1">{new Date(it.created_date).toLocaleString()}</div>
+                    <div className="text-xs text-gray-500 mt-1">{new Date(it.created_at).toLocaleString()}</div>
                </Link>
             </li>
           ))}

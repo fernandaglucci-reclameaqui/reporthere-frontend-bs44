@@ -38,7 +38,7 @@ export default function Complaints() {
     search: '',
     status: 'all',
     category: 'all',
-    sortBy: '-created_date'
+    sortBy: '-created_at'
   });
 
   useEffect(() => {
@@ -164,8 +164,8 @@ export default function Complaints() {
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="-created_date">Newest First</SelectItem>
-                <SelectItem value="created_date">Oldest First</SelectItem>
+                <SelectItem value="-created_at">Newest First</SelectItem>
+                <SelectItem value="created_at">Oldest First</SelectItem>
               </SelectContent>
             </Select>
           </CardContent>
@@ -224,7 +224,7 @@ export default function Complaints() {
                       {getStatusBadge(complaint.status)}
                       <div className="flex items-center gap-2 text-xs text-gray-500">
                         <Clock className="w-3 h-3" />
-                        <span>{new Date(complaint.created_date).toLocaleDateString()}</span>
+                        <span>{new Date(complaint.created_at).toLocaleDateString()}</span>
                       </div>
                     </div>
                   </CardContent>

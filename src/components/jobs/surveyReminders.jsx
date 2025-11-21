@@ -7,10 +7,10 @@ export default async function runSurveyReminders() {
   let remindersSent = 0;
 
   for (const c of list) {
-    const survey = await ComplaintSurvey.filter({ complaint_id: c.id }, "-created_date", 1);
+    const survey = await ComplaintSurvey.filter({ complaint_id: c.id }, "-created_at", 1);
     if (survey.length) continue;
 
-    const lastTs = new Date(c.updated_date || c.created_date).getTime();
+    const lastTs = new Date(c.updated_date || c.created_at).getTime();
     const ageHours = (now - lastTs) / 36e5;
 
     // Get consumer email

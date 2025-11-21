@@ -35,7 +35,7 @@ export default function BlogPage() {
         const fetchPosts = async () => {
             setLoading(true);
             try {
-                const publishedPosts = await Post.filter({ status: 'published' }, '-created_date');
+                const publishedPosts = await Post.filter({ status: 'published' }, '-created_at');
                 setPosts(publishedPosts);
             } catch (error) {
                 console.error("Error fetching blog posts:", error);
@@ -77,7 +77,7 @@ export default function BlogPage() {
                                     </CardTitle>
                                     <div className="flex items-center text-sm text-gray-500 pt-2">
                                         <Calendar className="w-4 h-4 mr-2" />
-                                        {new Date(post.created_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                        {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                                     </div>
                                 </CardHeader>
                                 <CardContent className="flex-grow">

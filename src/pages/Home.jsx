@@ -190,7 +190,7 @@ export default function Home() {
                       <div className="flex items-center justify-between">
                         <StatusChip status={complaint.status.toUpperCase()} />
                         <span className="text-xs text-gray-500">
-                          {new Date(complaint.published_date || complaint.created_date).toLocaleDateString()}
+                          {new Date(complaint.published_date || complaint.created_at).toLocaleDateString()}
                         </span>
                       </div>
                     </CardContent>

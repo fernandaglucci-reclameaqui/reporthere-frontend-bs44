@@ -139,7 +139,7 @@ export default function ClaimCompanyForm({ companyId }) {
         });
 
         // Add user as owner member, checking seat limits
-        const subscription = await Subscription.filter({ company_id: companyId }, "-created_date", 1).then(r=>r[0]);
+        const subscription = await Subscription.filter({ company_id: companyId }, "-created_at", 1).then(r=>r[0]);
         const members = await CompanyMember.filter({ company_id: companyId });
 
         if (!withinSeatLimit(subscription, members.length + 1)) {

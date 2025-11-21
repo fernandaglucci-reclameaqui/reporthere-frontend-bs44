@@ -17,7 +17,7 @@ async function getMyCompanyId() {
 
   // Fallback: look up membership
   try {
-    const rows = await CompanyMember.filter({ user_id: me.id }, "-created_date", 1);
+    const rows = await CompanyMember.filter({ user_id: me.id }, "-created_at", 1);
     return rows?.[0]?.company_id || null;
   } catch (e) {
     return null;
@@ -57,7 +57,7 @@ export default function CompanyInbox() {
           const me = await User.me();
           const [members, subscriptions] = await Promise.all([
             CompanyMember.filter({ company_id: cid }),
-            Subscription.filter({ company_id: cid }, "-created_date", 1)
+            Subscription.filter({ company_id: cid }, "-created_at", 1)
           ]);
           
           const myMembership = members.find(m => m.user_id === me.id);
@@ -78,7 +78,7 @@ export default function CompanyInbox() {
       setLoading(true);
       const filter = { company_id: companyId };
       if (statusFilter && statusFilter !== "all") filter.status = statusFilter;
-      const rows = await Complaint.filter(filter, "-created_date");
+      const rows = await Complaint.filter(filter, "-created_at");
       const filtered = rows.filter(r => {
         if (!search?.trim()) return true;
         const q = search.toLowerCase();

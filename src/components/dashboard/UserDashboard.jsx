@@ -51,7 +51,7 @@ export default function UserDashboard() {
                 {items.map(row => (
                   <li key={row.id} className="border p-4 rounded-lg bg-white shadow-sm">
                     <div className="font-medium text-gray-800">{row.title}</div>
-                    <div className="text-sm text-gray-500">{new Date(row.created_date).toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">{new Date(row.created_at).toLocaleString()}</div>
                   </li>
                 ))}
               </ul>

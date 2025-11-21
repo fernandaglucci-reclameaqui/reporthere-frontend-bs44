@@ -76,9 +76,9 @@ export function calculateAverageResponseTime(complaints) {
     return { hours: 0, formatted: '0h' };
   }
 
-  // Filter complaints that have both created_date and business_response_date
+  // Filter complaints that have both created_at and business_response_date
   const respondedComplaints = complaints.filter(c => 
-    c.created_date && 
+    c.created_at && 
     c.business_response_date
   );
 
@@ -88,7 +88,7 @@ export function calculateAverageResponseTime(complaints) {
 
   // Calculate time differences in hours
   const totalHours = respondedComplaints.reduce((sum, c) => {
-    const created = new Date(c.created_date);
+    const created = new Date(c.created_at);
     const responded = new Date(c.business_response_date);
     const diffMs = responded - created;
     const diffHours = diffMs / (1000 * 60 * 60);

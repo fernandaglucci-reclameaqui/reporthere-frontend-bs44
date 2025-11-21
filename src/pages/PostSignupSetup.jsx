@@ -14,7 +14,7 @@ export default function PostSignupSetup() {
         const user = await User.me();
         
         // Check if the user is new (created in the last 2 minutes)
-        const isNewUser = new Date() - new Date(user.created_date) < 120000;
+        const isNewUser = new Date() - new Date(user.created_at) < 120000;
 
         if (isNewUser && !user.user_type || user.user_type === 'consumer') {
           const params = new URLSearchParams(location.search);

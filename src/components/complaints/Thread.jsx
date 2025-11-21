@@ -16,7 +16,7 @@ export default function Thread({ complaint, user, isBusinessOwner }) {
   useEffect(() => {
     const fetchMessages = async () => {
       if (complaint?.id) {
-        const fetchedMessages = await ComplaintMessage.filter({ complaint_id: complaint.id }, 'created_date');
+        const fetchedMessages = await ComplaintMessage.filter({ complaint_id: complaint.id }, 'created_at');
         setMessages(fetchedMessages);
       }
     };
@@ -87,7 +87,7 @@ export default function Thread({ complaint, user, isBusinessOwner }) {
                     <p className="text-gray-800 whitespace-pre-wrap">{msg.body}</p>
                   </div>
                    <span className="text-xs text-gray-400 mt-1">
-                      {new Date(msg.created_date).toLocaleString()}
+                      {new Date(msg.created_at).toLocaleString()}
                     </span>
                 </div>
                  {isConsumer && <Icon className="w-8 h-8 text-gray-500 mt-1" />}

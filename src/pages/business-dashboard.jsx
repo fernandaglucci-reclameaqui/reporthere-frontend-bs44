@@ -317,7 +317,7 @@ export default function CompanySuperDashboard() {
                   <tr key={r.id} className="border-t">
                     <td className="px-4 py-3 max-w-[360px] truncate" title={r.title}>{r.title}</td>
                     <td className="px-4 py-3"><StatusChip status={r.status.toUpperCase()}/></td>
-                    <td className="px-4 py-3 text-gray-500">{new Date(r.created_date).toLocaleDateString()}</td>
+                    <td className="px-4 py-3 text-gray-500">{new Date(r.created_at).toLocaleDateString()}</td>
                     <td className="px-4 py-3 text-right">
                       <Link to={createPageUrl(`complaint/${r.id}`)}>
                         <Button variant="ghost" size="sm">Open</Button>

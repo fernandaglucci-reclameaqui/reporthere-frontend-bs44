@@ -7,7 +7,7 @@ export default function Feed(){
   const [origin, setOrigin] = useState("");
 
   useEffect(()=>{ 
-    Post.filter({status:"published"},"-created_date",50).then(setItems);
+    Post.filter({status:"published"},"-created_at",50).then(setItems);
     if (typeof window !== "undefined") {
       setOrigin(window.location.origin);
     }
@@ -36,7 +36,7 @@ ${items.map(p => `<item>
   <title>${escapeXml(p.title)}</title>
   <link>${origin}${createPageUrl("BlogPost")}?slug=${p.slug||p.id}</link>
   <guid isPermaLink="false">${p.id}</guid>
-  <pubDate>${new Date(p.created_date).toUTCString()}</pubDate>
+  <pubDate>${new Date(p.created_at).toUTCString()}</pubDate>
   <description>${escapeXml(p.body_markdown.substring(0, 250))}...</description>
 </item>`).join("\n")}
 </channel>

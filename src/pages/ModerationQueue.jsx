@@ -6,7 +6,7 @@ export default function ModerationQueue(){
   const [list, setList] = useState([]);
   
   useEffect(()=>{ 
-    Complaint.filter({ status: "submitted" }, "-created_date").then(setList); 
+    Complaint.filter({ status: "submitted" }, "-created_at").then(setList); 
   },[]);
 
   const approve = async (c) => {
@@ -34,7 +34,7 @@ export default function ModerationQueue(){
                   <div className="font-semibold text-lg">{c.title}</div>
                   <div className="text-sm text-gray-500 mb-2">For: {c.company_name}</div>
                 </div>
-                <div className="text-xs text-gray-500">{new Date(c.created_date).toLocaleString()}</div>
+                <div className="text-xs text-gray-500">{new Date(c.created_at).toLocaleString()}</div>
               </div>
               <p className="text-gray-700 whitespace-pre-wrap bg-gray-50 p-3 rounded-md">{c.description}</p>
               <div className="mt-4 flex gap-3">
