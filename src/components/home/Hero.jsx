@@ -22,12 +22,15 @@ export default function Hero() {
         {/* Left: copy + search */}
         <div className="w-full md:w-1/2">
           <h1 className="text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
-            See Company Reputation <br className="hidden md:block" />
-            You Can Trust
+            Had a Bad Experience?
+            <br />
+            You're Not Alone.
           </h1>
-          <p className="mt-4 max-w-xl text-slate-600">
-            Make informed decisions based on verified reviews and company response
-            history from real consumers.
+          <p className="mt-2 text-2xl font-semibold text-emerald-600">
+            Let's Find a Solution, Together.
+          </p>
+          <p className="mt-4 max-w-xl text-lg text-slate-600">
+            ReportHere is a welcoming place where customers find fair solutions — and companies earn loyal fans.
           </p>
 
           {/* Search bar */}
@@ -35,7 +38,7 @@ export default function Hero() {
             <Input
               type="text"
               name="q"
-              placeholder="Search for a company..."
+              placeholder="Search for a company (internet, delivery, auto repair…)"
               className="w-full rounded-l-full border-0 bg-transparent px-5 py-3 outline-none ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               aria-label="Search for a company"
               value={searchQuery}
@@ -49,24 +52,28 @@ export default function Hero() {
             </Button>
           </form>
 
-          {/* CTAs */}
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Link to={createPageUrl("FileComplaint")} className="rounded-full bg-white px-5 py-2.5 text-sm font-medium ring-1 ring-black/10 transition hover:bg-gray-100 hover:ring-black/20 hover:shadow-md">
-              Write a Complaint
+          {/* CTAs - Two prominent buttons */}
+          <div className="mt-6 flex flex-wrap gap-4">
+            <Link to={createPageUrl("FileComplaint")}>
+              <Button className="rounded-full bg-gradient-to-b from-green-500 to-green-700 px-6 py-3 text-base font-semibold text-white transition hover:from-green-600 hover:to-green-800 hover:shadow-lg">
+                File a Complaint
+              </Button>
             </Link>
-            <Link to={createPageUrl("ClaimProfile")} className="rounded-full bg-gradient-to-b from-green-500 to-green-700 px-5 py-2.5 text-sm font-medium text-white transition hover:from-green-600 hover:to-green-800 hover:shadow-lg">
-              Are you a business? Claim your profile
+            <Link to={createPageUrl("ClaimProfile")}>
+              <Button variant="outline" className="rounded-full border-2 border-green-600 px-6 py-3 text-base font-semibold text-green-700 transition hover:bg-green-50 hover:shadow-md">
+                Claim Your Business
+              </Button>
             </Link>
           </div>
         </div>
 
-        {/* Right: people image */}
+        {/* Right: people image - fixed overflow */}
         <div className="relative w-full md:w-1/2">
-          <div className="relative mx-auto w-full max-w-xl">
+          <div className="relative mx-auto w-full">
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68cf655520c2199be90281b3/349bd174d_imageforhomepage-correctone.png"
               alt="Happy customers using ReportHere"
-              className="h-auto w-full"
+              className="h-auto w-full object-contain"
             />
           </div>
         </div>
