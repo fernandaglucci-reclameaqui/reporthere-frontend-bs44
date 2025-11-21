@@ -8,6 +8,10 @@ import Signup from "./Signup.jsx";
 
 import Pricing from "./Pricing.jsx";
 
+import ForgotPassword from "./ForgotPassword.jsx";
+
+import ResetPassword from "./ResetPassword.jsx";
+
 import Layout from "./Layout.jsx";
 
 import Home from "./Home";
@@ -176,6 +180,10 @@ const PAGES = {
     
     Pricing: Pricing,
     
+    ForgotPassword: ForgotPassword,
+    
+    ResetPassword: ResetPassword,
+    
 }
 
 function _getCurrentPage(url) {
@@ -296,6 +304,10 @@ function PagesContent() {
                 <Route path="/Pricing" element={<Pricing />} />
                 
                 <Route path="/pricing" element={<Pricing />} />
+                
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                
+                <Route path="/reset-password" element={<ResetPassword />} />
                 
             </Routes>
         </Layout>
