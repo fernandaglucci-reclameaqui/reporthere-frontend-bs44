@@ -221,6 +221,8 @@ function PagesContent() {
                 
                 <Route path="/CompanyProfile" element={<CompanyProfile />} />
                 
+                <Route path="/company/:slug" element={<CompanyProfile />} />
+                
                 <Route path="/ClaimCompany" element={<ClaimCompany />} />
                 
                 <Route path="/ClaimWizard" element={<ClaimWizard />} />
