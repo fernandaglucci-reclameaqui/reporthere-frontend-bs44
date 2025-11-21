@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
 import { Loader2, AlertTriangle, Briefcase, ClipboardList, Download, Upload } from "lucide-react";
+import { calculateCoreMetrics } from '@/services/dashboardMetrics';
+import LovedScoreCard from '@/components/dashboard/LovedScoreCard';
+import ReputationSnapshot from '@/components/dashboard/ReputationSnapshot';
 import StatusChip from "@/components/ui/StatusChip";
 
 // --- Helper Components from previous prompt ---
@@ -140,12 +143,16 @@ export default function CompanySuperDashboard() {
                 return acc;
             }, []);
             
+            // Calculate Phase 1 metrics
+            const coreMetrics = calculateCoreMetrics(allComplaints);
+            
             setData({
                 kpis: kpisData,
                 weekly: [ { week: "W1", opened: 5, resolved: 3 }, { week: "W2", opened: 8, resolved: 6 }, { week: "W3", opened: 4, resolved: 7 }, { week: "W4", opened: 9, resolved: 9 } ], // Demo
                 statuses: statusesData,
                 sentiment: [ { day: "Mon", pos: 46, neu: 32, neg: 22 }, { day: "Tue", pos: 52, neu: 28, neg: 20 }, { day: "Wed", pos: 41, neu: 35, neg: 24 }, { day: "Thu", pos: 55, neu: 25, neg: 20 }, { day: "Fri", pos: 49, neu: 31, neg: 20 }], // Demo
-                list: allComplaints
+                list: allComplaints,
+                coreMetrics: coreMetrics
             });
             setView("dashboard");
 
@@ -228,6 +235,19 @@ export default function CompanySuperDashboard() {
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-6 space-y-6">
+        {/* Phase 1: Reputation Snapshot */}
+        {data.coreMetrics && (
+          <ReputationSnapshot metrics={data.coreMetrics} />
+        )}
+
+        {/* Phase 1: Loved Score Card */}
+        {data.coreMetrics && (
+          <div className="grid grid-cols-1 gap-4">
+            <LovedScoreCard lovedScore={data.coreMetrics.lovedScore} />
+          </div>
+        )}
+
+        {/* Legacy KPIs - Keep for now */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Kpi label="Open Complaints" value={data.kpis?.open ?? '...'} sub={fetchErrors.kpis ? "fallback" : undefined}/>
           <Kpi label="Resolved (30d)" value={data.kpis?.resolved_30d ?? '...'}/>

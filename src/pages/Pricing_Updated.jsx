@@ -1,17 +1,27 @@
+// This file contains the updated Pricing page with Stripe integration
+// Replace your current Pricing.jsx with this content after adding Stripe API keys
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createCheckoutSession } from '../services/stripeService';
-import { User } from '@/api/entities';
-import { Link } from 'react-router-dom';
-import { Check, X, Zap, Building2, Rocket, Crown } from 'lucide-react';
+import { Check, X, Zap, Building2, Rocket, Crown, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { createCheckoutSession } from '../services/stripeService';
+import { User } from '@/api/entities';
 
 const Pricing = () => {
   const navigate = useNavigate();
-  const [billingCycle, setBillingCycle] = useState('monthly'); // 'monthly' or 'annual'
-  const [loading, setLoading] = useState(null); // Track which plan is being subscribed to
+  const [billingCycle, setBillingCycle] = useState('monthly');
+  const [loading, setLoading] = useState(null);
+
+  // Stripe Price IDs - REPLACE THESE with your actual Stripe price IDs after creating products
+  const STRIPE_PRICE_IDS = {
+    basic_monthly: 'price_basic_monthly', // Replace with actual Stripe price ID
+    basic_annual: 'price_basic_annual',   // Replace with actual Stripe price ID
+    pro_monthly: 'price_pro_monthly',     // Replace with actual Stripe price ID
+    pro_annual: 'price_pro_annual',       // Replace with actual Stripe price ID
+  };
 
   const plans = [
     {
@@ -32,9 +42,9 @@ const Pricing = () => {
         'No advanced analytics',
       ],
       cta: 'Get Started Free',
-      ctaLink: '/signup',
       popular: false,
       color: 'gray',
+      stripePriceId: null,
     },
     {
       name: 'Basic',
@@ -53,10 +63,13 @@ const Pricing = () => {
       limitations: [
         'Limited to 50 responses per month',
       ],
-      cta: 'Start Free Trial',
-      ctaLink: '/signup?plan=basic',
+      cta: 'Subscribe Now',
       popular: false,
       color: 'blue',
+      stripePriceId: {
+        monthly: STRIPE_PRICE_IDS.basic_monthly,
+        annual: STRIPE_PRICE_IDS.basic_annual,
+      },
     },
     {
       name: 'Pro',
@@ -75,10 +88,13 @@ const Pricing = () => {
         'Dedicated account manager',
       ],
       limitations: [],
-      cta: 'Start Free Trial',
-      ctaLink: '/signup?plan=pro',
+      cta: 'Subscribe Now',
       popular: true,
       color: 'green',
+      stripePriceId: {
+        monthly: STRIPE_PRICE_IDS.pro_monthly,
+        annual: STRIPE_PRICE_IDS.pro_annual,
+      },
     },
     {
       name: 'Enterprise',
@@ -98,11 +114,56 @@ const Pricing = () => {
       ],
       limitations: [],
       cta: 'Contact Sales',
-      ctaLink: '/contact',
       popular: false,
       color: 'purple',
+      stripePriceId: null,
     },
   ];
+
+  const handleSubscribe = async (plan) => {
+    setLoading(plan.name);
+
+    try {
+      // Check if user is logged in
+      const user = await User.me().catch(() => null);
+
+      if (!user) {
+        // Redirect to signup with plan parameter
+        navigate(`/signup?plan=${plan.name.toLowerCase()}`);
+        return;
+      }
+
+      // Get the appropriate price ID based on billing cycle
+      const priceId = billingCycle === 'monthly' 
+        ? plan.stripePriceId.monthly 
+        : plan.stripePriceId.annual;
+
+      // Create Stripe checkout session
+      const checkoutUrl = await createCheckoutSession(
+        priceId,
+        user.email,
+        user.id
+      );
+
+      // Redirect to Stripe checkout
+      window.location.href = checkoutUrl;
+
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+      alert('Failed to start checkout. Please try again.');
+      setLoading(null);
+    }
+  };
+
+  const handleCTA = (plan) => {
+    if (plan.name === 'Free') {
+      navigate('/signup');
+    } else if (plan.name === 'Enterprise') {
+      navigate('/contact');
+    } else {
+      handleSubscribe(plan);
+    }
+  };
 
   const savings = (plan) => {
     if (typeof plan.price.annual === 'number' && typeof plan.price.monthly === 'number') {
@@ -160,6 +221,7 @@ const Pricing = () => {
             const PlanIcon = plan.icon;
             const price = billingCycle === 'monthly' ? plan.price.monthly : plan.price.annual;
             const savingsInfo = billingCycle === 'annual' ? savings(plan) : null;
+            const isLoading = loading === plan.name;
 
             return (
               <Card
@@ -213,7 +275,7 @@ const Pricing = () => {
                   <ul className="space-y-3">
                     {plan.features.map((feature, index) => (
                       <li key={index} className="flex items-start">
-                        <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <Check className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
                         <span className="text-sm text-gray-700">{feature}</span>
                       </li>
                     ))}
@@ -227,78 +289,36 @@ const Pricing = () => {
                 </CardContent>
 
                 <CardFooter>
-                  <Link to={plan.ctaLink} className="w-full">
-                    <Button
-                      className={`w-full ${
-                        plan.popular
-                          ? 'bg-green-600 hover:bg-green-700 text-white'
-                          : 'bg-white border-2 border-gray-300 text-gray-900 hover:bg-gray-50'
-                      }`}
-                    >
-                      {plan.cta}
-                    </Button>
-                  </Link>
+                  <Button
+                    onClick={() => handleCTA(plan)}
+                    disabled={isLoading}
+                    className={`w-full ${
+                      plan.popular
+                        ? 'bg-green-600 hover:bg-green-700 text-white'
+                        : 'bg-white border-2 border-gray-300 text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Processing...
+                      </>
+                    ) : (
+                      plan.cta
+                    )}
+                  </Button>
                 </CardFooter>
               </Card>
             );
           })}
         </div>
 
-        {/* FAQ Section */}
-        <div className="max-w-3xl mx-auto mt-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Can I change plans later?</h3>
-              <p className="text-gray-600">
-                Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any charges.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">What payment methods do you accept?</h3>
-              <p className="text-gray-600">
-                We accept all major credit cards (Visa, MasterCard, American Express) and PayPal.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Is there a free trial?</h3>
-              <p className="text-gray-600">
-                Yes! All paid plans come with a 14-day free trial. No credit card required to start.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">What happens if I exceed my plan limits?</h3>
-              <p className="text-gray-600">
-                We'll notify you when you're approaching your limits. You can upgrade at any time to continue responding to complaints without interruption.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Can I cancel anytime?</h3>
-              <p className="text-gray-600">
-                Absolutely. You can cancel your subscription at any time with no penalties. Your access will continue until the end of your billing period.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 text-center bg-green-50 rounded-lg p-8">
-          <h2 className="text-3xl font-bold mb-4">Ready to improve your reputation?</h2>
-          <p className="text-xl text-gray-600 mb-6">
-            Join thousands of businesses using ReportHere to build trust with customers
+        {/* Trust Indicators */}
+        <div className="text-center mt-12 mb-16">
+          <p className="text-gray-600 mb-4">💳 Secure payment powered by Stripe</p>
+          <p className="text-sm text-gray-500">
+            ✅ 30-day money-back guarantee • ✅ Cancel anytime • ✅ No hidden fees
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link to="/signup">
-              <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                Start Free Trial
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline">
-                Contact Sales
-              </Button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>
