@@ -140,8 +140,8 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-8 h-8 text-red-500" />
+              <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <img src="/icon-heart-handdrawn.png" alt="Heart icon" className="w-full h-full object-contain" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Share Your Story</h3>
               <p className="text-gray-600 mb-6">
@@ -155,8 +155,8 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <BookOpen className="w-8 h-8 text-emerald-600" />
+              <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <img src="/icon-book-handdrawn.png" alt="Book icon" className="w-full h-full object-contain" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Read Other People's Stories</h3>
               <p className="text-gray-600 mb-6">
@@ -170,8 +170,8 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Handshake className="w-8 h-8 text-green-600" />
+              <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <img src="/icon-shield-handdrawn.png" alt="Shield icon" className="w-full h-full object-contain" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Watch Problems Get Solved</h3>
               <p className="text-gray-600 mb-6">
