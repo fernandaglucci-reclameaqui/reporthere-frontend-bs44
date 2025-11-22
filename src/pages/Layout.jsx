@@ -244,7 +244,7 @@ export default function Layout({ children, currentPageName }) {
                 <img 
                     src="/reporthere-logo.png" 
                     alt="ReportHere Logo" 
-                    className="h-16 w-auto"
+                    className="h-20 w-auto"
                 />
                 </Link>
 
