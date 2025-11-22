@@ -198,7 +198,9 @@ export default function Home() {
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200 text-center">
-              <div className="text-6xl mb-4">🙂</div>
+              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <img src="/face-happy-handdrawn.png" alt="Happy face" className="w-full h-full object-contain" />
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Happy face</h3>
               <p className="text-gray-600">
                 People had a good experience and felt respected.
@@ -206,7 +208,9 @@ export default function Home() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200 text-center">
-              <div className="text-6xl mb-4">😐</div>
+              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <img src="/face-neutral-handdrawn.png" alt="Neutral face" className="w-full h-full object-contain" />
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Neutral face</h3>
               <p className="text-gray-600">
                 It was okay, but could be better.
@@ -214,7 +218,9 @@ export default function Home() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200 text-center">
-              <div className="text-6xl mb-4">☹️</div>
+              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <img src="/face-sad-handdrawn.png" alt="Sad face" className="w-full h-full object-contain" />
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Sad face</h3>
               <p className="text-gray-600">
                 Something went wrong and needs attention.
