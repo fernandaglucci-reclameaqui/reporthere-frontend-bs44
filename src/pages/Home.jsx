@@ -326,6 +326,15 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Footnote */}
+      <section className="py-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-sm text-gray-500 text-center">
+            * 100% free for consumers. Free for businesses on the basic package.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
