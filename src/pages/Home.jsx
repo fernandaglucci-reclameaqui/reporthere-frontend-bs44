@@ -187,48 +187,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How Reputation Works Here */}
+      {/* How Customer Sentiment Works */}
       <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
-            How Reputation Works Here
+            How Did You Feel?
           </h2>
           <p className="text-lg text-gray-600 text-center mb-12">
-            We keep it simple — the way everyone understands:
+            After every interaction, we ask one simple question: How did you feel?<br />
+            Your answer helps others understand what to expect.
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200 text-center">
-              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-                <img src="/face-happy-handdrawn.png" alt="Happy face" className="w-full h-full object-contain" />
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/sentiment-green-nailed-it.png" alt="You Nailed It!" className="w-full h-full object-contain" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Happy face</h3>
-              <p className="text-gray-600">
-                People had a good experience and felt respected.
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">You Nailed It!</h3>
+              <p className="text-sm text-gray-600">
+                Positive experience
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200 text-center">
-              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-                <img src="/face-neutral-handdrawn.png" alt="Neutral face" className="w-full h-full object-contain" />
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/sentiment-yellow-meh.png" alt="It's Meh…" className="w-full h-full object-contain" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Neutral face</h3>
-              <p className="text-gray-600">
-                It was okay, but could be better.
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">It's Meh…</h3>
+              <p className="text-sm text-gray-600">
+                Neutral / okay
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200 text-center">
-              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-                <img src="/face-sad-handdrawn.png" alt="Sad face" className="w-full h-full object-contain" />
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/sentiment-orange-uhoh.png" alt="Uh Oh… Could Be Better" className="w-full h-full object-contain" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Sad face</h3>
-              <p className="text-gray-600">
-                Something went wrong and needs attention.
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Uh Oh…</h3>
+              <p className="text-sm text-gray-600">
+                Could be better
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/sentiment-red-disappointing.png" alt="Pretty Disappointing" className="w-full h-full object-contain" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Pretty Disappointing</h3>
+              <p className="text-sm text-gray-600">
+                Negative experience
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 text-center">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/sentiment-purple-ignored.png" alt="Feeling Ignored" className="w-full h-full object-contain" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Feeling Ignored</h3>
+              <p className="text-sm text-gray-600">
+                No response / unresolved
               </p>
             </div>
           </div>
           <p className="text-center text-lg text-gray-700 mt-8">
-            When a business has mostly happy faces, everyone knows it's loved — that's reputation that feels human.
+            These faces show how customers <em>felt</em> — not a judgment on the business.<br />
+            When most people feel heard and respected, that tells the whole story.
           </p>
         </div>
       </section>
