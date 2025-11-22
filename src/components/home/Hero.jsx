@@ -30,7 +30,7 @@ export default function Hero() {
             Let's Find a Solution, Together.
           </p>
           <p className="mt-4 max-w-xl text-lg text-slate-600">
-            ReportHere is a welcoming place where customers find fair solutions — and companies earn loyal fans.
+            ReportHere is a <span className="font-bold text-[#198D53] text-xl">FREE*</span> platform — a welcoming bridge where people feel heard — and businesses have the chance to earn loyal fans.
           </p>
 
           {/* Search bar */}
