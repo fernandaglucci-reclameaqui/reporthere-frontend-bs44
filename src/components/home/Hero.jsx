@@ -71,7 +71,7 @@ export default function Hero() {
         <div className="relative w-full md:w-7/12 -mb-12 md:-mb-16">
           <div className="relative mx-auto w-full">
             <img
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/108907386/ZSJeimSVzSiuDboS.png"
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/108907386/aCgrtJIexWLKmdxe.png"
               alt="Happy customers using ReportHere"
               className="h-auto w-full object-contain scale-110 md:scale-125"
             />
