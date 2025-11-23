@@ -203,7 +203,7 @@ export async function autoMarkIgnoredComplaints(daysThreshold = 7) {
       .select('id, company_id')
       .is('first_response_at', null)
       .is('customer_sentiment', null)
-      .lt('created_at', cutoffDate.toISOString());
+      .lt('created_date', cutoffDate.toISOString());
 
     if (fetchError) {
       throw fetchError;

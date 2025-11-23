@@ -242,7 +242,9 @@ export function calculateReputationMetrics(complaints) {
 
   const ignoredComplaints = complaints.filter(c => {
     if (c.first_response_at) return false;
-    const daysSinceCreated = (Date.now() - new Date(c.created_at).getTime()) / (1000 * 60 * 60 * 24);
+    const createdDate = c.created_at || c.created_date;
+    if (!createdDate) return false;
+    const daysSinceCreated = (Date.now() - new Date(createdDate).getTime()) / (1000 * 60 * 60 * 24);
     return daysSinceCreated > 7;
   }).length;
 
