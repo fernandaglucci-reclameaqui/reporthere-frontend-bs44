@@ -9,7 +9,7 @@ import { getSentimentConfig } from '@/constants/sentiment';
  * @param {string} size - Size class (sm, md, lg, xl)
  * @param {string} className - Additional CSS classes
  */
-export default function SentimentIcon({ sentiment, size = 'md', className = '' }) {
+export function SentimentIcon({ sentiment, size = 'md', className = '' }) {
   const config = getSentimentConfig(sentiment);
   
   if (!config) {
