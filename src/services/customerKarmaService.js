@@ -89,9 +89,9 @@ export function calculateResponseMetrics(complaints) {
 
   // Calculate average response time in hours
   const responseTimes = complaints
-    .filter(c => c.first_response_at && c.created_at)
+    .filter(c => c.first_response_at && (c.created_at || c.created_date))
     .map(c => {
-      const created = new Date(c.created_at);
+      const created = new Date(c.created_at || c.created_date);
       const responded = new Date(c.first_response_at);
       return (responded - created) / (1000 * 60 * 60); // Convert to hours
     });
