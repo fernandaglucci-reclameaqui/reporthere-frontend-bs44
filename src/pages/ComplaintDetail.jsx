@@ -6,6 +6,7 @@ import { Complaint } from "@/api/entities";
 import { Company } from "@/api/entities";
 import { User } from "@/api/entities"; // Import User entity
 import BusinessReplyForm from "@/components/complaints/BusinessReplyForm"; // Import BusinessReplyForm
+import SentimentSelectionModal from "@/components/complaints/SentimentSelectionModal";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -76,6 +77,7 @@ export default function ComplaintDetail() {
   const [isCompanyMember, setIsCompanyMember] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showSentimentModal, setShowSentimentModal] = useState(false);
 
   const updateMetaTags = (complaintData) => {
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -148,6 +150,25 @@ export default function ComplaintDetail() {
 
   const handleReplySuccess = (updatedComplaint) => {
     setComplaint(updatedComplaint);
+    // If complaint is now resolved and user hasn't selected sentiment yet, show modal
+    if (updatedComplaint.status === 'resolved' && !updatedComplaint.customer_sentiment && currentUser && currentUser.id === updatedComplaint.user_id) {
+      setShowSentimentModal(true);
+    }
+  };
+
+  const handleSentimentSelected = async (sentiment) => {
+    try {
+      // Update complaint with sentiment
+      const updated = await Complaint.update(complaint.id, {
+        customer_sentiment: sentiment,
+        resolved_at: new Date().toISOString()
+      });
+      setComplaint(updated);
+      setShowSentimentModal(false);
+    } catch (err) {
+      console.error('Failed to save sentiment:', err);
+      alert('Failed to save your feedback. Please try again.');
+    }
   };
 
   if (loading) {
@@ -306,6 +327,16 @@ export default function ComplaintDetail() {
           </Link>
         </div>
       </div>
+
+      {/* Sentiment Selection Modal */}
+      {showSentimentModal && (
+        <SentimentSelectionModal
+          isOpen={showSentimentModal}
+          onClose={() => setShowSentimentModal(false)}
+          onSelect={handleSentimentSelected}
+          complaintTitle={complaint.title}
+        />
+      )}
     </div>
   );
 }

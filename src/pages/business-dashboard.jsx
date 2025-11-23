@@ -11,6 +11,8 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@
 import { Loader2, AlertTriangle, Briefcase, ClipboardList, Download, Upload } from "lucide-react";
 import { calculateCoreMetrics } from '@/services/dashboardMetrics';
 import LovedScoreCard from '@/components/dashboard/LovedScoreCard';
+import CustomerKarmaCard from '@/components/dashboard/CustomerKarmaCard';
+import { calculateKarmaMetrics, calculateResponseMetrics } from '@/services/customerKarmaService';
 import ReputationSnapshot from '@/components/dashboard/ReputationSnapshot';
 import StatusChip from "@/components/ui/StatusChip";
 
@@ -146,13 +148,19 @@ export default function CompanySuperDashboard() {
             // Calculate Phase 1 metrics
             const coreMetrics = calculateCoreMetrics(allComplaints);
             
+            // Calculate Customer Karma metrics
+            const karmaMetrics = calculateKarmaMetrics(allComplaints);
+            const responseMetrics = calculateResponseMetrics(allComplaints);
+            
             setData({
                 kpis: kpisData,
                 weekly: [ { week: "W1", opened: 5, resolved: 3 }, { week: "W2", opened: 8, resolved: 6 }, { week: "W3", opened: 4, resolved: 7 }, { week: "W4", opened: 9, resolved: 9 } ], // Demo
                 statuses: statusesData,
                 sentiment: [ { day: "Mon", pos: 46, neu: 32, neg: 22 }, { day: "Tue", pos: 52, neu: 28, neg: 20 }, { day: "Wed", pos: 41, neu: 35, neg: 24 }, { day: "Thu", pos: 55, neu: 25, neg: 20 }, { day: "Fri", pos: 49, neu: 31, neg: 20 }], // Demo
                 list: allComplaints,
-                coreMetrics: coreMetrics
+                coreMetrics: coreMetrics,
+                karmaMetrics: karmaMetrics,
+                responseMetrics: responseMetrics
             });
             setView("dashboard");
 
@@ -240,10 +248,17 @@ export default function CompanySuperDashboard() {
           <ReputationSnapshot metrics={data.coreMetrics} />
         )}
 
-        {/* Phase 1: Loved Score Card */}
+        {/* Phase 1: Loved Score Card (Legacy) */}
         {data.coreMetrics && (
           <div className="grid grid-cols-1 gap-4">
             <LovedScoreCard lovedScore={data.coreMetrics.lovedScore} />
+          </div>
+        )}
+
+        {/* NEW: Customer Karma Card */}
+        {data.karmaMetrics && (
+          <div className="grid grid-cols-1 gap-4">
+            <CustomerKarmaCard karmaData={data.karmaMetrics} />
           </div>
         )}
 
