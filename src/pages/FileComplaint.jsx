@@ -243,21 +243,24 @@ export default function FileComplaint() {
         generatedPassword = generatePassword();
         
         try {
-          await User.signUp({
+          const signUpResult = await User.signUp({
             email: formData.email,
             password: generatedPassword,
             full_name: formData.fullName,
             user_type: 'consumer'
           });
+          console.log("✅ User signed up:", signUpResult);
           
           // Auto-login after signup
-          await User.signIn({ 
+          const signInResult = await User.signIn({ 
             email: formData.email, 
             password: generatedPassword 
           });
+          console.log("✅ User signed in:", signInResult);
           
           // Get the newly created user
           user = await User.me();
+          console.log("✅ Current user after login:", user);
           
         } catch (signupError) {
           console.error("Auto-signup failed:", signupError);
@@ -312,6 +315,9 @@ export default function FileComplaint() {
       };
 
       const newComplaint = await Complaint.create(complaintData);
+      console.log("✅ Complaint created successfully:", newComplaint);
+      console.log("✅ Complaint ID:", newComplaint?.id);
+      console.log("✅ User ID in complaint:", newComplaint?.user_id);
       
       // Send notifications
       try {
@@ -341,7 +347,9 @@ export default function FileComplaint() {
       }
 
       setSuccess(true);
+      console.log("✅ Success state set, will redirect to:", `/ComplaintDetail?id=${newComplaint?.id}`);
       setTimeout(() => {
+        console.log("✅ Redirecting now...");
         navigate(`/ComplaintDetail?id=${newComplaint.id}`);
       }, 2000);
       
