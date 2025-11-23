@@ -17,7 +17,7 @@ class SupabaseEntity {
    * @param {number} offset - Number of items to skip
    * @returns {Promise<Array>} Array of entities
    */
-  async list(orderBy = '-created_at', limit = 50, offset = 0) {
+  async list(orderBy = '-created_date', limit = 50, offset = 0) {
     const isDescending = orderBy.startsWith('-');
     const field = isDescending ? orderBy.substring(1) : orderBy;
     
@@ -40,7 +40,7 @@ class SupabaseEntity {
    * @param {number} limit - Number of items to return
    * @returns {Promise<Array>} Array of entities
    */
-  async filter(filters = {}, orderBy = '-created_at', limit = 1000) {
+  async filter(filters = {}, orderBy = '-created_date', limit = 1000) {
     const isDescending = orderBy.startsWith('-');
     const field = isDescending ? orderBy.substring(1) : orderBy;
     
