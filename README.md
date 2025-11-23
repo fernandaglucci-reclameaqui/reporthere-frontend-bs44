@@ -4,6 +4,8 @@
 This app was created automatically by Base44.
 It's a Vite+React app that communicates with the Base44 API.
 
+<!-- Deployment trigger: Fixed created_at to created_date database column mismatch -->
+
 ## Running the app
 
 ```bash
