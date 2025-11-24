@@ -291,7 +291,7 @@ function PagesContent() {
                 
                 <Route path="/c" element={<c />} />
                 
-                <Route path="/about" element={<about />} />
+                <Route path="/about" element={<About />} />
                 
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
                 
