@@ -18,7 +18,7 @@ export default function NotificationsPage() {
     setLoading(true);
     try {
       if (currentUser && currentUser.email) {
-        const userNotifications = await Notification.filter({ user_email: currentUser.email }, '-created_at');
+        const userNotifications = await Notification.filter({ user_email: currentUser.email }, '-created_date');
         setNotifications(userNotifications);
       }
     } catch (error) {
@@ -108,7 +108,7 @@ export default function NotificationsPage() {
                         <p className={`text-base font-semibold ${!n.read_at ? 'text-gray-800' : 'text-gray-600'}`}>{n.title}</p>
                         {n.body && <p className="text-sm text-gray-600 mt-1">{n.body}</p>}
                         <p className="text-xs text-gray-500 mt-2">
-                          {formatDistanceToNow(new Date(n.created_at), { addSuffix: true })}
+                          {formatDistanceToNow(new Date(n.created_date), { addSuffix: true })}
                         </p>
                       </div>
                     </div>

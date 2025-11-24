@@ -147,7 +147,7 @@ export default function Layout({ children, currentPageName }) {
       setUser(currentUser);
       // Re-enable notification fetching with the fix
       if (currentUser && currentUser.email) {
-        const allUserNotifications = await Notification.filter({ user_email: currentUser.email }, '-created_at', 100); // Fetch more to accurately count unread
+        const allUserNotifications = await Notification.filter({ user_email: currentUser.email }, '-created_date', 100); // Fetch more to accurately count unread
         const recentNotifications = allUserNotifications.slice(0, 5); // Display only recent 5 in dropdown
         const userUnreadCount = allUserNotifications.filter(n => !n.read_at).length;
         
@@ -333,7 +333,7 @@ export default function Layout({ children, currentPageName }) {
                                     <div className="flex-1">
                                         <p className="text-sm font-medium leading-snug">{n.title}</p>
                                         <p className="text-xs text-gray-500 mt-1">
-                                            {formatDistanceToNow(new Date(n.created_at), { addSuffix: true })}
+                                            {formatDistanceToNow(new Date(n.created_date), { addSuffix: true })}
                                         </p>
                                     </div>
                                 </div>
