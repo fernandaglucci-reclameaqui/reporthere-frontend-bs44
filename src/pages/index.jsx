@@ -90,6 +90,18 @@ import ClaimVerify from "./ClaimVerify";
 
 import c from "./c";
 
+import About from "./about";
+
+import FAQ from "./FAQ";
+
+import ForConsumers from "./ForConsumers";
+
+import ForBusinesses from "./ForBusinesses";
+
+import Contact from "./Contact";
+
+import LegalDisclaimer from "./LegalDisclaimer";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -292,6 +304,18 @@ function PagesContent() {
                 <Route path="/c" element={<c />} />
                 
                 <Route path="/about" element={<About />} />
+                
+                <Route path="/faq" element={<FAQ />} />
+                
+                <Route path="/FAQ" element={<FAQ />} />
+                
+                <Route path="/for-consumers" element={<ForConsumers />} />
+                
+                <Route path="/for-businesses" element={<ForBusinesses />} />
+                
+                <Route path="/contact" element={<Contact />} />
+                
+                <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
                 
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
                 

@@ -609,13 +609,47 @@ export default function Layout({ children, currentPageName }) {
 
         {/* Footer */}
         <footer className="bg-white border-t border-gray-200 mt-12">
-          <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-sm text-gray-600 flex items-center justify-between">
-            <div>&copy; {new Date().getFullYear()} ReportHere. All rights reserved.</div>
-            <div className="space-x-4">
-              <Link to={createPageUrl("terms")} className="hover:underline">Terms</Link>
-              <Link to={createPageUrl("privacy")} className="hover:underline">Privacy</Link>
-              <Link to={createPageUrl("contact-us")} className="hover:underline">Contact Us</Link>
-              <Link to={createPageUrl("faq")} className="hover:underline">FAQs</Link>
+          <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              {/* About Column */}
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-3">About</h3>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li><Link to={createPageUrl("about")} className="hover:text-emerald-600 transition-colors">About Us</Link></li>
+                </ul>
+              </div>
+              
+              {/* For Users Column */}
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-3">For Users</h3>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li><Link to={createPageUrl("for-consumers")} className="hover:text-emerald-600 transition-colors">For Consumers</Link></li>
+                  <li><Link to={createPageUrl("for-businesses")} className="hover:text-emerald-600 transition-colors">For Businesses</Link></li>
+                </ul>
+              </div>
+              
+              {/* Support Column */}
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-3">Support</h3>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li><Link to={createPageUrl("faq")} className="hover:text-emerald-600 transition-colors">FAQ</Link></li>
+                  <li><Link to={createPageUrl("contact")} className="hover:text-emerald-600 transition-colors">Contact</Link></li>
+                </ul>
+              </div>
+              
+              {/* Legal Column */}
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-3">Legal</h3>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li><Link to={createPageUrl("terms")} className="hover:text-emerald-600 transition-colors">Terms of Service</Link></li>
+                  <li><Link to={createPageUrl("privacy")} className="hover:text-emerald-600 transition-colors">Privacy Policy</Link></li>
+                  <li><Link to={createPageUrl("legal-disclaimer")} className="hover:text-emerald-600 transition-colors">Legal Disclaimer</Link></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="border-t border-gray-200 pt-6 text-center text-sm text-gray-600">
+              &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
             </div>
           </div>
         </footer>
