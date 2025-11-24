@@ -12,7 +12,7 @@ export default function Hero() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(createPageUrl(`companies?q=${encodeURIComponent(searchQuery.trim())}`));
+      navigate(createPageUrl(`Search?q=${encodeURIComponent(searchQuery.trim())}`));
     }
   };
 

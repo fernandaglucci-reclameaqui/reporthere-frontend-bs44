@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Company } from "@/api/entities";
 import { createPageUrl } from "@/utils";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function Search(){
-  const [q, setQ] = useState(""); 
+  const [searchParams] = useSearchParams();
+  const [q, setQ] = useState(searchParams.get('q') || ""); 
   const [res, setRes] = useState([]); 
   const [loading, setLoading] = useState(false);
 
