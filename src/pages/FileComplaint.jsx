@@ -330,10 +330,10 @@ export default function FileComplaint() {
           complaintId: newComplaint.id
         });
         
-        // Company notification (if email provided)
-        if (formData.companyEmail && formData.companyEmail.trim()) {
-          
-          await sendCompanyNotification(formData.companyEmail, {
+        // Company notification - fetch email from database
+        if (company && company.email) {
+          console.log("📧 Sending company notification to:", company.email);
+          await sendCompanyNotification(company.email, {
             companyName: formData.companyName,
             title: formData.title,
             category: formData.category,
@@ -341,6 +341,9 @@ export default function FileComplaint() {
             description: formData.description,
             complaintId: newComplaint.id
           });
+          console.log("✅ Company notification sent successfully");
+        } else {
+          console.log("⚠️ No company email found - notification not sent");
         }
       } catch (emailError) {
         console.error("Email failed:", emailError);
