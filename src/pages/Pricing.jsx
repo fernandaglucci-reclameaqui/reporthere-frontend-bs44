@@ -1,306 +1,298 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createCheckoutSession } from '../services/stripeService';
-import { User } from '@/api/entities';
-import { Link } from 'react-router-dom';
-import { Check, X, Zap, Building2, Rocket, Crown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Check, Lock, Zap, TrendingUp, Rocket, Crown, Building2 } from 'lucide-react';
 
 const Pricing = () => {
   const navigate = useNavigate();
-  const [billingCycle, setBillingCycle] = useState('monthly'); // 'monthly' or 'annual'
-  const [loading, setLoading] = useState(null); // Track which plan is being subscribed to
 
   const plans = [
     {
       name: 'Free',
       icon: Zap,
-      price: { monthly: 0, annual: 0 },
-      description: 'Perfect for small businesses just starting out',
+      price: '$0',
+      period: 'month',
+      color: 'blue',
+      users: '1 User',
+      responses: '2 Complaint Responses / month',
       features: [
-        'Claim your business profile',
-        'Respond to up to 5 complaints/month',
-        'Basic company dashboard',
-        'Email notifications',
-        'Public profile page',
+        'Public business profile',
+        'View all complaints',
+        'Basic dashboard',
+        'Customer Karma overview (limited)'
       ],
-      limitations: [
-        'Limited to 5 responses per month',
-        'No priority support',
-        'No advanced analytics',
+      locked: [
+        'Unlimited responses',
+        'Advanced analytics',
+        'Sentiment trends',
+        'Exports',
+        'SLA',
+        'Multi-location',
+        'Priority support'
       ],
       cta: 'Get Started Free',
       ctaLink: '/signup',
-      popular: false,
-      color: 'gray',
+      popular: false
     },
     {
-      name: 'Basic',
-      icon: Building2,
-      price: { monthly: 29, annual: 290 },
-      description: 'For growing businesses that need more engagement',
+      name: 'Starter',
+      icon: TrendingUp,
+      price: '$49',
+      period: 'month',
+      color: 'green',
+      users: '1 User',
+      responses: '20 Complaint Responses / month',
       features: [
         'Everything in Free',
-        'Respond to up to 50 complaints/month',
-        'Advanced analytics dashboard',
-        'Priority email support',
-        'Custom response templates',
-        'Complaint trend analysis',
-        'Export complaint data',
+        'Customer Karma (basic)',
+        'Basic analytics',
+        '"Responsive Business" badge'
       ],
-      limitations: [
-        'Limited to 50 responses per month',
+      locked: [
+        'Advanced analytics',
+        'Sentiment trends',
+        'Export data',
+        'Multi-user',
+        'Multi-location'
       ],
-      cta: 'Start Free Trial',
-      ctaLink: '/signup?plan=basic',
-      popular: false,
-      color: 'blue',
+      cta: 'Upgrade to Starter',
+      ctaLink: '/signup',
+      popular: false
+    },
+    {
+      name: 'Growth',
+      icon: Rocket,
+      price: '$149',
+      period: 'month',
+      color: 'orange',
+      users: '3 Users',
+      responses: '100 Complaint Responses / month',
+      features: [
+        'Everything in Starter',
+        'Advanced Customer Karma',
+        'Sentiment trends',
+        'SLA tracking',
+        'Data export (CSV / PDF)',
+        'Multi-user dashboard'
+      ],
+      locked: [
+        'Multi-location advanced',
+        'Priority support',
+        'Enterprise reporting'
+      ],
+      cta: 'Upgrade to Growth',
+      ctaLink: '/signup',
+      popular: true
     },
     {
       name: 'Pro',
-      icon: Rocket,
-      price: { monthly: 79, annual: 790 },
-      description: 'For established businesses with high volume',
+      icon: Crown,
+      price: '$399',
+      period: 'month',
+      color: 'red',
+      users: '6 Users',
+      responses: '300 Complaint Responses / month',
       features: [
-        'Everything in Basic',
-        'Unlimited complaint responses',
-        'Advanced reputation management',
-        'AI-powered response suggestions',
-        'Multi-user team access (up to 5 users)',
-        'Priority phone support',
-        'Custom branding on profile',
-        'API access',
-        'Dedicated account manager',
+        'Everything in Growth',
+        'Multi-location support',
+        'Advanced reports',
+        'Monthly performance summaries',
+        'Priority email support'
       ],
-      limitations: [],
-      cta: 'Start Free Trial',
-      ctaLink: '/signup?plan=pro',
-      popular: true,
-      color: 'green',
+      locked: [
+        'Unlimited complaints',
+        'API',
+        'Dedicated account manager',
+        'Enterprise infra'
+      ],
+      cta: 'Upgrade to Pro',
+      ctaLink: '/signup',
+      popular: false
     },
     {
       name: 'Enterprise',
-      icon: Crown,
-      price: { monthly: 'Custom', annual: 'Custom' },
-      description: 'For large organizations with custom needs',
+      icon: Building2,
+      price: 'Custom',
+      period: 'month',
+      color: 'purple',
+      users: 'Custom Users',
+      responses: '300+ Complaint Responses / month',
       features: [
         'Everything in Pro',
-        'Unlimited team members',
-        'White-label solution',
-        'Custom integrations',
-        'Dedicated support team',
-        'SLA guarantee',
-        'Custom training',
-        'Advanced security features',
-        'Custom analytics & reporting',
+        'Unlimited or custom response volume',
+        'API access (when released)',
+        'Dedicated account manager',
+        'Custom reporting',
+        'Multi-location advanced',
+        'Priority infrastructure + storage',
+        'SLA guarantee'
       ],
-      limitations: [],
+      locked: [],
       cta: 'Contact Sales',
       ctaLink: '/contact',
-      popular: false,
-      color: 'purple',
-    },
+      popular: false
+    }
   ];
 
-  const savings = (plan) => {
-    if (typeof plan.price.annual === 'number' && typeof plan.price.monthly === 'number') {
-      const annualCost = plan.price.monthly * 12;
-      const saved = annualCost - plan.price.annual;
-      const percentage = Math.round((saved / annualCost) * 100);
-      return { amount: saved, percentage };
+  const colorClasses = {
+    blue: {
+      border: 'border-blue-200',
+      bg: 'bg-blue-50',
+      text: 'text-blue-600',
+      button: 'bg-blue-600 hover:bg-blue-700'
+    },
+    green: {
+      border: 'border-green-200',
+      bg: 'bg-green-50',
+      text: 'text-green-600',
+      button: 'bg-green-600 hover:bg-green-700'
+    },
+    orange: {
+      border: 'border-orange-200',
+      bg: 'bg-orange-50',
+      text: 'text-orange-600',
+      button: 'bg-orange-600 hover:bg-orange-700'
+    },
+    red: {
+      border: 'border-red-200',
+      bg: 'bg-red-50',
+      text: 'text-red-600',
+      button: 'bg-red-600 hover:bg-red-700'
+    },
+    purple: {
+      border: 'border-purple-200',
+      bg: 'bg-purple-50',
+      text: 'text-purple-600',
+      button: 'bg-purple-600 hover:bg-purple-700'
     }
-    return null;
+  };
+
+  const handleCTA = (plan) => {
+    navigate(plan.ctaLink);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Simple, Transparent Pricing
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      {/* Hero Section */}
+      <header className="bg-gradient-to-r from-emerald-50 to-teal-50 border-b border-emerald-100">
+        <div className="max-w-6xl mx-auto px-6 py-16 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+            Pricing Plans
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Choose the plan that's right for your business
+          <p className="text-2xl text-gray-700 font-light mb-2">
+            Choose the perfect plan for your business
           </p>
-
-          {/* Billing Toggle */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className={`text-sm font-medium ${billingCycle === 'monthly' ? 'text-gray-900' : 'text-gray-500'}`}>
-              Monthly
-            </span>
-            <button
-              onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'annual' : 'monthly')}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
-                billingCycle === 'annual' ? 'bg-green-600' : 'bg-gray-200'
-              }`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  billingCycle === 'annual' ? 'translate-x-6' : 'translate-x-1'
-                }`}
-              />
-            </button>
-            <span className={`text-sm font-medium ${billingCycle === 'annual' ? 'text-gray-900' : 'text-gray-500'}`}>
-              Annual
-            </span>
-            {billingCycle === 'annual' && (
-              <Badge variant="success" className="ml-2 bg-green-100 text-green-800">
-                Save up to 17%
-              </Badge>
-            )}
-          </div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Start free and scale as you grow. All plans include access to our platform and basic features.
+          </p>
         </div>
+      </header>
 
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {plans.map((plan) => {
-            const PlanIcon = plan.icon;
-            const price = billingCycle === 'monthly' ? plan.price.monthly : plan.price.annual;
-            const savingsInfo = billingCycle === 'annual' ? savings(plan) : null;
-
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+          {plans.map((plan, index) => {
+            const colors = colorClasses[plan.color];
             return (
-              <Card
-                key={plan.name}
-                className={`relative flex flex-col ${
-                  plan.popular
-                    ? 'border-green-500 border-2 shadow-xl scale-105'
-                    : 'border-gray-200'
-                }`}
+              <div 
+                key={index} 
+                className={`bg-white rounded-2xl shadow-sm border-2 ${plan.popular ? 'border-emerald-500 shadow-lg scale-105' : colors.border} hover:shadow-xl transition-all relative`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-green-600 text-white px-4 py-1">
+                    <span className="bg-emerald-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
                       Most Popular
-                    </Badge>
+                    </span>
                   </div>
                 )}
-
-                <CardHeader className="text-center pb-4">
-                  <div className="flex justify-center mb-4">
-                    <div className={`p-3 rounded-full bg-${plan.color}-100`}>
-                      <PlanIcon className={`w-8 h-8 text-${plan.color}-600`} />
-                    </div>
-                  </div>
-                  <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
-                  <CardDescription className="text-sm mt-2">
-                    {plan.description}
-                  </CardDescription>
-                  <div className="mt-4">
-                    <div className="flex items-baseline justify-center">
-                      {typeof price === 'number' ? (
-                        <>
-                          <span className="text-4xl font-bold text-gray-900">${price}</span>
-                          <span className="text-gray-500 ml-2">
-                            /{billingCycle === 'monthly' ? 'mo' : 'yr'}
-                          </span>
-                        </>
-                      ) : (
-                        <span className="text-3xl font-bold text-gray-900">{price}</span>
+                
+                <div className="p-6">
+                  {/* Header */}
+                  <div className={`${colors.bg} rounded-lg p-4 mb-6`}>
+                    <plan.icon className={`w-10 h-10 ${colors.text} mx-auto mb-3`} />
+                    <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
+                      {plan.name}
+                    </h3>
+                    <div className="text-center">
+                      <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                      {plan.price !== 'Custom' && (
+                        <span className="text-gray-600"> / {plan.period}</span>
                       )}
                     </div>
-                    {savingsInfo && savingsInfo.amount > 0 && (
-                      <p className="text-sm text-green-600 mt-1">
-                        Save ${savingsInfo.amount}/year ({savingsInfo.percentage}% off)
-                      </p>
-                    )}
                   </div>
-                </CardHeader>
 
-                <CardContent className="flex-grow">
-                  <ul className="space-y-3">
-                    {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                    {plan.limitations.map((limitation, index) => (
-                      <li key={`limit-${index}`} className="flex items-start">
-                        <X className="w-5 h-5 text-gray-400 mr-2 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-500">{limitation}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
+                  {/* Users & Responses */}
+                  <div className="mb-6 text-center">
+                    <p className="text-sm font-semibold text-gray-700">{plan.users}</p>
+                    <p className="text-sm text-gray-600">{plan.responses}</p>
+                  </div>
 
-                <CardFooter>
-                  <Link to={plan.ctaLink} className="w-full">
-                    <Button
-                      className={`w-full ${
-                        plan.popular
-                          ? 'bg-green-600 hover:bg-green-700 text-white'
-                          : 'bg-white border-2 border-gray-300 text-gray-900 hover:bg-gray-50'
-                      }`}
-                    >
-                      {plan.cta}
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
+                  {/* Features */}
+                  <div className="mb-6">
+                    <p className="font-semibold text-gray-900 mb-3 text-sm">Included:</p>
+                    <ul className="space-y-2">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm">
+                          <Check className={`w-4 h-4 ${colors.text} flex-shrink-0 mt-0.5`} />
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Locked Features */}
+                  {plan.locked.length > 0 && (
+                    <div className="mb-6">
+                      <p className="font-semibold text-gray-900 mb-3 text-sm">Locked Features:</p>
+                      <ul className="space-y-2">
+                        {plan.locked.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-sm">
+                            <Lock className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-500">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* CTA Button */}
+                  <button
+                    onClick={() => handleCTA(plan)}
+                    className={`w-full ${colors.button} text-white px-6 py-3 rounded-lg font-semibold transition-colors`}
+                  >
+                    {plan.cta}
+                  </button>
+                </div>
+              </div>
             );
           })}
         </div>
 
         {/* FAQ Section */}
-        <div className="max-w-3xl mx-auto mt-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Can I change plans later?</h3>
-              <p className="text-gray-600">
-                Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any charges.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">What payment methods do you accept?</h3>
-              <p className="text-gray-600">
-                We accept all major credit cards (Visa, MasterCard, American Express) and PayPal.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Is there a free trial?</h3>
-              <p className="text-gray-600">
-                Yes! All paid plans come with a 14-day free trial. No credit card required to start.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">What happens if I exceed my plan limits?</h3>
-              <p className="text-gray-600">
-                We'll notify you when you're approaching your limits. You can upgrade at any time to continue responding to complaints without interruption.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Can I cancel anytime?</h3>
-              <p className="text-gray-600">
-                Absolutely. You can cancel your subscription at any time with no penalties. Your access will continue until the end of your billing period.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 text-center bg-green-50 rounded-lg p-8">
-          <h2 className="text-3xl font-bold mb-4">Ready to improve your reputation?</h2>
-          <p className="text-xl text-gray-600 mb-6">
-            Join thousands of businesses using ReportHere to build trust with customers
+        <section className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 md:p-12 text-center border border-emerald-100">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Have questions about pricing?
+          </h2>
+          <p className="text-lg text-gray-700 mb-6">
+            Check out our FAQ or contact our sales team for more information.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link to="/signup">
-              <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                Start Free Trial
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline">
-                Contact Sales
-              </Button>
-            </Link>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <a 
+              href="/faq" 
+              className="inline-block bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
+            >
+              View FAQ
+            </a>
+            <a 
+              href="/contact" 
+              className="inline-block bg-white text-emerald-600 border-2 border-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
+            >
+              Contact Sales
+            </a>
           </div>
-        </div>
-      </div>
+        </section>
+
+      </main>
     </div>
   );
 };
