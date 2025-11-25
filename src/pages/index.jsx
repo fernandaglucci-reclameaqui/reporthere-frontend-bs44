@@ -90,8 +90,6 @@ import ClaimVerify from "./ClaimVerify";
 
 import c from "./c";
 
-import About from "./about";
-
 import FAQ from "./FAQ";
 
 import ForConsumers from "./ForConsumers";
