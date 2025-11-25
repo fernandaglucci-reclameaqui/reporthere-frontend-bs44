@@ -184,6 +184,16 @@ const PAGES = {
     
     About: About,
     
+    FAQ: FAQ,
+    
+    ForConsumers: ForConsumers,
+    
+    ForBusinesses: ForBusinesses,
+    
+    Contact: Contact,
+    
+    LegalDisclaimer: LegalDisclaimer,
+    
     BusinessDashboard: BusinessDashboard,
     
     Login: Login,
