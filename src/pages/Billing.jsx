@@ -1,200 +1,345 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User } from '@/api/entities';
-import { Company } from '@/api/entities';
-import { Subscription } from '@/api/entities';
-// base44 removed - using Supabase entities
-import { createPageUrl } from '@/utils';
-import { Loader2, CheckCircle, Package, CreditCard, Building, ArrowLeft, ExternalLink, HelpCircle } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { createClient } from '@supabase/supabase-js';
+import { openPortal, getSubscriptionStatus } from '@/components/billing/billingAdapter';
+import UpgradeModal from '@/components/billing/UpgradeModal';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Check, AlertCircle, CreditCard, Users, TrendingUp, ArrowLeft, Loader2 } from 'lucide-react';
 import { toast } from "sonner";
 
-const plans = [
-    { name: "Pro", price: "$49", sku: "plan_pro_monthly", features: ["5 User Seats", "500 Reply Credits/mo", "Standard Analytics", "Email Support"] },
-    { name: "Business", price: "$199", sku: "plan_business_monthly", features: ["20 User Seats", "2,500 Reply Credits/mo", "Advanced Analytics", "Priority Support"] }
-];
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
-const creditPacks = [
-    { name: "100 Credits", price: "$19", sku: "credits_100" },
-    { name: "500 Credits", price: "$79", sku: "credits_500" },
-    { name: "1000 Credits", price: "$129", sku: "credits_1000" }
-];
+export default function Billing() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [organizationId, setOrganizationId] = useState(null);
+  const [currentPlan, setCurrentPlan] = useState(null);
+  const [subscription, setSubscription] = useState(null);
+  const [usage, setUsage] = useState(null);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
-export default function BillingPage() {
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const [isProcessing, setIsProcessing] = useState(false);
-    const [user, setUser] = useState(null);
-    const [company, setCompany] = useState(null);
-    const [subscription, setSubscription] = useState(null);
+  useEffect(() => {
+    loadBillingInfo();
+  }, []);
 
-    useEffect(() => {
-        const loadData = async () => {
-            setLoading(true);
-            try {
-                const currentUser = await User.me();
-                setUser(currentUser);
+  const loadBillingInfo = async () => {
+    try {
+      setLoading(true);
 
-                if (!currentUser.companies_claimed || currentUser.companies_claimed.length === 0) {
-                    toast.error("You must claim a company profile to access billing.");
-                    navigate(createPageUrl('ClaimProfile'));
-                    return;
-                }
+      // Get current user
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      if (userError) {
+        toast.error("You must be logged in to view billing.");
+        navigate('/login');
+        return;
+      }
 
-                const companyId = currentUser.companies_claimed[0];
-                const companyData = await Company.get(companyId);
-                setCompany(companyData);
+      // Get user's organization
+      const { data: profile, error: profileError } = await supabase
+        .from('users')
+        .select('organization_id')
+        .eq('id', user.id)
+        .single();
 
-                const subs = await Subscription.filter({ company_id: companyId });
-                if (subs.length > 0) {
-                    setSubscription(subs[0]);
-                }
-            } catch (error) {
-                console.error("Error loading billing data:", error);
-                toast.error("You must be logged in to manage billing.");
-                navigate(createPageUrl('Home'));
-            }
-            setLoading(false);
-        };
-        loadData();
-    }, [navigate]);
+      if (profileError) {
+        console.error('Profile error:', profileError);
+        toast.error("Could not load user profile.");
+        return;
+      }
 
-    const handleCheckout = async (sku) => {
-        setIsProcessing(true);
-        try {
-            const { createBillingCheckout } = await import('@/api/functions');
-            const data = await createBillingCheckout({
-                sku: sku,
-                companyId: company.id,
-                success_url: `${window.location.origin}${createPageUrl('BillingSuccess')}`,
-                cancel_url: window.location.href,
-            });
-            window.location.href = data.checkout_url;
-        } catch (error) {
-            console.error("Checkout failed:", error);
-            toast.error("Could not initiate checkout. Please try again.");
-            setIsProcessing(false);
-        }
-    };
+      if (!profile.organization_id) {
+        toast.error("You must be part of an organization to view billing.");
+        navigate('/');
+        return;
+      }
 
-    const handlePortal = async () => {
-        setIsProcessing(true);
-        try {
-            const { createBillingPortal } = await import('@/api/functions');
-            const data = await createBillingPortal();
-            window.location.href = data.portal_url;
-        } catch (error) {
-            console.error("Portal creation failed:", error);
-            toast.error("Could not open billing portal. Please try again.");
-            setIsProcessing(false);
-        }
-    };
-    
-    if (loading) {
-        return <div className="flex justify-center items-center h-screen"><Loader2 className="w-8 h-8 animate-spin" /></div>;
+      setOrganizationId(profile.organization_id);
+
+      // Get subscription status
+      const subStatus = await getSubscriptionStatus(profile.organization_id);
+      setSubscription(subStatus);
+      setCurrentPlan(subStatus?.plan);
+
+      // Get usage data
+      const { data: usageData, error: usageError } = await supabase
+        .from('usage_tracking')
+        .select('*')
+        .eq('organization_id', profile.organization_id)
+        .gte('period_start', new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString())
+        .single();
+
+      if (!usageError && usageData) {
+        setUsage(usageData);
+      }
+
+    } catch (e) {
+      console.error('Failed to load billing info:', e);
+      toast.error("Could not load billing information.");
+    } finally {
+      setLoading(false);
     }
+  };
 
+  const handleManageSubscription = async () => {
+    if (organizationId) {
+      await openPortal({ organization_id: organizationId });
+    }
+  };
+
+  const formatPrice = (cents) => {
+    if (cents === 0) return 'Free';
+    return `$${(cents / 100).toLocaleString()}/month`;
+  };
+
+  const formatLimit = (limit) => {
+    if (!limit || limit === 0) return 'Unlimited';
+    return limit.toLocaleString();
+  };
+
+  const getUsagePercentage = () => {
+    if (!usage || !currentPlan?.max_responses_per_month) return 0;
+    if (currentPlan.max_responses_per_month === 0) return 0; // Unlimited
+    return (usage.responses_count / currentPlan.max_responses_per_month) * 100;
+  };
+
+  const isNearLimit = () => {
+    const percentage = getUsagePercentage();
+    return percentage >= 80;
+  };
+
+  if (loading) {
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-                <div className="flex items-center gap-4 mb-8">
-                    <Button variant="outline" size="icon" onClick={() => navigate(-1)}><ArrowLeft className="h-4 w-4" /></Button>
-                    <h1 className="text-3xl font-bold text-gray-900">Billing & Subscriptions</h1>
-                </div>
-
-                <Card className="mb-8">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Building className="w-5 h-5 text-gray-600" /> {company.name}</CardTitle>
-                        <CardDescription>Manage your plan and credits.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid md:grid-cols-2 gap-6">
-                        <div className="p-4 bg-gray-100 rounded-lg">
-                            <p className="text-sm font-medium text-gray-600">Current Plan</p>
-                            <p className="text-xl font-bold">{subscription ? subscription.plan_sku.split('_')[1] : 'Free'}</p>
-                            {subscription && <p className="text-xs text-gray-500">Renews on {new Date(subscription.current_period_end).toLocaleDateString()}</p>}
-                        </div>
-                         <div className="p-4 bg-gray-100 rounded-lg">
-                            <p className="text-sm font-medium text-gray-600">Reply Credits</p>
-                            <p className="text-xl font-bold">{company.credits_available || 0}</p>
-                            <p className="text-xs text-gray-500">Used for responding to complaints.</p>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Tabs defaultValue="plans">
-                    <TabsList className="grid w-full grid-cols-2 mb-8">
-                        <TabsTrigger value="plans">Subscription Plans</TabsTrigger>
-                        <TabsTrigger value="credits">Buy Credits</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="plans">
-                        <div className="grid md:grid-cols-2 gap-8">
-                            {plans.map(plan => (
-                                <Card key={plan.name} className="flex flex-col">
-                                    <CardHeader>
-                                        <CardTitle>{plan.name}</CardTitle>
-                                        <CardDescription className="text-3xl font-bold pt-2">{plan.price}<span className="text-sm font-normal text-gray-500">/month</span></CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="flex-grow">
-                                        <ul className="space-y-3">
-                                            {plan.features.map(feature => (
-                                                <li key={feature} className="flex items-center gap-2 text-sm">
-                                                    <CheckCircle className="w-4 h-4 text-green-500" />
-                                                    {feature}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </CardContent>
-                                    <div className="p-6 pt-0">
-                                        <Button
-                                            className="w-full"
-                                            disabled={isProcessing || subscription?.plan_sku === plan.sku}
-                                            onClick={() => handleCheckout(plan.sku)}
-                                        >
-                                            {isProcessing ? <Loader2 className="w-4 h-4 animate-spin" /> : subscription?.plan_sku === plan.sku ? 'Current Plan' : 'Choose Plan'}
-                                        </Button>
-                                    </div>
-                                </Card>
-                            ))}
-                        </div>
-                    </TabsContent>
-                     <TabsContent value="credits">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>One-Time Credit Packs</CardTitle>
-                                <CardDescription>Top up your credits anytime. Credits do not expire.</CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                {creditPacks.map(pack => (
-                                    <div key={pack.sku} className="flex items-center justify-between p-4 border rounded-lg">
-                                        <div>
-                                            <p className="font-semibold">{pack.name}</p>
-                                            <p className="text-sm text-gray-600">{pack.price}</p>
-                                        </div>
-                                        <Button onClick={() => handleCheckout(pack.sku)} disabled={isProcessing}>
-                                            {isProcessing ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Buy Now'}
-                                        </Button>
-                                    </div>
-                                ))}
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                </Tabs>
-                
-                 <Card className="mt-8">
-                    <CardHeader>
-                        <CardTitle>Manage Billing</CardTitle>
-                        <CardDescription>Update your payment method, view invoices, or cancel your subscription.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                         <Button onClick={handlePortal} disabled={isProcessing}>
-                            {isProcessing ? <Loader2 className="w-4 h-4 animate-spin" /> : <><ExternalLink className="w-4 h-4 mr-2" /> Open Customer Portal</>}
-                        </Button>
-                    </CardContent>
-                </Card>
-
-            </div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto" />
+          <p className="text-gray-600 mt-4">Loading billing information...</p>
         </div>
+      </div>
     );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-8">
+          <Button variant="outline" size="icon" onClick={() => navigate(-1)}>
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Billing & Subscription</h1>
+            <p className="text-gray-600 mt-1">Manage your plan and billing information</p>
+          </div>
+        </div>
+
+        {/* Current Plan Card */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Current Plan</CardTitle>
+            <CardDescription>Your active subscription and billing details</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold text-blue-600">
+                    {currentPlan?.name || 'Free'}
+                  </span>
+                  <span className="text-gray-600">
+                    {formatPrice(currentPlan?.price_monthly || 0)}
+                  </span>
+                </div>
+                {subscription?.status && (
+                  <div className="mt-2">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                      subscription.status === 'active' 
+                        ? 'bg-green-100 text-green-800'
+                        : subscription.status === 'past_due'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}>
+                      {subscription.status.charAt(0).toUpperCase() + subscription.status.slice(1)}
+                    </span>
+                  </div>
+                )}
+                {subscription?.currentPeriodEnd && (
+                  <p className="text-sm text-gray-500 mt-2">
+                    Renews on {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
+                  </p>
+                )}
+              </div>
+              <div className="flex gap-2">
+                {currentPlan?.name !== 'Ultimate' && (
+                  <Button onClick={() => setShowUpgradeModal(true)}>
+                    Upgrade Plan
+                  </Button>
+                )}
+                {subscription?.stripeCustomerId && (
+                  <Button variant="outline" onClick={handleManageSubscription}>
+                    <CreditCard className="w-4 h-4 mr-2" />
+                    Manage Subscription
+                  </Button>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Usage Card */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Current Usage</CardTitle>
+            <CardDescription>Your usage for the current billing period</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Responses */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-700">Monthly Responses</span>
+                  <TrendingUp className="w-4 h-4 text-gray-400" />
+                </div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {usage?.responses_count || 0}
+                </div>
+                <div className="text-sm text-gray-500">
+                  of {formatLimit(currentPlan?.max_responses_per_month)} limit
+                </div>
+                {currentPlan?.max_responses_per_month > 0 && (
+                  <div className="mt-2">
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className={`h-2 rounded-full ${
+                          isNearLimit() ? 'bg-red-500' : 'bg-blue-500'
+                        }`}
+                        style={{ width: `${Math.min(getUsagePercentage(), 100)}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Team Members */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-700">Team Members</span>
+                  <Users className="w-4 h-4 text-gray-400" />
+                </div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {usage?.users_count || 0}
+                </div>
+                <div className="text-sm text-gray-500">
+                  of {formatLimit(currentPlan?.max_users)} limit
+                </div>
+              </div>
+
+              {/* Period */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-700">Billing Period</span>
+                  <AlertCircle className="w-4 h-4 text-gray-400" />
+                </div>
+                <div className="text-sm text-gray-900">
+                  {usage?.period_start && (
+                    <>
+                      {new Date(usage.period_start).toLocaleDateString()} - {new Date(usage.period_end).toLocaleDateString()}
+                    </>
+                  )}
+                </div>
+                <div className="text-sm text-gray-500">
+                  Resets on {usage?.period_end && new Date(usage.period_end).toLocaleDateString()}
+                </div>
+              </div>
+            </div>
+
+            {isNearLimit() && (
+              <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div className="flex items-start">
+                  <AlertCircle className="w-5 h-5 text-yellow-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-yellow-800">
+                      You're approaching your monthly limit
+                    </p>
+                    <p className="text-sm text-yellow-700 mt-1">
+                      Consider upgrading your plan to avoid service interruption.
+                    </p>
+                    <Button
+                      size="sm"
+                      className="mt-2"
+                      onClick={() => setShowUpgradeModal(true)}
+                    >
+                      View Plans
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Plan Features */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Your Plan Includes</CardTitle>
+            <CardDescription>Features available on your current plan</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex items-start">
+                <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-gray-900">
+                    {formatLimit(currentPlan?.max_responses_per_month)} Monthly Responses
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Reply to customer complaints and manage your reputation
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-gray-900">
+                    {formatLimit(currentPlan?.max_users)} Team Members
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Collaborate with your team to handle complaints
+                  </p>
+                </div>
+              </div>
+              {currentPlan?.name !== 'Free' && (
+                <>
+                  <div className="flex items-start">
+                    <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-gray-900">Advanced Analytics</p>
+                      <p className="text-sm text-gray-600">
+                        Track response times, sentiment, and customer satisfaction
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-gray-900">Priority Support</p>
+                      <p className="text-sm text-gray-600">
+                        Get help when you need it with faster response times
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Upgrade Modal */}
+      <UpgradeModal open={showUpgradeModal} onClose={() => setShowUpgradeModal(false)} />
+    </div>
+  );
 }
