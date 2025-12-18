@@ -225,6 +225,16 @@ export default function BeautifulBusinessDashboard() {
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+        {/* Legal Disclaimer */}
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-600">
+          <p className="font-semibold mb-1">📋 User-Generated Content Disclaimer</p>
+          <p>
+            All complaints and reviews on this platform are user-generated content submitted by consumers. 
+            ReportHere does not verify, validate, or endorse the accuracy of any complaint or claim. 
+            Companies are responsible for responding to and resolving complaints directly with customers. 
+            This platform is protected under Section 230 of the Communications Decency Act.
+          </p>
+        </div>
         {/* Quick Insight Banner */}
         {insight && (
           <Card className={`border-2 ${
@@ -302,6 +312,7 @@ export default function BeautifulBusinessDashboard() {
             }
             icon={Target}
             color="purple"
+            tooltip="Percentage of complaints resolved in the last 30 days. Calculated as: (complaints resolved in 30d) / (complaints created in 30d). Requires at least 5 total complaints for statistical significance."
           />
         </div>
 
@@ -319,6 +330,7 @@ export default function BeautifulBusinessDashboard() {
             }
             icon={Award}
             color="pink"
+            tooltip="Customer satisfaction score based on sentiment ratings. Calculated from: GREEN (5 pts), YELLOW (4 pts), ORANGE (3 pts), RED (2 pts), PURPLE (1 pt). Score = (total points) / (max possible points) × 100."
           />
           
           <MetricCard
@@ -330,6 +342,7 @@ export default function BeautifulBusinessDashboard() {
             subtitle="First company reply"
             icon={Clock}
             color="blue"
+            tooltip="Average time between when a complaint is submitted and when your company sends the first response. Faster responses improve customer satisfaction and SLA compliance."
           />
           
           <MetricCard
@@ -344,13 +357,14 @@ export default function BeautifulBusinessDashboard() {
             }
             icon={TrendingUp}
             color={metrics?.slaMet !== null && metrics.slaMet >= 0.8 ? "green" : "orange"}
+            tooltip="Service Level Agreement compliance: percentage of complaints in the last 30 days that received a first response within 24 hours. Includes ALL complaints, even those with no response yet. Target: 80% or higher."
           />
         </div>
 
         {/* Customer Karma Section */}
         {metrics?.totalComplaints > 0 ? (
           <CustomerKarmaCard karmaData={{
-            customerKarma: metrics.lovedScore !== null ? Math.round(metrics.lovedScore * 100) : 0,
+            customerKarma: metrics.lovedScore !== null ? Math.max(0, Math.min(100, Math.round(metrics.lovedScore * 100))) : 0,
             sentimentCounts: metrics.sentimentCounts || {
               green: 0,
               yellow: 0,

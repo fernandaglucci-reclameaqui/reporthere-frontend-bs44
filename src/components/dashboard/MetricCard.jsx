@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import { HelpCircle } from 'lucide-react';
 
 /**
  * Format a percentage value (0..1) to display string
@@ -63,14 +64,17 @@ function renderMetric(value) {
  * @param {string} subtitle - Optional subtitle/description
  * @param {string} icon - Optional icon component
  * @param {string} color - Color theme (green, blue, purple, orange, red, pink)
+ * @param {string} tooltip - Optional tooltip text to explain the metric
  */
 export default function MetricCard({ 
   title, 
   value, 
   subtitle, 
   icon: Icon,
-  color = "blue" 
+  color = "blue",
+  tooltip 
 }) {
+  const [showTooltip, setShowTooltip] = useState(false);
   const { display, isNA } = renderMetric(value);
 
   // Color themes
@@ -126,7 +130,24 @@ export default function MetricCard({
       <CardContent className="p-6">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <div className="text-sm font-medium text-gray-600 mb-2">{title}</div>
+            <div className="text-sm font-medium text-gray-600 mb-2 flex items-center gap-2">
+              {title}
+              {tooltip && (
+                <div className="relative">
+                  <HelpCircle 
+                    className="w-4 h-4 text-gray-400 cursor-help"
+                    onMouseEnter={() => setShowTooltip(true)}
+                    onMouseLeave={() => setShowTooltip(false)}
+                  />
+                  {showTooltip && (
+                    <div className="absolute z-50 left-0 top-6 w-64 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-xl">
+                      {tooltip}
+                      <div className="absolute -top-1 left-2 w-2 h-2 bg-gray-900 transform rotate-45"></div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
             <div className={`text-3xl font-bold ${theme.text} ${isNA ? 'text-gray-400' : ''}`}>
               {display}
             </div>
