@@ -96,12 +96,14 @@ export default function BeautifulBusinessDashboard() {
 
     // SLA issues
     if (metrics.slaMet !== null && metrics.slaMet < 0.8) {
+      const currentPct = Math.round(metrics.slaMet * 100);
+      const targetHours = Math.floor(metrics.avgFirstResponseSeconds / 3600 * 0.5); // 50% faster
       return {
         type: "warning",
         icon: Clock,
         color: "orange",
         title: "Action Needed: SLA Performance",
-        message: `You're meeting SLA on ${Math.round(metrics.slaMet * 100)}% of cases. Speed up first responses to improve.`,
+        message: `Respond within ${targetHours}h to boost SLA from ${currentPct}% → 90%`,
         action: "View Details"
       };
     }
@@ -294,7 +296,10 @@ export default function BeautifulBusinessDashboard() {
               MetricValue.percent(metrics.resolutionRate) : 
               MetricValue.na("No data yet")
             }
-            subtitle={metrics?.totalComplaints > 0 ? "All time" : "Need complaints first"}
+            subtitle={metrics?.totalComplaints > 0 ? 
+              (metrics.totalComplaints < 5 ? "Early stage (low volume)" : "Last 30 days") : 
+              "Need complaints first"
+            }
             icon={Target}
             color="purple"
           />
@@ -346,20 +351,25 @@ export default function BeautifulBusinessDashboard() {
         {metrics?.totalComplaints > 0 ? (
           <CustomerKarmaCard karmaData={{
             customerKarma: metrics.lovedScore !== null ? Math.round(metrics.lovedScore * 100) : 0,
-            sentimentCounts: {
-              green: 0, // These would come from actual data
-              yellow: 0,
-              orange: 0,
-              red: 0,
-              purple: 0
-            },
-            sentimentPercentages: {
+            sentimentCounts: metrics.sentimentCounts || {
               green: 0,
               yellow: 0,
               orange: 0,
               red: 0,
               purple: 0
             },
+            sentimentPercentages: (() => {
+              const counts = metrics.sentimentCounts || { green: 0, yellow: 0, orange: 0, red: 0, purple: 0 };
+              const total = metrics.ratingCount || 0;
+              if (total === 0) return { green: 0, yellow: 0, orange: 0, red: 0, purple: 0 };
+              return {
+                green: Math.round((counts.green / total) * 100),
+                yellow: Math.round((counts.yellow / total) * 100),
+                orange: Math.round((counts.orange / total) * 100),
+                red: Math.round((counts.red / total) * 100),
+                purple: Math.round((counts.purple / total) * 100)
+              };
+            })(),
             total: metrics.ratingCount || 0,
             reputationSeal: metrics.lovedScore >= 0.8 ? 'HIGHLY_RECOMMENDED' : 
                            metrics.lovedScore >= 0.6 ? 'RECOMMENDED' : 'NEEDS_IMPROVEMENT'
@@ -378,7 +388,7 @@ export default function BeautifulBusinessDashboard() {
             title="Opened vs Resolved (Weekly)"
             hint={metrics?.totalComplaints === 0 ? 
               "No complaints yet. Your chart will appear here once you start receiving complaints." :
-              "Chart coming soon! We're preparing your data visualization."
+              "Data available after 7 days of activity"
             }
             iconType="bar"
           />
@@ -387,7 +397,7 @@ export default function BeautifulBusinessDashboard() {
             title="Cases by Status"
             hint={metrics?.totalComplaints === 0 ? 
               "No cases to display yet." :
-              "Status breakdown coming soon!"
+              "Data available after 7 days of activity"
             }
             iconType="pie"
           />
