@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { User } from "@/api/entities";
 import { Company } from "@/api/entities";
+import { useSubscription } from "@/hooks/useSubscription";
 import { supabase } from '@/api/supabaseClient';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ export default function BeautifulBusinessDashboard() {
   const [metrics, setMetrics] = useState(null);
   const [company, setCompany] = useState(null);
   const [error, setError] = useState(null);
+  const { plan, hasFeature, isPaidPlan, shouldShowUpgrade, getUpgradeUrl } = useSubscription();
 
   useEffect(() => {
     loadDashboard();
@@ -211,14 +213,29 @@ export default function BeautifulBusinessDashboard() {
               )}
             </div>
             <div className="flex gap-3">
-              <Button variant="outline" className="rounded-full border-2 border-purple-200 hover:bg-purple-50">
-                Export Data
+              <Button 
+                variant="outline" 
+                className="rounded-full border-2 border-purple-200 hover:bg-purple-50"
+                onClick={() => {
+                  if (!hasFeature('canExportData')) {
+                    alert('Data export is a premium feature. Please upgrade your plan.');
+                    window.location.href = getUpgradeUrl();
+                  } else {
+                    // TODO: Implement actual export functionality
+                    alert('Export feature coming soon!');
+                  }
+                }}
+                disabled={!hasFeature('canExportData')}
+              >
+                Export Data {!hasFeature('canExportData') && '🔒'}
               </Button>
-              <Link to={createPageUrl("billing")}>
-                <Button className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
-                  Upgrade Plan
-                </Button>
-              </Link>
+              {shouldShowUpgrade() && (
+                <Link to={getUpgradeUrl()}>
+                  <Button className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+                    {isPaidPlan() ? 'Upgrade Plan' : 'Go Premium'}
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
