@@ -19,6 +19,11 @@ export default function BusinessReplyForm({ complaint, company, onReplySuccess }
       setError("Response cannot be empty.");
       return;
     }
+    
+    if (response.trim().length < 20) {
+      setError("Response must be at least 20 characters to ensure meaningful communication.");
+      return;
+    }
 
     setIsSubmitting(true);
     setError(null);
