@@ -1,5 +1,8 @@
 import React from 'react';
-import { BarChart3, Heart, Users, TrendingUp, Shield, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { BarChart3, Heart, Users, TrendingUp, Shield, Zap, Building2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { createPageUrl } from '@/utils';
 
 export default function ForBusinesses() {
   const benefits = [
@@ -209,12 +212,12 @@ export default function ForBusinesses() {
           <p className="text-2xl font-semibold text-blue-600 mb-8">
             When customers feel heard, they stay.
           </p>
-          <a 
-            href="/claim" 
-            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-lg"
-          >
-            Claim Your Business Profile
-          </a>
+          <Link to={createPageUrl('ClaimProfile')}>
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4">
+              <Building2 className="w-5 h-5 mr-2" />
+              Claim Your Business Profile
+            </Button>
+          </Link>
         </section>
 
       </main>

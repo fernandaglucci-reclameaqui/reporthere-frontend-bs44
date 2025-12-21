@@ -121,14 +121,23 @@ export default function FileComplaint() {
             fullName: user.full_name || "",
             email: user.email || ""
           }));
+        } else {
+          // Not logged in - redirect to signup with return URL
+          localStorage.setItem('auth_return_url', '/filecomplaint');
+          navigate('/signup');
+          return;
         }
       } catch (err) {
         console.error("Error loading data:", err);
+        // If error fetching user, redirect to signup
+        localStorage.setItem('auth_return_url', '/filecomplaint');
+        navigate('/signup');
+        return;
       }
       setLoading(false);
     };
     loadData();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     if (formData.companyName.length > 1) {

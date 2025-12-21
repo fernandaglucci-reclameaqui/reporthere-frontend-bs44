@@ -86,10 +86,21 @@ export default function Signup() {
                         <div className="text-center">
                             <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
                             <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                                Account Created!
+                                ✅ Account Created!
                             </h2>
-                            <p className="text-gray-600">
-                                Welcome to ReportHere! Redirecting you to the homepage...
+                            <p className="text-gray-600 mb-4">
+                                Welcome to ReportHere! Your account is ready.
+                            </p>
+                            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                                <p className="text-sm text-green-800">
+                                    📩 Check your email to confirm your account
+                                </p>
+                                <p className="text-xs text-green-700 mt-1">
+                                    We sent a confirmation link to <strong>{email}</strong>
+                                </p>
+                            </div>
+                            <p className="text-sm text-gray-500">
+                                ⏳ Redirecting you in a moment...
                             </p>
                         </div>
                     </CardContent>
@@ -108,9 +119,9 @@ export default function Signup() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Sign Up</CardTitle>
+                        <CardTitle>Create Your Account</CardTitle>
                         <CardDescription>
-                            Create your free account to file complaints and track companies
+                            Join ReportHere to file complaints and hold companies accountable
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
