@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, AlertCircle, CheckCircle, Eye, EyeOff } from 'lucide-react';
+import { Loader2, AlertCircle, CheckCircle } from 'lucide-react';
+import PasswordInput from '@/components/ui/PasswordInput';
 
 export default function ResetPassword() {
     const navigate = useNavigate();
@@ -15,8 +16,7 @@ export default function ResetPassword() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
     useEffect(() => {
         // Check if we have a valid session from the reset link
@@ -107,29 +107,15 @@ export default function ResetPassword() {
 
                                 <div>
                                     <Label htmlFor="password">New Password</Label>
-                                    <div className="relative mt-1">
-                                        <Input
-                                            id="password"
-                                            type={showPassword ? "text" : "password"}
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            placeholder="••••••••"
-                                            required
-                                            disabled={loading}
-                                            className="pr-10"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                                        >
-                                            {showPassword ? (
-                                                <EyeOff className="h-4 w-4" />
-                                            ) : (
-                                                <Eye className="h-4 w-4" />
-                                            )}
-                                        </button>
-                                    </div>
+                                    <PasswordInput
+                                        id="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder="••••••••"
+                                        required
+                                        disabled={loading}
+                                        className="mt-1"
+                                    />
                                     <p className="text-xs text-gray-500 mt-1">
                                         Must be at least 6 characters
                                     </p>
@@ -137,29 +123,15 @@ export default function ResetPassword() {
 
                                 <div>
                                     <Label htmlFor="confirmPassword">Confirm New Password</Label>
-                                    <div className="relative mt-1">
-                                        <Input
-                                            id="confirmPassword"
-                                            type={showConfirmPassword ? "text" : "password"}
-                                            value={confirmPassword}
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                            placeholder="••••••••"
-                                            required
-                                            disabled={loading}
-                                            className="pr-10"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                                        >
-                                            {showConfirmPassword ? (
-                                                <EyeOff className="h-4 w-4" />
-                                            ) : (
-                                                <Eye className="h-4 w-4" />
-                                            )}
-                                        </button>
-                                    </div>
+                                    <PasswordInput
+                                        id="confirmPassword"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        placeholder="••••••••"
+                                        required
+                                        disabled={loading}
+                                        className="mt-1"
+                                    />
                                 </div>
 
                                 <Button

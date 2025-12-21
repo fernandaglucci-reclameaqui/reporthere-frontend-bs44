@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, AlertCircle, CheckCircle } from 'lucide-react';
+import PasswordInput from '@/components/ui/PasswordInput';
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -151,9 +152,8 @@ export default function Signup() {
 
                             <div>
                                 <Label htmlFor="password">Password</Label>
-                                <Input
+                                <PasswordInput
                                     id="password"
-                                    type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="••••••••"
@@ -168,9 +168,8 @@ export default function Signup() {
 
                             <div>
                                 <Label htmlFor="confirmPassword">Confirm Password</Label>
-                                <Input
+                                <PasswordInput
                                     id="confirmPassword"
-                                    type="password"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     placeholder="••••••••"

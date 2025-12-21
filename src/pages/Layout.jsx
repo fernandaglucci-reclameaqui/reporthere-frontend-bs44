@@ -306,6 +306,20 @@ export default function Layout({ children, currentPageName }) {
                 )}
                 </nav>
 
+                {/* Primary CTAs - File Complaint & For Businesses */}
+                <div className="hidden lg:flex items-center gap-3">
+                <Link to={createPageUrl("filecomplaint")}>
+                    <Button className="bg-green-600 hover:bg-green-700 text-white font-medium">
+                    File a Complaint
+                    </Button>
+                </Link>
+                <Link to={createPageUrl("for-businesses")}>
+                    <Button variant="outline" className="font-medium">
+                    For Businesses
+                    </Button>
+                </Link>
+                </div>
+
                 {/* Auth Buttons and User Menu */}
                 <div className="flex items-center gap-3">
                 {user ? (
@@ -456,19 +470,9 @@ export default function Layout({ children, currentPageName }) {
                     </Button>
                     </>
                 ) : (
-                    <div className="flex items-center gap-3">
                     <Button variant="outline" onClick={handleLogin} className="hover:bg-gray-100">
-                        Sign In
+                        Login
                     </Button>
-                    <div className="text-sm text-gray-600">
-                        <Link
-                        to={createPageUrl("ClaimProfile")}
-                        className="text-green-600 hover:underline font-medium"
-                        >
-                        Are you a business? Claim your profile
-                        </Link>
-                    </div>
-                    </div>
                 )}
 
                 {/* Mobile menu button */}
@@ -488,6 +492,24 @@ export default function Layout({ children, currentPageName }) {
           {mobileMenuOpen && (
             <div className="lg:hidden py-4 border-t">
               <div className="space-y-2">
+                {!user && (
+                  <>
+                    <Link
+                      to={createPageUrl("filecomplaint")}
+                      className="block px-4 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg mx-4 text-center font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      File a Complaint
+                    </Link>
+                    <Link
+                      to={createPageUrl("for-businesses")}
+                      className="block px-4 py-2 text-green-600 border border-green-600 hover:bg-green-50 rounded-lg mx-4 text-center font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      For Businesses
+                    </Link>
+                  </>
+                )}
                 <Link
                   to={createPageUrl("companies")}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-50"

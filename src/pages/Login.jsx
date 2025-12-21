@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, AlertCircle } from 'lucide-react';
+import PasswordInput from '@/components/ui/PasswordInput';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -99,9 +100,8 @@ export default function Login() {
                                         Forgot password?
                                     </a>
                                 </div>
-                                <Input
+                                <PasswordInput
                                     id="password"
-                                    type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="••••••••"

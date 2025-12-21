@@ -1,9 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { User } from "@/api/entities";
 import { Complaint } from "@/api/entities";
 import { createPageUrl } from '@/utils';
 import RouteProbe from '../debug/RouteProbe';
+import { Button } from '@/components/ui/button';
+import { FileText, AlertCircle } from 'lucide-react';
+
+function EmptyState() {
+  const navigate = useNavigate();
+  
+  return (
+    <div className="text-center py-16 bg-white rounded-lg border">
+      <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+      <h2 className="text-2xl font-semibold text-gray-900 mb-2">No complaints yet</h2>
+      <p className="text-gray-600 mb-6 max-w-md mx-auto">
+        You haven't filed any complaints yet. Ready to get started?
+      </p>
+      <Button 
+        size="lg"
+        className="bg-green-600 hover:bg-green-700 text-white"
+        onClick={() => navigate(createPageUrl('filecomplaint'))}
+      >
+        ➕ File Your First Complaint
+      </Button>
+    </div>
+  );
+}
 
 export default function UserDashboard() {
   const [items, setItems] = useState([]);
@@ -46,7 +69,7 @@ export default function UserDashboard() {
 
         {state === "ok" && (
           items.length === 0
-            ? <div className="text-gray-600 border rounded-lg p-6 text-center">You haven’t submitted any complaints yet.</div>
+            ? <EmptyState />
             : <ul className="space-y-3">
                 {items.map(row => (
                   <li key={row.id} className="border p-4 rounded-lg bg-white shadow-sm">
