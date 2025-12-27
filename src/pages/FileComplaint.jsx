@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Complaint, Company, User, Notification } from "@/api/entities";
 import { UploadFile, InvokeLLM, SendEmail } from "@/api/integrations";
-import { sendComplaintConfirmation, sendCompanyNotification } from '../services/emailService';
+import { sendComplaintConfirmation, sendCompanyNotification } from '@/services/resendService';
 import { slugify } from "../components/utils/slug";
 import {
   FileText, Upload, AlertCircle, CheckCircle, ArrowLeft, ArrowRight,

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 import PasswordInput from '@/components/ui/PasswordInput';
+import { sendWelcomeEmail } from '@/services/resendService';
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -59,6 +60,14 @@ export default function Signup() {
                 full_name: fullName,
                 user_type: 'consumer'
             });
+            
+            // Send welcome email
+            try {
+                await sendWelcomeEmail(email, fullName);
+            } catch (emailError) {
+                console.error('Failed to send welcome email:', emailError);
+                // Don't fail signup if email fails
+            }
             
             setSuccess(true);
             
