@@ -82,7 +82,7 @@ import ClaimProfile from "./ClaimProfile";
 
 import Notifications from "./Notifications";
 
-import dashboard from "./dashboard";
+import Dashboard from "./dashboard";
 
 import ClaimStart from "./ClaimStart";
 
@@ -172,7 +172,7 @@ const PAGES = {
     
     Notifications: Notifications,
     
-    dashboard: dashboard,
+    dashboard: Dashboard,
     
     ClaimStart: ClaimStart,
     
@@ -303,7 +303,7 @@ function PagesContent() {
                 
                 <Route path="/Notifications" element={<Notifications />} />
                 
-                <Route path="/dashboard" element={<dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 
                 <Route path="/ClaimStart" element={<ClaimStart />} />
                 
