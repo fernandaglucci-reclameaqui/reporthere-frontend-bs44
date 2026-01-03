@@ -98,10 +98,38 @@ export default function BlogPage() {
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-16">
-                        <FileText className="w-20 h-20 text-gray-300 mx-auto mb-6" />
-                        <h3 className="text-2xl font-semibold text-gray-800">No Posts Yet</h3>
-                        <p className="text-gray-500 mt-2">Check back soon for new articles and updates.</p>
+                    <div className="text-center py-16 bg-white rounded-lg border-2 border-gray-200">
+                        <div className="max-w-2xl mx-auto px-6">
+                            <FileText className="w-20 h-20 text-gray-400 mx-auto mb-6" />
+                            <h3 className="text-3xl font-bold text-gray-900 mb-4">No Posts Yet</h3>
+                            <p className="text-lg text-gray-600 mb-6">
+                                We're working on creating helpful content about consumer rights, business reputation, and how to resolve complaints effectively.
+                            </p>
+                            <div className="bg-blue-50 rounded-lg p-6 mb-6 text-left">
+                                <h4 className="font-semibold text-gray-900 mb-3">Coming soon:</h4>
+                                <ul className="space-y-2 text-gray-600">
+                                    <li className="flex items-start">
+                                        <span className="text-blue-600 mr-2">•</span>
+                                        <span>How to write an effective complaint</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-blue-600 mr-2">•</span>
+                                        <span>Understanding your consumer rights</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-blue-600 mr-2">•</span>
+                                        <span>Best practices for companies responding to complaints</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-blue-600 mr-2">•</span>
+                                        <span>Success stories and case studies</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p className="text-sm text-gray-500">
+                                In the meantime, feel free to explore companies and file complaints!
+                            </p>
+                        </div>
                     </div>
                 )}
             </div>

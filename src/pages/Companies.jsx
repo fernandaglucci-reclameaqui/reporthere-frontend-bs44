@@ -247,17 +247,77 @@ export default function Companies() {
             ))}
           </div>
         ) : filteredCompanies.length === 0 ? (
-          <div className="text-center py-16">
-            <Building2 className="w-24 h-24 text-gray-300 mx-auto mb-6" />
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">No companies found</h3>
-            <p className="text-gray-600 text-lg mb-8">
-              {searchQuery ? "Try adjusting your search terms or filters." : "No companies have been added yet."}
-            </p>
-            <Link to={createPageUrl("FileComplaint")}>
-              <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg">
-                File a Complaint to Add a Company
-              </Button>
-            </Link>
+          <div className="text-center py-16 bg-white rounded-lg border-2 border-gray-200 mx-4">
+            <div className="max-w-2xl mx-auto px-6">
+              <Building2 className="w-24 h-24 text-gray-400 mx-auto mb-6" />
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">No companies found</h3>
+              {searchQuery || industryFilter !== 'all' ? (
+                <div>
+                  <p className="text-gray-600 text-lg mb-6">
+                    No companies match your current search or filters.
+                  </p>
+                  <div className="bg-blue-50 rounded-lg p-6 mb-6 text-left">
+                    <h4 className="font-semibold text-gray-900 mb-3">Try these suggestions:</h4>
+                    <ul className="space-y-2 text-gray-600">
+                      <li className="flex items-start">
+                        <span className="text-blue-600 mr-2">•</span>
+                        <span>Clear your search query or try different keywords</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-600 mr-2">•</span>
+                        <span>Remove industry filters to see all companies</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-600 mr-2">•</span>
+                        <span>Check your spelling</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <Button 
+                    onClick={() => { setSearchQuery(''); setIndustryFilter('all'); }}
+                    variant="outline"
+                    className="mr-4"
+                  >
+                    Clear All Filters
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <p className="text-gray-600 text-lg mb-6">
+                    No companies have been added to the platform yet. Be the first to add one by filing a complaint!
+                  </p>
+                  <div className="bg-green-50 rounded-lg p-6 mb-6 text-left">
+                    <h4 className="font-semibold text-gray-900 mb-3">How it works:</h4>
+                    <ul className="space-y-2 text-gray-600">
+                      <li className="flex items-start">
+                        <span className="text-green-600 mr-2">1.</span>
+                        <span>File a complaint about a company</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-green-600 mr-2">2.</span>
+                        <span>We'll create a profile for that company</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-green-600 mr-2">3.</span>
+                        <span>The company gets notified and can respond</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-green-600 mr-2">4.</span>
+                        <span>Other users can see the company's reputation</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <Link to={createPageUrl("filecomplaint")}>
+                    <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg shadow-lg">
+                      ➕ File a Complaint to Add a Company
+                    </Button>
+                  </Link>
+                  <p className="text-sm text-gray-500 mt-4">
+                    Help build the community by sharing your experience
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

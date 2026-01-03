@@ -132,6 +132,11 @@ export default function Signup() {
                         <CardDescription>
                             Join ReportHere to file complaints and hold companies accountable
                         </CardDescription>
+                        <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                            <p className="text-xs text-blue-800">
+                                <span className="font-semibold">BETA:</span> ReportHere is currently in beta. We're actively improving the platform and welcome your feedback as we grow.
+                            </p>
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit} className="space-y-4">

@@ -11,19 +11,45 @@ function EmptyState() {
   const navigate = useNavigate();
   
   return (
-    <div className="text-center py-16 bg-white rounded-lg border">
-      <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-      <h2 className="text-2xl font-semibold text-gray-900 mb-2">No complaints yet</h2>
-      <p className="text-gray-600 mb-6 max-w-md mx-auto">
-        You haven't filed any complaints yet. Ready to get started?
-      </p>
-      <Button 
-        size="lg"
-        className="bg-green-600 hover:bg-green-700 text-white"
-        onClick={() => navigate(createPageUrl('filecomplaint'))}
-      >
-        ➕ File Your First Complaint
-      </Button>
+    <div className="text-center py-16 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg border-2 border-green-200">
+      <div className="max-w-2xl mx-auto px-6">
+        <FileText className="w-20 h-20 text-green-600 mx-auto mb-6" />
+        <h2 className="text-3xl font-bold text-gray-900 mb-3">Welcome to Your Dashboard!</h2>
+        <p className="text-lg text-gray-700 mb-4">
+          You haven't filed any complaints yet. This is where you'll track all your complaints and see company responses.
+        </p>
+        <div className="bg-white rounded-lg p-6 mb-6 text-left shadow-sm">
+          <h3 className="font-semibold text-gray-900 mb-3">What you can do here:</h3>
+          <ul className="space-y-2 text-gray-600">
+            <li className="flex items-start">
+              <span className="text-green-600 mr-2">✓</span>
+              <span>Track the status of all your complaints in one place</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-green-600 mr-2">✓</span>
+              <span>See when companies respond to your complaints</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-green-600 mr-2">✓</span>
+              <span>Get notified of updates and resolutions</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-green-600 mr-2">✓</span>
+              <span>Help other consumers by sharing your experiences</span>
+            </li>
+          </ul>
+        </div>
+        <Button 
+          size="lg"
+          className="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-6 shadow-lg"
+          onClick={() => navigate(createPageUrl('filecomplaint'))}
+        >
+          ➕ File Your First Complaint
+        </Button>
+        <p className="text-sm text-gray-500 mt-4">
+          It only takes a few minutes to share your story
+        </p>
+      </div>
     </div>
   );
 }

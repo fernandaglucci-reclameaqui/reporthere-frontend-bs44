@@ -383,19 +383,63 @@ export default function FileComplaint() {
   if (success) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4">
-        <Card className="max-w-md w-full">
-          <CardContent className="pt-6">
+        <Card className="max-w-2xl w-full">
+          <CardContent className="pt-8 pb-8">
             <div className="text-center">
-              <CheckCircle className="w-20 h-20 text-green-600 mx-auto mb-4" />
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Complaint Submitted!</h2>
-              <p className="text-gray-600 mb-4">
-                Your complaint has been received and is under review. We'll notify you of any updates.
+              <div className="mb-6">
+                <CheckCircle className="w-24 h-24 text-green-600 mx-auto mb-4 animate-pulse" />
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">✅ Complaint Submitted Successfully!</h2>
+              <p className="text-xl text-gray-700 mb-6">
+                Your complaint has been received and is now live on ReportHere.
               </p>
-              <p className="text-sm text-gray-500">Redirecting you to your complaint...</p>
+              
+              <div className="bg-white rounded-lg p-6 mb-6 text-left border-2 border-green-200">
+                <h3 className="font-semibold text-gray-900 mb-4 text-lg">What happens next:</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3 text-xl">1.</span>
+                    <div>
+                      <span className="font-medium">Company Notification:</span> The company has been notified via email about your complaint.
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3 text-xl">2.</span>
+                    <div>
+                      <span className="font-medium">Public Visibility:</span> Your complaint is now visible on the company's profile page.
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3 text-xl">3.</span>
+                    <div>
+                      <span className="font-medium">Response Expected:</span> The company can respond directly to your complaint.
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3 text-xl">4.</span>
+                    <div>
+                      <span className="font-medium">Email Updates:</span> You'll receive email notifications when there are updates or responses.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-blue-50 rounded-lg p-4 mb-6">
+                <p className="text-sm text-blue-800">
+                  <span className="font-semibold">💡 Tip:</span> Check your email for a confirmation and bookmark your complaint page to track progress.
+                </p>
+              </div>
+
+              <p className="text-sm text-gray-500 mb-4">Redirecting you to your complaint in a few seconds...</p>
+              
+              <div className="flex justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+              </div>
             </div>
           </CardContent>
         </Card>
       </div>
+
     );
   }
 
@@ -406,6 +450,13 @@ export default function FileComplaint() {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-extrabold text-gray-900 mb-2">File a Complaint</h1>
           <p className="text-lg text-gray-600">We'll help you get your voice heard</p>
+          <div className="mt-4 inline-block">
+            <div className="px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800">
+                <span className="font-semibold">BETA:</span> We're actively improving this feature and welcome your feedback.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Progress Bar */}

@@ -670,8 +670,21 @@ export default function Layout({ children, currentPageName }) {
               </div>
             </div>
             
-            <div className="border-t border-gray-200 pt-6 text-center text-sm text-gray-600">
-              &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
+            <div className="border-t border-gray-200 pt-6 text-center">
+              <div className="mb-3">
+                <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full mb-2">BETA</span>
+                <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+                  ReportHere is currently in beta. We're actively improving the platform and welcome your feedback.
+                </p>
+              </div>
+              <div className="text-sm text-gray-600 mb-2">
+                <p className="italic">
+                  ReportHere is an independent platform and is not affiliated with, endorsed by, or connected to Reclame Aqui or any similar complaint platforms.
+                </p>
+              </div>
+              <div className="text-sm text-gray-600">
+                &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
+              </div>
             </div>
           </div>
         </footer>
