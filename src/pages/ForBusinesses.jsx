@@ -44,7 +44,7 @@ export default function ForBusinesses() {
     {
       name: "Free Plan",
       features: [
-        "RECEIVE UNLIMITED COMPLAINTS",
+        "Receive unlimited complaints",
         "View all complaints",
         "View basic stats",
         "Reply to 2 complaints per month"
