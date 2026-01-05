@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Complaint, Company, User, Notification } from "@/api/entities";
 import { UploadFile, InvokeLLM, SendEmail } from "@/api/integrations";
-import { sendComplaintConfirmation, sendCompanyNotification } from '@/services/resendService';
+import { sendComplaintConfirmationEmail, sendCompanyComplaintNotification } from '@/services/resendService';
 import { slugify } from "../components/utils/slug";
 import {
   FileText, Upload, AlertCircle, CheckCircle, ArrowLeft, ArrowRight,
@@ -332,7 +332,7 @@ export default function FileComplaint() {
       try {
         // Customer notification with beautiful HTML template
         
-        await sendComplaintConfirmation(formData.email, {
+        await sendComplaintConfirmationEmail(formData.email, {
           userName: formData.fullName,
           companyName: formData.companyName,
           title: formData.title,
@@ -342,7 +342,7 @@ export default function FileComplaint() {
         // Company notification - fetch email from database
         if (company && company.email) {
           console.log("📧 Sending company notification to:", company.email);
-          await sendCompanyNotification(company.email, {
+          await sendCompanyComplaintNotification(company.email, {
             companyName: formData.companyName,
             title: formData.title,
             category: formData.category,
