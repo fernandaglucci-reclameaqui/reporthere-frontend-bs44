@@ -5,7 +5,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useAuth } from './useAuth';
+import { supabase } from '../api/supabase';
 
 /**
  * Plan definitions with features and limits
@@ -63,7 +63,16 @@ const PLANS = {
 };
 
 export function useSubscription() {
-  const { user } = useAuth();
+  const [user, setUser] = useState(null);
+
+  // Get current user from Supabase
+  useEffect(() => {
+    async function getUser() {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    }
+    getUser();
+  }, []);
   const [subscription, setSubscription] = useState(null);
   const [usage, setUsage] = useState(null);
   const [loading, setLoading] = useState(true);
