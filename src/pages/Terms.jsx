@@ -1,130 +1,90 @@
 import React from 'react';
-import { FileText, Shield, AlertCircle, Scale, Info, Ban } from 'lucide-react';
 
 export default function Terms() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center mb-4">
-            <FileText className="w-12 h-12" />
-          </div>
-          <h1 className="text-4xl font-bold text-center mb-4">Terms of Service</h1>
-          <p className="text-emerald-100 text-center text-lg">Last updated: October 7, 2025</p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 md:p-12">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Terms of Service</h1>
+        <p className="text-sm text-gray-500 mb-8">Last updated: January 5, 2026</p>
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        {/* Section 1 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                <Shield className="w-6 h-6 text-emerald-600" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
-              <p className="text-gray-700 leading-relaxed">
-                By accessing and using ReportHere ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services.
-              </p>
-            </div>
-          </div>
-        </div>
+        <div className="prose prose-lg max-w-none">
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Welcome to ReportHere</h2>
+          <p className="text-gray-700 mb-6">
+            By using ReportHere, you're agreeing to these terms and how the platform works. They're here to keep things clear, fair, and respectful for everyone.
+          </p>
 
-        {/* Section 2 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Info className="w-6 h-6 text-blue-600" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Description of Service</h2>
-              <p className="text-gray-700 leading-relaxed">
-                Our service allows users to post complaints about businesses and for businesses to respond. All complaints are subject to moderation and may be removed if they violate our content policies. We are a neutral platform and do not arbitrate disputes.
-              </p>
-            </div>
-          </div>
-        </div>
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">What ReportHere Is (and Isn't)</h2>
+          <p className="text-gray-700 mb-4">
+            ReportHere is a public space where people share real experiences with businesses, and where businesses can respond publicly.
+          </p>
+          <p className="text-gray-700 mb-6">
+            We provide the tools and space for these conversations. We don't judge who's right or wrong, and we don't act as a mediator or decision-maker in disputes.
+          </p>
 
-        {/* Section 3 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
-                <AlertCircle className="w-6 h-6 text-amber-600" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. User Conduct</h2>
-              <p className="text-gray-700 leading-relaxed">
-                You agree not to post any content that is unlawful, harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, or invasive of another's privacy. You are responsible for the content you post.
-              </p>
-            </div>
-          </div>
-        </div>
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Content on the Platform</h2>
+          <p className="text-gray-700 mb-4">
+            Everything posted on ReportHere — including complaints, responses, comments, and messages — comes directly from users or businesses.
+          </p>
+          <p className="text-gray-700 mb-6">
+            If you post something, you're responsible for it. That means sharing information honestly (to the best of your knowledge), lawfully, and in a way that respects other people's rights.
+          </p>
 
-        {/* Section 4 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Ban className="w-6 h-6 text-purple-600" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Moderation</h2>
-              <p className="text-gray-700 leading-relaxed">
-                We reserve the right, but not the obligation, to monitor and review submissions. We may remove or modify any content at our sole discretion for any reason, including violation of these Terms.
-              </p>
-            </div>
-          </div>
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Using ReportHere Respectfully</h2>
+          <p className="text-gray-700 mb-4">
+            We want ReportHere to support honest experiences and constructive dialogue. You agree not to post content that is illegal, intentionally misleading, abusive, harassing, defamatory, obscene, or designed to manipulate or harm others.
+          </p>
+          <p className="text-gray-700 mb-6">
+            Content created to spam, deceive, or game the platform isn't allowed.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Moderation & Fair Use</h2>
+          <p className="text-gray-700 mb-4">
+            We don't review every post before it goes live. That said, we care deeply about fairness and trust.
+          </p>
+          <p className="text-gray-700 mb-4">
+            ReportHere may review activity — using a mix of automated tools and human judgment — to detect abuse, fake accounts, or coordinated misuse. When content or behavior violates these Terms or our policies, we may limit visibility, remove content, or restrict accounts.
+          </p>
+          <p className="text-gray-700 mb-6">
+            Our goal is to protect the community, not to take sides.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">No Mediation, No Promises</h2>
+          <p className="text-gray-700 mb-6">
+            ReportHere isn't a dispute-resolution service. We don't negotiate outcomes, force responses, or guarantee resolutions. Any conversation or resolution happens directly between the people involved.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Platform Availability</h2>
+          <p className="text-gray-700 mb-6">
+            We work hard to keep ReportHere available and reliable, but the service is provided "as is." From time to time, features may change, be unavailable, or experience issues.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Opinions Are Personal</h2>
+          <p className="text-gray-700 mb-6">
+            The views shared on ReportHere belong to the people who post them. They don't represent ReportHere's opinions. How you interpret or act on information found here is up to you.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Limits of Responsibility</h2>
+          <p className="text-gray-700 mb-6">
+            To the extent allowed by law, ReportHere and its affiliates aren't responsible for losses or damages resulting from using the platform or relying on user-generated content.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Updates to These Terms</h2>
+          <p className="text-gray-700 mb-6">
+            As ReportHere evolves, these Terms may be updated. The latest version will always be posted here. Continuing to use the platform means you accept any updates.
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Questions?</h2>
+          <p className="text-gray-700 mb-2">
+            If you have questions about these Terms, reach out through our contact form or email us at{' '}
+            <a href="mailto:legal@reporthere.org" className="text-blue-600 hover:text-blue-800 underline">
+              legal@reporthere.org
+            </a>
+          </p>
         </div>
 
-        {/* Section 5 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <AlertCircle className="w-6 h-6 text-orange-600" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Disclaimers</h2>
-              <p className="text-gray-700 leading-relaxed">
-                The Service is provided "as is". We make no warranty that the service will be uninterrupted, timely, or error-free. The opinions expressed are those of the users and not of ReportHere.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Section 6 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-6">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                <Scale className="w-6 h-6 text-red-600" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Limitation of Liability</h2>
-              <p className="text-gray-700 leading-relaxed">
-                In no event shall ReportHere be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or the inability to use the Service.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Contact Section */}
-        <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 mt-8">
-          <h3 className="text-lg font-semibold text-emerald-900 mb-2">Questions about our Terms?</h3>
-          <p className="text-emerald-700">
-            If you have any questions about these Terms of Service, please contact us through our contact form.
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <p className="text-sm text-gray-500 text-center">
+            By using ReportHere, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
           </p>
         </div>
       </div>
