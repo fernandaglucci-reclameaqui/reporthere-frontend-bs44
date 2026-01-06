@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Complaint, Company, User, Notification } from "@/api/entities";
 import { InvokeLLM, SendEmail } from "@/api/integrations";
 import { sendComplaintConfirmationEmail, sendCompanyComplaintNotification } from '@/services/resendService';
+import { logComplaintCreated } from '@/utils/eventSystem';
+import { processTriggers, EventTypes } from '@/utils/triggerEngine';
 import { slugify } from "../components/utils/slug";
 import {
   FileText, Upload, AlertCircle, CheckCircle, ArrowLeft, ArrowRight,
@@ -318,6 +320,21 @@ export default function FileComplaint() {
       console.log("✅ Complaint created successfully:", newComplaint);
       console.log("✅ Complaint ID:", newComplaint?.id);
       console.log("✅ User ID in complaint:", newComplaint?.user_id);
+      
+      // 🔔 Wave 3A: Log event and trigger automation
+      try {
+        await logComplaintCreated(newComplaint.id, complaintData, user.id);
+        await processTriggers('complaint_created', {
+          complaint_id: newComplaint.id,
+          company_id: companyId,
+          company_name: formData.companyName,
+          title: formData.title,
+          category: formData.category
+        });
+        console.log("✅ Event logged and triggers processed");
+      } catch (eventError) {
+        console.error("⚠️ Event logging failed (non-critical):", eventError);
+      }
       
       // Send notifications
       try {
