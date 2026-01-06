@@ -679,7 +679,7 @@ export default function Layout({ children, currentPageName }) {
               </div>
               <div className="text-sm text-gray-600 mb-2">
                 <p className="italic">
-                  ReportHere is an independent platform and is not affiliated with, endorsed by, or connected to Reclame Aqui or any similar complaint platforms.
+                  ReportHere is an independent platform and is not affiliated with, endorsed by, or connected to any similar complaint or reputation management platforms.
                 </p>
               </div>
               <div className="text-sm text-gray-600">
