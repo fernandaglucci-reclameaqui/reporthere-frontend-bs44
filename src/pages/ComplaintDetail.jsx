@@ -12,6 +12,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Building2, User as UserIcon, Clock, AlertCircle, ArrowLeft, FileText, CheckCircle, ShieldCheck } from "lucide-react"; // Rename User to UserIcon, add ShieldCheck
+import AIComplaintSummary from "@/components/ai/AIComplaintSummary";
+import AIRiskFlag from "@/components/ai/AIRiskFlag";
 
 const Skeleton = () => (
   <div className="min-h-screen bg-gray-50">
@@ -248,6 +250,18 @@ export default function ComplaintDetail() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 whitespace-pre-wrap mb-4">{complaint.description}</p>
+              
+              {/* AI-Generated Summary */}
+              <div className="mt-4">
+                <AIComplaintSummary complaint={complaint} autoGenerate={true} />
+              </div>
+
+              {/* AI Risk Assessment (for company members) */}
+              {isCompanyMember && (
+                <div className="mt-4">
+                  <AIRiskFlag complaint={complaint} autoAnalyze={true} />
+                </div>
+              )}
               
               {complaint.attachments && complaint.attachments.length > 0 && (
                 <div className="mt-4">

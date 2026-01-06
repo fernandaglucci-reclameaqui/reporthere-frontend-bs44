@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AlertCircle, Send } from 'lucide-react';
+import AIResponseWriter from '@/components/ai/AIResponseWriter';
 import { createPageUrl } from '@/utils';
 
 export default function BusinessReplyForm({ complaint, company, onReplySuccess }) {
@@ -91,6 +92,15 @@ Thank you for using ReportHere.`
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {/* AI Response Writer */}
+        <div className="mb-6">
+          <AIResponseWriter
+            complaint={complaint}
+            companyName={company.name}
+            onUseResponse={(aiResponse) => setResponse(aiResponse)}
+          />
+        </div>
+
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <Textarea
