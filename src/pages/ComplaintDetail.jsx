@@ -119,12 +119,13 @@ export default function ComplaintDetail() {
       setCurrentUser(user);
       
       document.title = `${complaintData.title} | ReportHere`;
-      updateMetaTags(complaintData);
 
       if (complaintData.company_id) {
         try {
           const companyData = await Company.get(complaintData.company_id);
           setCompany(companyData);
+          // Update SEO meta tags with complaint and company data
+          updateMetaTags(complaintData, companyData);
           // Check if current user is a business member and claims this company
           if (user && user.user_type === 'business' && companyData.claimed_by && companyData.claimed_by.includes(user.id)) {
             setIsCompanyMember(true);
@@ -207,13 +208,23 @@ export default function ComplaintDetail() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-6">
+          <div className="mb-6 flex justify-between items-start gap-4">
+          <div>
           <Link to={createPageUrl("complaints")}>
             <Button variant="outline" className="mb-4">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Complaints
             </Button>
           </Link>
+          </div>
+          
+          <SocialShareButtons
+            url={window.location.href}
+            title={complaint.title}
+            description={complaint.description.substring(0, 100)}
+            hashtags={['ConsumerRights', 'ReportHere', complaint.category]}
+          />
+          </div>
           
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">{complaint.title}</h1>

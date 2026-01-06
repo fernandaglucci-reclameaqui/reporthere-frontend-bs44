@@ -1,0 +1,17 @@
+# ReportHere - Robots.txt
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.reporthere.org/sitemap.xml
+
+# Disallow private/sensitive pages
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /api
+Disallow: /settings
+
+# Crawl delay (optional, helps prevent server overload)
+Crawl-delay: 1
