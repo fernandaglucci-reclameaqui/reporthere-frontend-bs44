@@ -64,6 +64,8 @@ import BillingCancel from "./BillingCancel";
 
 import AdminDashboard from "./AdminDashboard";
 
+import AdminPanel from "./AdminPanel";
+
 import companies from "./companies";
 
 import complaints from "./complaints";
@@ -153,6 +155,8 @@ const PAGES = {
     BillingCancel: BillingCancel,
     
     AdminDashboard: AdminDashboard,
+    
+    AdminPanel: AdminPanel,
     
     companies: companies,
     

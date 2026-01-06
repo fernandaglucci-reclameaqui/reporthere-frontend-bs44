@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Building2, User as UserIcon, Clock, AlertCircle, ArrowLeft, FileText, CheckCircle, ShieldCheck } from "lucide-react"; // Rename User to UserIcon, add ShieldCheck
 import AIComplaintSummary from "@/components/ai/AIComplaintSummary";
 import AIRiskFlag from "@/components/ai/AIRiskFlag";
+import SocialShareButtons from "@/components/social/SocialShareButtons";
 
 const Skeleton = () => (
   <div className="min-h-screen bg-gray-50">
