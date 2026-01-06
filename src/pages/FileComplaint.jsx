@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Complaint, Company, User, Notification } from "@/api/entities";
-import { UploadFile, InvokeLLM, SendEmail } from "@/api/integrations";
+import { InvokeLLM, SendEmail } from "@/api/integrations";
 import { sendComplaintConfirmationEmail, sendCompanyComplaintNotification } from '@/services/resendService';
 import { slugify } from "../components/utils/slug";
 import {
@@ -98,7 +98,11 @@ export default function FileComplaint() {
     // Step 3: What Happened
     title: "",
     description: "",
-    attachments: [],
+    
+    // Evidence Reference (no file uploads)
+    evidenceType: "",
+    evidenceDescription: "",
+    evidenceLink: "",
     
     // Step 4: What You Want
     desiredSolution: "",
@@ -188,22 +192,7 @@ export default function FileComplaint() {
     setShowSuggestions(false);
   };
 
-  const handleFileUpload = async (files) => {
-    if (files.length === 0) return;
-    
-    try {
-      const uploadPromises = Array.from(files).map(file => UploadFile({ file }));
-      const results = await Promise.all(uploadPromises);
-      const urls = results.map(result => result.file_url);
-      
-      setFormData(prev => ({
-        ...prev,
-        attachments: [...prev.attachments, ...urls]
-      }));
-    } catch (error) {
-      setError("Failed to upload files. Please try again.");
-    }
-  };
+  // File uploads removed for legal safety - Wave 2.1
 
   const generatePassword = () => {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%';
@@ -318,7 +307,9 @@ export default function FileComplaint() {
         user_phone: formData.phone,
         amount_involved: formData.amountInvolved ? parseFloat(formData.amountInvolved) : null,
         incident_date: formData.incidentDate || null,
-        attachments: formData.attachments,
+        evidence_type: formData.evidenceType || null,
+        evidence_description: formData.evidenceDescription || null,
+        evidence_link: formData.evidenceLink || null,
         status: "submitted",
         severity: "medium"
       };
@@ -628,30 +619,67 @@ export default function FileComplaint() {
                   <p className="text-sm text-gray-500 mt-1">{formData.description.length}/5000 characters</p>
                 </div>
 
-                <div>
-                  <Label className="text-base font-semibold">Attachments (Optional)</Label>
-                  <div className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-purple-500 transition">
-                    <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <input
-                      type="file"
-                      multiple
-                      onChange={(e) => handleFileUpload(e.target.files)}
-                      className="hidden"
-                      id="file-upload"
-                      accept="image/*,.pdf"
-                    />
-                    <label htmlFor="file-upload" className="cursor-pointer text-purple-600 hover:text-purple-700 font-medium">
-                      Click to upload files
-                    </label>
-                    <p className="text-sm text-gray-500 mt-1">Images or PDF (max 25MB each)</p>
-                  </div>
-                  {formData.attachments.length > 0 && (
-                    <div className="mt-2 space-y-1">
-                      {formData.attachments.map((url, index) => (
-                        <div key={index} className="text-sm text-gray-600">✓ File {index + 1} uploaded</div>
-                      ))}
+                {/* Evidence Reference Section - Wave 2.1 */}
+                <div className="border-t pt-6">
+                  <Label className="text-base font-semibold">Evidence Reference (Optional)</Label>
+                  <p className="text-sm text-gray-600 mt-1 mb-4">
+                    You can reference evidence you have (receipts, emails, contracts, etc.) without uploading files.
+                  </p>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="evidenceType" className="text-sm font-medium">Type of Evidence</Label>
+                      <Select
+                        value={formData.evidenceType}
+                        onValueChange={(value) => setFormData({...formData, evidenceType: value})}
+                      >
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="Select type (optional)" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="receipt">Receipt</SelectItem>
+                          <SelectItem value="email">Email</SelectItem>
+                          <SelectItem value="contract">Contract</SelectItem>
+                          <SelectItem value="screenshot">Screenshot</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
-                  )}
+                    
+                    <div>
+                      <Label htmlFor="evidenceDescription" className="text-sm font-medium">Description of Evidence</Label>
+                      <Textarea
+                        id="evidenceDescription"
+                        value={formData.evidenceDescription}
+                        onChange={(e) => setFormData({...formData, evidenceDescription: e.target.value})}
+                        placeholder="Describe what evidence you have (e.g., 'Email from support dated Jan 5, 2026 confirming order #12345')..."
+                        className="mt-1 min-h-[80px]"
+                        maxLength={500}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">{formData.evidenceDescription.length}/500 characters</p>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="evidenceLink" className="text-sm font-medium">Link to Evidence (Optional)</Label>
+                      <Input
+                        id="evidenceLink"
+                        type="url"
+                        value={formData.evidenceLink}
+                        onChange={(e) => setFormData({...formData, evidenceLink: e.target.value})}
+                        placeholder="https://... (if you have evidence hosted elsewhere)"
+                        className="mt-1"
+                      />
+                      <p className="text-xs text-gray-500 mt-1">We don't verify links - they're for reference only</p>
+                    </div>
+                  </div>
+                  
+                  {/* Neutral Disclaimer - Wave 2.2 */}
+                  <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                    <p className="text-xs text-yellow-800">
+                      <strong>Important:</strong> ReportHere does not verify, host, or authenticate evidence. 
+                      Evidence references reflect your claim only.
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
