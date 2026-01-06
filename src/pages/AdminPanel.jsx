@@ -133,6 +133,16 @@ export default function AdminPanel() {
     }
   };
 
+  // Wave 2.4: Evidence flagging controls
+  const handleFlagEvidence = async (complaintId, currentFlag) => {
+    try {
+      await Complaint.update(complaintId, { evidence_flagged: !currentFlag });
+      loadData();
+    } catch (error) {
+      console.error('Error flagging evidence:', error);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -330,7 +340,43 @@ export default function AdminPanel() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-700 line-clamp-2">{complaint.description}</p>
+                  <p className="text-sm text-gray-700 line-clamp-2 mb-3">{complaint.description}</p>
+                  
+                  {/* Wave 2.4: Evidence Reference Display for Admins */}
+                  {(complaint.evidence_type || complaint.evidence_description || complaint.evidence_link) && (
+                    <div className="mt-3 pt-3 border-t">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <p className="text-xs font-semibold text-gray-600 mb-1">Evidence Referenced:</p>
+                          {complaint.evidence_type && (
+                            <p className="text-xs text-gray-600">Type: <span className="capitalize">{complaint.evidence_type}</span></p>
+                          )}
+                          {complaint.evidence_description && (
+                            <p className="text-xs text-gray-600">Description: {complaint.evidence_description.substring(0, 100)}...</p>
+                          )}
+                          {complaint.evidence_link && (
+                            <p className="text-xs text-gray-600">Link: <a href={complaint.evidence_link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{complaint.evidence_link.substring(0, 50)}...</a></p>
+                          )}
+                        </div>
+                        <Button
+                          variant={complaint.evidence_flagged ? 'destructive' : 'outline'}
+                          size="sm"
+                          onClick={() => handleFlagEvidence(complaint.id, complaint.evidence_flagged)}
+                          className="shrink-0"
+                        >
+                          <AlertTriangle className="w-3 h-3 mr-1" />
+                          {complaint.evidence_flagged ? 'Unflag Evidence' : 'Flag Evidence'}
+                        </Button>
+                      </div>
+                      {complaint.evidence_flagged && (
+                        <Alert variant="destructive" className="mt-2">
+                          <AlertDescription className="text-xs">
+                            Evidence has been flagged by admin. This complaint may contain questionable evidence references.
+                          </AlertDescription>
+                        </Alert>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))
