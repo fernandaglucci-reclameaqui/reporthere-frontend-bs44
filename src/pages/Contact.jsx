@@ -3,20 +3,22 @@ import { Mail, MessageSquare, HelpCircle, Newspaper, Scale, Handshake, Phone } f
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      {/* Hero Section */}
-      <header className="bg-gradient-to-r from-emerald-50 to-teal-50 border-b border-emerald-100">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50">
+      {/* Hero Section with Beautiful Gradient */}
+      <header className="bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500 text-white border-b border-emerald-100">
         <div className="max-w-6xl mx-auto px-6 py-16 text-center">
           <div className="flex justify-center mb-6">
-            <Mail className="w-16 h-16 text-emerald-600" />
+            <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+              <Mail className="w-12 h-12" />
+            </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Contact Us
           </h1>
-          <p className="text-2xl text-gray-700 font-light">
+          <p className="text-2xl text-emerald-50 font-light">
             We're here to help.
           </p>
-          <p className="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">
+          <p className="text-lg text-emerald-100 mt-2 max-w-3xl mx-auto">
             If you have questions about your account, a complaint, or your business profile, reach out to us using the contact information below.
           </p>
         </div>
@@ -25,10 +27,12 @@ export default function Contact() {
       <main className="max-w-5xl mx-auto px-6 py-12 space-y-12">
         
         {/* Main Support Section */}
-        <section className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100">
+        <section className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg border border-emerald-100">
           <div className="flex items-center gap-3 mb-6">
-            <MessageSquare className="w-8 h-8 text-emerald-600" />
-            <h2 className="text-3xl font-bold text-gray-900">
+            <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl flex items-center justify-center shadow-md">
+              <MessageSquare className="w-6 h-6 text-white" />
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
               How to Reach Us
             </h2>
           </div>
@@ -51,7 +55,7 @@ export default function Contact() {
 
           <div className="grid md:grid-cols-2 gap-8 mt-8">
             {/* Consumer Support */}
-            <div>
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-100">
               <h4 className="font-semibold text-gray-900 mb-4 text-lg">
                 Consumer Support Includes:
               </h4>
@@ -80,29 +84,29 @@ export default function Contact() {
             </div>
 
             {/* Business Support */}
-            <div>
+            <div className="bg-gradient-to-br from-teal-50 to-green-50 rounded-xl p-6 border border-teal-100">
               <h4 className="font-semibold text-gray-900 mb-4 text-lg">
                 Business Support Includes:
               </h4>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">✓</span>
+                  <span className="text-teal-600 mt-1">✓</span>
                   <span>Claiming your business profile</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">✓</span>
+                  <span className="text-teal-600 mt-1">✓</span>
                   <span>Responding to complaints</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">✓</span>
+                  <span className="text-teal-600 mt-1">✓</span>
                   <span>Understanding analytics</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">✓</span>
+                  <span className="text-teal-600 mt-1">✓</span>
                   <span>Subscription questions</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">✓</span>
+                  <span className="text-teal-600 mt-1">✓</span>
                   <span>Reporting incorrect business info</span>
                 </li>
               </ul>
@@ -111,8 +115,10 @@ export default function Contact() {
         </section>
 
         {/* Before Contacting */}
-        <section className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl p-8 border border-amber-100 text-center">
-          <HelpCircle className="w-12 h-12 text-amber-600 mx-auto mb-4" />
+        <section className="bg-gradient-to-r from-amber-100 to-yellow-100 rounded-2xl p-8 border-2 border-amber-200 text-center shadow-lg">
+          <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-md">
+            <HelpCircle className="w-10 h-10 text-white" />
+          </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-3">
             Before contacting us…
           </h3>
@@ -121,7 +127,7 @@ export default function Contact() {
           </p>
           <a 
             href="/faq" 
-            className="inline-block bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-700 transition-colors"
+            className="inline-block bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-amber-600 hover:to-yellow-600 transition-all shadow-md"
           >
             View FAQ
           </a>
@@ -131,9 +137,11 @@ export default function Contact() {
         <section className="grid md:grid-cols-3 gap-6">
           
           {/* Media & Press */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-purple-100 hover:shadow-xl transition-shadow">
             <div className="flex items-center gap-3 mb-4">
-              <Newspaper className="w-7 h-7 text-purple-600" />
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-violet-500 rounded-xl flex items-center justify-center shadow-md">
+                <Newspaper className="w-6 h-6 text-white" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900">
                 Media & Press
               </h3>
@@ -147,9 +155,11 @@ export default function Contact() {
           </div>
 
           {/* Legal Requests */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-red-100 hover:shadow-xl transition-shadow">
             <div className="flex items-center gap-3 mb-4">
-              <Scale className="w-7 h-7 text-red-600" />
+              <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-rose-500 rounded-xl flex items-center justify-center shadow-md">
+                <Scale className="w-6 h-6 text-white" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900">
                 Legal Requests
               </h3>
@@ -163,9 +173,11 @@ export default function Contact() {
           </div>
 
           {/* Partnerships */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-shadow">
             <div className="flex items-center gap-3 mb-4">
-              <Handshake className="w-7 h-7 text-blue-600" />
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center shadow-md">
+                <Handshake className="w-6 h-6 text-white" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900">
                 Partnerships
               </h3>
@@ -181,8 +193,8 @@ export default function Contact() {
         </section>
 
         {/* Legal Removal Policy */}
-        <section className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">
+        <section className="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-red-100">
+          <h3 className="text-xl font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent mb-4">
             Legal Removal Requests
           </h3>
           <p className="text-gray-700 mb-4">
@@ -222,8 +234,10 @@ export default function Contact() {
         </section>
 
         {/* No Phone Support */}
-        <section className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-8 border border-gray-200 text-center">
-          <Phone className="w-12 h-12 text-gray-500 mx-auto mb-4" />
+        <section className="bg-gradient-to-r from-gray-100 to-slate-100 rounded-xl p-8 border-2 border-gray-200 text-center shadow-lg">
+          <div className="w-16 h-16 bg-gradient-to-br from-gray-400 to-slate-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-md">
+            <Phone className="w-10 h-10 text-white" />
+          </div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
             We do not offer phone support
           </h3>

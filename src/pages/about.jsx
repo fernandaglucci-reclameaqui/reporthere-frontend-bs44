@@ -5,14 +5,14 @@ import { Eye, Heart, TrendingUp } from 'lucide-react';
 
 export default function AboutUs() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      {/* Hero Section */}
-      <header className="bg-gradient-to-r from-emerald-50 to-teal-50 border-b border-emerald-100">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50">
+      {/* Hero Section with Beautiful Gradient */}
+      <header className="bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500 text-white border-b border-emerald-100">
         <div className="max-w-6xl mx-auto px-6 py-16 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
             About Us
           </h1>
-          <p className="text-2xl text-gray-700 font-light">
+          <p className="text-2xl text-emerald-50 font-light">
             We Believe Every Voice Deserves to Be Heard
           </p>
         </div>
@@ -22,8 +22,8 @@ export default function AboutUs() {
         
         {/* Opening Story */}
         <section className="prose prose-lg max-w-none">
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg border border-emerald-100">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-6">
               ReportHere was born from a simple, frustrating truth:
             </h2>
             <p className="text-xl text-gray-700 leading-relaxed mb-6">
@@ -40,8 +40,8 @@ export default function AboutUs() {
 
         {/* Vision Section */}
         <section>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12 border border-blue-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+          <div className="bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl p-8 md:p-12 border-2 border-emerald-200 shadow-lg">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-6 text-center">
               Our Vision
             </h2>
             <p className="text-xl text-gray-700 leading-relaxed text-center max-w-4xl mx-auto">
@@ -52,8 +52,8 @@ export default function AboutUs() {
 
         {/* Mission Section */}
         <section>
-          <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 md:p-12 border border-emerald-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+          <div className="bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl p-8 md:p-12 border-2 border-green-200 shadow-lg">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-6 text-center">
               Our Mission
             </h2>
             <p className="text-xl text-gray-700 mb-6 text-center max-w-3xl mx-auto">
@@ -63,13 +63,13 @@ export default function AboutUs() {
               We exist to help people feel heard and help businesses understand what truly matters.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6 text-center">
+              <div className="bg-white/90 backdrop-blur rounded-xl p-6 text-center shadow-md">
                 <p className="text-xl font-bold text-gray-900">No walls.</p>
               </div>
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6 text-center">
+              <div className="bg-white/90 backdrop-blur rounded-xl p-6 text-center shadow-md">
                 <p className="text-xl font-bold text-gray-900">No excuses.</p>
               </div>
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6 text-center">
+              <div className="bg-white/90 backdrop-blur rounded-xl p-6 text-center shadow-md">
                 <p className="text-xl font-bold text-gray-900">No corporate noise.</p>
               </div>
             </div>
@@ -85,15 +85,15 @@ export default function AboutUs() {
 
         {/* Pillars Section */}
         <section>
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg border border-emerald-100">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-12 text-center">
               Our Pillars
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Transparency */}
               <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl flex items-center justify-center">
-                  <Eye className="w-12 h-12 text-emerald-600" strokeWidth={2} />
+                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Eye className="w-12 h-12 text-white" strokeWidth={2} />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Transparency</h3>
                 <p className="text-lg text-gray-700 mb-3">
@@ -106,8 +106,8 @@ export default function AboutUs() {
 
               {/* Humanity */}
               <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-rose-100 to-pink-100 rounded-2xl flex items-center justify-center">
-                  <Heart className="w-12 h-12 text-rose-600" strokeWidth={2} fill="currentColor" />
+                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-rose-400 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Heart className="w-12 h-12 text-white" strokeWidth={2} fill="currentColor" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Humanity</h3>
                 <p className="text-lg text-gray-700 mb-3">
@@ -120,8 +120,8 @@ export default function AboutUs() {
 
               {/* Growth */}
               <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center">
-                  <TrendingUp className="w-12 h-12 text-blue-600" strokeWidth={2} />
+                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
+                  <TrendingUp className="w-12 h-12 text-white" strokeWidth={2} />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Growth</h3>
                 <p className="text-lg text-gray-700 mb-3">
@@ -137,8 +137,8 @@ export default function AboutUs() {
 
         {/* Customer Karma Section with Faces */}
         <section>
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg border border-emerald-100">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-6 text-center">
               The Heart of Our Platform: Customer Karma
             </h2>
             <p className="text-xl text-gray-700 mb-8 text-center max-w-3xl mx-auto">
@@ -150,31 +150,31 @@ export default function AboutUs() {
             
             {/* Sentiment Faces Grid */}
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-12">
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center border-2 border-green-200">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center border-2 border-green-200 shadow-md">
                 <SentimentIcon sentiment={SENTIMENT_TYPES.NAILED_IT} size="xl" className="mb-4" />
                 <p className="text-lg font-bold text-gray-900 mb-2">Green</p>
                 <p className="text-sm text-gray-600">They loved it</p>
               </div>
               
-              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 text-center border-2 border-yellow-200">
+              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 text-center border-2 border-yellow-200 shadow-md">
                 <SentimentIcon sentiment={SENTIMENT_TYPES.MEH} size="xl" className="mb-4" />
                 <p className="text-lg font-bold text-gray-900 mb-2">Yellow</p>
                 <p className="text-sm text-gray-600">It was okay</p>
               </div>
               
-              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 text-center border-2 border-orange-200">
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 text-center border-2 border-orange-200 shadow-md">
                 <SentimentIcon sentiment={SENTIMENT_TYPES.UH_OH} size="xl" className="mb-4" />
                 <p className="text-lg font-bold text-gray-900 mb-2">Orange</p>
                 <p className="text-sm text-gray-600">Not great</p>
               </div>
               
-              <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-6 text-center border-2 border-red-200">
+              <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-6 text-center border-2 border-red-200 shadow-md">
                 <SentimentIcon sentiment={SENTIMENT_TYPES.DISAPPOINTING} size="xl" className="mb-4" />
                 <p className="text-lg font-bold text-gray-900 mb-2">Red</p>
                 <p className="text-sm text-gray-600">Pretty bad</p>
               </div>
               
-              <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 text-center border-2 border-purple-200">
+              <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 text-center border-2 border-purple-200 shadow-md">
                 <SentimentIcon sentiment={SENTIMENT_TYPES.IGNORED} size="xl" className="mb-4" />
                 <p className="text-lg font-bold text-gray-900 mb-2">Purple</p>
                 <p className="text-sm text-gray-600">Completely ignored</p>
@@ -197,13 +197,13 @@ export default function AboutUs() {
 
         {/* Values Section */}
         <section>
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 md:p-12 border border-purple-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
+          <div className="bg-gradient-to-br from-teal-100 to-green-100 rounded-2xl p-8 md:p-12 border-2 border-teal-200 shadow-lg">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-green-600 bg-clip-text text-transparent mb-12 text-center">
               Our Values
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Value 1 */}
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6">
+              <div className="bg-white/90 backdrop-blur rounded-xl p-6 shadow-md">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">1. Radical Transparency</h3>
                 <p className="text-gray-700 mb-2">
                   We believe truth shouldn't be hidden behind forms, scripts, or silence.
@@ -214,146 +214,65 @@ export default function AboutUs() {
               </div>
 
               {/* Value 2 */}
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6">
+              <div className="bg-white/90 backdrop-blur rounded-xl p-6 shadow-md">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">2. Human First</h3>
                 <p className="text-gray-700 mb-2">
-                  Every complaint is a person.
+                  Every interaction on ReportHere is designed to respect people — their time, their voice, and their experience.
                 </p>
                 <p className="text-emerald-600 font-semibold">
-                  Every response is a chance to show respect.
+                  People aren't ticket numbers. They're human beings.
                 </p>
               </div>
 
               {/* Value 3 */}
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6">
+              <div className="bg-white/90 backdrop-blur rounded-xl p-6 shadow-md">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">3. Fairness for All</h3>
                 <p className="text-gray-700 mb-2">
-                  Small businesses deserve the same tools as the big ones.
+                  We don't take sides. We create space for honest dialogue where both customers and businesses can be heard.
                 </p>
                 <p className="text-emerald-600 font-semibold">
-                  Customers deserve the same voice everywhere.
+                  Real solutions come from balanced conversations.
                 </p>
               </div>
 
               {/* Value 4 */}
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">4. Simplicity Above Everything</h3>
-                <p className="text-emerald-600 font-semibold">
-                  Feedback should be easy to give, easy to read, and easy to act on.
-                </p>
-              </div>
-
-              {/* Value 5 */}
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">5. Accountability That Lifts People Up</h3>
+              <div className="bg-white/90 backdrop-blur rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">4. Continuous Improvement</h3>
                 <p className="text-gray-700 mb-2">
-                  We don't shame. We don't punish.
+                  We're not perfect — and we don't pretend to be. We listen, we learn, and we evolve.
                 </p>
                 <p className="text-emerald-600 font-semibold">
-                  We empower businesses to improve and customers to be heard.
-                </p>
-              </div>
-
-              {/* Value 6 */}
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">6. Continuous Improvement</h3>
-                <p className="text-gray-700 mb-2">
-                  When people listen, everyone grows.
-                </p>
-                <p className="text-emerald-600 font-semibold">
-                  We build tools that evolve — always.
+                  Growth is a journey, not a destination.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Built for Everyone Section */}
+        {/* Closing CTA */}
         <section>
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Built for Every Business — Big or Small
+          <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500 rounded-2xl p-8 md:p-12 text-center shadow-xl">
+            <h2 className="text-3xl font-bold text-white mb-6">
+              Join Us in Building a Better Way
             </h2>
-            <p className="text-lg text-gray-700 mb-6">
-              From the local cleaning lady who wants to keep her clients happy, to national companies managing thousands of customers a day — everyone deserves a fair system, equal visibility, and tools that help them grow.
+            <p className="text-xl text-emerald-50 mb-8 max-w-3xl mx-auto">
+              Whether you're a customer who wants to be heard or a business ready to listen — ReportHere is your platform.
             </p>
-            <p className="text-xl text-gray-900 font-semibold mb-6">
-              That's why ReportHere is:
-            </p>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <li className="flex items-start">
-                <span className="text-emerald-500 text-2xl mr-3">✓</span>
-                <span className="text-lg text-gray-700">easy to use</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-emerald-500 text-2xl mr-3">✓</span>
-                <span className="text-lg text-gray-700">clean and modern</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-emerald-500 text-2xl mr-3">✓</span>
-                <span className="text-lg text-gray-700">accessible to small businesses</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-emerald-500 text-2xl mr-3">✓</span>
-                <span className="text-lg text-gray-700">powerful enough for enterprise-level operations</span>
-              </li>
-              <li className="flex items-start md:col-span-2">
-                <span className="text-emerald-500 text-2xl mr-3">✓</span>
-                <span className="text-lg text-gray-700">built with fairness and transparency as core values</span>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Our Promise Section */}
-        <section>
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border-2 border-emerald-200">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-              Our Promise
-            </h2>
-            <div className="space-y-6 text-lg text-gray-700 max-w-3xl mx-auto">
-              <p className="text-center">
-                We're here to make customer feedback <strong>simple, human, and impossible to ignore.</strong>
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                <div className="text-center p-6 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl">
-                  <p className="text-xl font-bold text-gray-900 mb-2">We don't create chaos</p>
-                  <p className="text-gray-600">we organize it.</p>
-                </div>
-                <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl">
-                  <p className="text-xl font-bold text-gray-900 mb-2">We don't punish businesses</p>
-                  <p className="text-gray-600">we empower them.</p>
-                </div>
-                <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl">
-                  <p className="text-xl font-bold text-gray-900 mb-2">We don't silence customers</p>
-                  <p className="text-gray-600">we amplify them.</p>
-                </div>
-              </div>
-
-              <div className="mt-12 text-center space-y-4">
-                <p className="text-xl">
-                  When people feel heard, <strong className="text-emerald-600">they stay.</strong>
-                </p>
-                <p className="text-xl">
-                  When businesses listen, <strong className="text-emerald-600">they grow.</strong>
-                </p>
-                <p className="text-xl">
-                  And when transparency becomes the rule, <strong className="text-emerald-600">everybody wins.</strong>
-                </p>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/file-complaint"
+                className="inline-block bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition-colors shadow-lg"
+              >
+                Share Your Story
+              </a>
+              <a
+                href="/for-businesses"
+                className="inline-block bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors border-2 border-white shadow-lg"
+              >
+                For Businesses
+              </a>
             </div>
           </div>
-        </section>
-
-        {/* Closing Section */}
-        <section className="text-center py-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Welcome to ReportHere.
-          </h2>
-          <p className="text-2xl text-emerald-600 font-semibold">
-            Where honest feedback builds better businesses.
-          </p>
         </section>
 
       </main>
