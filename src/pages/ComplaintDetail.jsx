@@ -351,7 +351,6 @@ export default function ComplaintDetail() {
             </Button>
           </Link>
         </div>
-      </div>
 
       {/* Sentiment Selection Modal */}
       {showSentimentModal && (
