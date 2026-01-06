@@ -221,9 +221,9 @@ export default function ComplaintDetail() {
           
           <SocialShareButtons
             url={window.location.href}
-            title={complaint.title}
-            description={complaint.description.substring(0, 100)}
-            hashtags={['ConsumerRights', 'ReportHere', complaint.category]}
+            title={`A consumer shared an experience with ${complaint.company_name}`}
+            description="Consumer feedback shared on ReportHere. This reflects the user's personal experience."
+            hashtags={['ConsumerFeedback', 'ReportHere']}
           />
           </div>
           
@@ -261,6 +261,15 @@ export default function ComplaintDetail() {
               </CardDescription>
             </CardHeader>
             <CardContent>
+              {/* Neutral Disclaimer - Wave 2.2 */}
+              <div className="mb-4 bg-blue-50 border-l-4 border-blue-400 p-3 rounded">
+                <p className="text-xs text-blue-800">
+                  <ShieldCheck className="w-4 h-4 inline mr-1" />
+                  <strong>Disclaimer:</strong> This complaint reflects the consumer's personal experience. 
+                  ReportHere does not verify, investigate, or confirm the accuracy of claims made by users.
+                </p>
+              </div>
+              
               <p className="text-gray-700 whitespace-pre-wrap mb-4">{complaint.description}</p>
               
               {/* AI-Generated Summary */}
@@ -275,22 +284,37 @@ export default function ComplaintDetail() {
                 </div>
               )}
               
-              {complaint.attachments && complaint.attachments.length > 0 && (
-                <div className="mt-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Attachments:</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {complaint.attachments.map((attachment, index) => (
-                      <a
-                        key={index}
-                        href={attachment}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 p-2 border rounded hover:bg-gray-50"
-                      >
-                        <FileText className="w-4 h-4 text-gray-600" />
-                        <span className="text-sm">Document {index + 1}</span>
-                      </a>
-                    ))}
+              {/* Evidence References - Wave 2.1 */}
+              {(complaint.evidence_type || complaint.evidence_description || complaint.evidence_link) && (
+                <div className="mt-4 border-t pt-4">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <FileText className="w-4 h-4" />
+                    Evidence Referenced
+                  </h4>
+                  <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+                    {complaint.evidence_type && (
+                      <p className="text-sm">
+                        <span className="font-medium text-gray-700">Type:</span>{' '}
+                        <span className="text-gray-600 capitalize">{complaint.evidence_type}</span>
+                      </p>
+                    )}
+                    {complaint.evidence_description && (
+                      <p className="text-sm">
+                        <span className="font-medium text-gray-700">Description:</span>{' '}
+                        <span className="text-gray-600">{complaint.evidence_description}</span>
+                      </p>
+                    )}
+                    {complaint.evidence_link && (
+                      <p className="text-sm">
+                        <span className="font-medium text-gray-700">Link:</span>{' '}
+                        <a href={complaint.evidence_link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline break-all">
+                          {complaint.evidence_link}
+                        </a>
+                      </p>
+                    )}
+                    <p className="text-xs text-gray-500 italic mt-2">
+                      Note: Evidence references are provided by the consumer and not verified by ReportHere.
+                    </p>
                   </div>
                 </div>
               )}

@@ -121,16 +121,16 @@ export const SEO = {
    * @param {Object} company - Company object
    */
   generateComplaintMeta(complaint, company) {
-    const title = `${complaint.title} - ${company.name} Complaint`;
-    const description = complaint.description.substring(0, 155) + '...';
+    // Wave 2.3: Neutral social sharing language
+    const title = `A consumer shared an experience with ${company.name}`;
+    const description = `Consumer feedback about ${company.name}. This reflects the user's personal experience and is not verified by ReportHere.`;
     const url = `${window.location.origin}/complaint/${complaint.id}`;
     const keywords = [
       company.name,
-      'complaint',
-      'consumer rights',
+      'consumer experience',
+      'customer feedback',
       complaint.category,
-      'customer service',
-      'review'
+      'consumer rights'
     ];
 
     this.updateMetaTags({
