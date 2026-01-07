@@ -106,6 +106,8 @@ import ClaimBusiness from "./ClaimBusiness.jsx";
 
 import AdminCompanyClaims from "./AdminCompanyClaims.jsx";
 
+import AdminIntelligence from "./AdminIntelligence.jsx";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -203,6 +205,8 @@ const PAGES = {
     ClaimBusiness: ClaimBusiness,
     
     AdminCompanyClaims: AdminCompanyClaims,
+    
+    AdminIntelligence: AdminIntelligence,
     
     BusinessDashboard: BusinessDashboard,
     
@@ -340,6 +344,8 @@ function PagesContent() {
                 <Route path="/claim/:companyId" element={<ClaimBusiness />} />
                 
                 <Route path="/admin/claims" element={<AdminCompanyClaims />} />
+                
+                <Route path="/admin/intelligence" element={<AdminIntelligence />} />
                 
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
                 
