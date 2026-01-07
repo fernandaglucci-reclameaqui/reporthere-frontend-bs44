@@ -71,9 +71,17 @@ export default function Hero() {
         <div className="relative w-full md:w-7/12 -mb-12 md:-mb-16">
           <div className="relative mx-auto w-full">
             <img
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/108907386/aCgrtJIexWLKmdxe.png"
+              src="/images/hero-customers.png"
               alt="Happy customers using ReportHere"
               className="h-auto w-full object-contain scale-110 md:scale-125"
+              loading="eager"
+              width="800"
+              height="600"
+              onError={(e) => {
+                // Fallback: if image fails to load, hide it gracefully
+                e.currentTarget.style.display = 'none';
+                console.error('Hero image failed to load');
+              }}
             />
           </div>
         </div>
