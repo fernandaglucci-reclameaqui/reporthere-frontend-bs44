@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Heart, Search, ShieldCheck, Users, MessageCircle, ArrowRight, Star } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Heart, Search, ShieldCheck, Users, MessageCircle, ArrowRight, Star, Send } from "lucide-react";
 
 export default function Home() {
   return (
@@ -17,229 +18,194 @@ export default function Home() {
           </div>
           
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">For You</a>
-            <a href="#" className="hover:text-primary transition-colors">Rankings</a>
-            <a href="#" className="hover:text-primary transition-colors">Discounts</a>
-            <a href="#" className="hover:text-primary transition-colors">For Companies</a>
+            <a href="#" className="hover:text-primary transition-colors">Browse reports</a>
+            <a href="#" className="hover:text-primary transition-colors">For companies</a>
           </nav>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full">
-              Log In
-            </Button>
-            <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
-              Sign Up
+            <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 px-6">
+              Sign in
             </Button>
           </div>
         </div>
       </header>
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative py-20 md:py-32 overflow-hidden">
-          {/* Decorative blobs */}
-          <div className="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-
-          <div className="container relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-white/60 shadow-sm mb-8 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm font-medium text-muted-foreground">Your safe space for consumer rights</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-heading font-extrabold tracking-tight text-foreground mb-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-              We're here to <span className="text-primary relative inline-block">
-                listen
-                <svg className="absolute w-full h-3 -bottom-1 left-0 text-secondary/40 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                </svg>
-              </span> and help you resolve it.
-            </h1>
-            
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-              Connect with brands that care. Share your experience in a safe, supportive environment and find the solution you deserve.
-            </p>
-
-            {/* Search Bar */}
-            <div className="w-full max-w-2xl relative group animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative flex items-center bg-white rounded-full shadow-xl shadow-primary/5 border border-border p-2">
-                <Search className="ml-4 h-5 w-5 text-muted-foreground" />
-                <Input 
-                  className="border-0 shadow-none focus-visible:ring-0 bg-transparent text-lg h-12 placeholder:text-muted-foreground/60"
-                  placeholder="What company are you looking for?"
-                />
-                <Button size="lg" className="rounded-full px-8 font-bold">
-                  Search
-                </Button>
-              </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 w-full animate-in fade-in slide-in-from-bottom-12 duration-700 delay-400">
-              {[
-                { icon: MessageCircle, title: "File a Report", desc: "Tell us what happened", color: "text-primary", bg: "bg-primary/10" },
-                { icon: Search, title: "Compare Brands", desc: "See who you can trust", color: "text-secondary-foreground", bg: "bg-secondary/20" },
-                { icon: ShieldCheck, title: "Resolve Issues", desc: "Get help directly", color: "text-accent-foreground", bg: "bg-accent/30" },
-              ].map((action, i) => (
-                <Card key={i} className="border-0 shadow-lg shadow-primary/5 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-white/60 backdrop-blur-sm group cursor-pointer">
-                  <CardContent className="p-6 flex flex-col items-center text-center">
-                    <div className={`h-14 w-14 rounded-2xl ${action.bg} ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <action.icon className="h-7 w-7" />
-                    </div>
-                    <h3 className="text-lg font-heading font-bold mb-2">{action.title}</h3>
-                    <p className="text-muted-foreground">{action.desc}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        {/* Hero Section - Merged Layout */}
+        <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="/images/hero-vivid.jpg" 
+              alt="Happy person in a park" 
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Gradient Overlay - White/Cream to Transparent to blend image */}
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent w-full md:w-2/3" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent h-32 bottom-0" />
           </div>
-        </section>
 
-        {/* Trust Stats Section */}
-        <section className="py-20 bg-white/50">
-          <div className="container">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {[
-                { label: "Resolved Cases", value: "2.5M+", icon: ShieldCheck },
-                { label: "Active Users", value: "10M+", icon: Users },
-                { label: "Trusted Brands", value: "50k+", icon: Star },
-                { label: "Daily Solutions", value: "15k+", icon: Heart },
-              ].map((stat, i) => (
-                <div key={i} className="flex flex-col items-center gap-2">
-                  <stat.icon className="h-6 w-6 text-primary/60 mb-2" />
-                  <span className="text-3xl md:text-4xl font-heading font-extrabold text-foreground">{stat.value}</span>
-                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+          <div className="container relative z-10 grid md:grid-cols-2 gap-12 items-center py-20">
+            <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-700">
+              <h1 className="text-5xl md:text-6xl font-heading font-extrabold tracking-tight text-foreground mb-6">
+                Had a bad experience?
+              </h1>
+              <p className="text-xl text-muted-foreground mb-10">
+                Tell your story. We'll help you get it heard.
+              </p>
 
-        {/* Featured Categories */}
-        <section className="py-24">
-          <div className="container">
-            <div className="flex items-center justify-between mb-12">
-              <div>
-                <h2 className="text-3xl font-heading font-bold mb-2">Browse by Category</h2>
-                <p className="text-muted-foreground">Find the best companies in every sector</p>
-              </div>
-              <Button variant="outline" className="rounded-full hidden md:flex gap-2">
-                View All <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {["Online Retail", "Finance", "Travel", "Telecom", "Health", "Education"].map((cat, i) => (
-                <a key={i} href="#" className="group block">
-                  <div className="aspect-square rounded-3xl bg-white border border-border/50 shadow-sm flex flex-col items-center justify-center p-4 transition-all duration-300 group-hover:shadow-md group-hover:border-primary/30 group-hover:-translate-y-1">
-                    <div className="h-12 w-12 rounded-full bg-muted/50 mb-4 group-hover:bg-primary/10 transition-colors" />
-                    <span className="font-medium text-center group-hover:text-primary transition-colors">{cat}</span>
+              {/* Large Input Box - GPT Layout Style */}
+              <div className="bg-white/80 backdrop-blur-md rounded-3xl p-2 shadow-xl shadow-primary/5 border border-white/50">
+                <div className="relative">
+                  <textarea 
+                    className="w-full min-h-[160px] bg-transparent border-0 resize-none p-6 text-lg placeholder:text-muted-foreground/60 focus:ring-0 focus:outline-none"
+                    placeholder="What happened? Start wherever you want."
+                  />
+                  <div className="absolute bottom-4 right-4 text-xs text-muted-foreground">
+                    You decide what happens next.
                   </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-24">
-          <div className="container">
-            <div className="relative rounded-[2.5rem] overflow-hidden bg-primary px-6 py-16 md:px-16 md:py-20 text-center md:text-left">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-                </svg>
+                </div>
+                <div className="p-2">
+                  <Button size="lg" className="w-full rounded-2xl h-14 text-lg font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20">
+                    Continue
+                  </Button>
+                </div>
               </div>
               
-              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
-                <div className="max-w-xl">
-                  <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-                    Ready to find a solution?
-                  </h2>
-                  <p className="text-primary-foreground/90 text-lg">
-                    Join millions of consumers who have found their voice and resolved their issues through our platform.
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" variant="secondary" className="rounded-full px-8 h-14 text-lg font-bold shadow-xl">
-                    Start a Report
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-lg font-bold border-white/30 text-white hover:bg-white/10 hover:text-white">
-                    Learn More
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-border/60 pt-16 pb-8">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-16">
-            <div className="col-span-2 lg:col-span-2">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
-                  <Heart className="h-5 w-5 fill-current" />
-                </div>
-                <span className="text-xl font-heading font-bold text-foreground">Report Here</span>
-              </div>
-              <p className="text-muted-foreground max-w-xs mb-6">
-                Building trust between consumers and companies through transparency and dialogue.
-              </p>
-              <div className="flex gap-4">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="h-10 w-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer">
-                    <div className="h-5 w-5 bg-current opacity-20 rounded-sm" />
-                  </div>
-                ))}
+              <div className="mt-6 text-center text-sm text-muted-foreground">
+                Free for consumers • Companies can respond
               </div>
             </div>
             
-            <div>
-              <h4 className="font-bold mb-6">Consumers</h4>
-              <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">File a Complaint</a></li>
-                <li><a href="#" className="hover:text-primary">My Reports</a></li>
-                <li><a href="#" className="hover:text-primary">Rankings</a></li>
-                <li><a href="#" className="hover:text-primary">FAQs</a></li>
-              </ul>
+            {/* Right side is open to show the vivid image */}
+            <div className="hidden md:block" />
+          </div>
+        </section>
+
+        {/* Recent Reports Section - GPT Layout Style */}
+        <section className="py-20 bg-white/50 relative z-20 -mt-20 rounded-t-[3rem] shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.05)]">
+          <div className="container">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
+              <h2 className="text-3xl font-heading font-bold">Recent reports</h2>
+              
+              {/* Search Bar */}
+              <div className="flex w-full md:w-auto max-w-md bg-white rounded-full shadow-sm border border-border p-1 pl-4">
+                <Search className="h-5 w-5 text-muted-foreground self-center mr-2" />
+                <input 
+                  className="flex-1 bg-transparent border-0 focus:outline-none text-sm"
+                  placeholder="Search company name..."
+                />
+                <Button className="rounded-full px-6">Search</Button>
+              </div>
             </div>
 
-            <div>
-              <h4 className="font-bold mb-6">Companies</h4>
-              <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Company Login</a></li>
-                <li><a href="#" className="hover:text-primary">Register Company</a></li>
-                <li><a href="#" className="hover:text-primary">Success Stories</a></li>
-                <li><a href="#" className="hover:text-primary">Plans</a></li>
-              </ul>
+            {/* Filter Tabs */}
+            <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+              <Button variant="secondary" className="rounded-full bg-primary/10 text-primary hover:bg-primary/20 border-0">Trending</Button>
+              <Button variant="ghost" className="rounded-full hover:bg-muted">Most recent</Button>
+              <Button variant="ghost" className="rounded-full hover:bg-muted">Near you</Button>
             </div>
 
-            <div>
-              <h4 className="font-bold mb-6">About</h4>
-              <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Our Story</a></li>
-                <li><a href="#" className="hover:text-primary">Careers</a></li>
-                <li><a href="#" className="hover:text-primary">Press</a></li>
-                <li><a href="#" className="hover:text-primary">Contact</a></li>
-              </ul>
+            {/* Reports Table/List */}
+            <div className="bg-white rounded-3xl shadow-sm border border-border/50 overflow-hidden">
+              <div className="grid grid-cols-12 gap-4 p-4 bg-muted/30 text-sm font-medium text-muted-foreground border-b border-border/50">
+                <div className="col-span-3 pl-4">Company</div>
+                <div className="col-span-5">Report</div>
+                <div className="col-span-2 text-center">Replies</div>
+                <div className="col-span-2 text-center">Status</div>
+              </div>
+
+              {[
+                { company: "Verizon", logo: "V", color: "bg-black text-white", title: "Charged for a service I didn't use", replies: 3, status: "Pending", statusColor: "bg-yellow-100 text-yellow-700" },
+                { company: "Delta Airlines", logo: "D", color: "bg-blue-900 text-white", title: "Cancelled my flight, no rebooking", replies: 5, status: "Response", statusColor: "bg-green-100 text-green-700" },
+                { company: "Santander", logo: "S", color: "bg-red-600 text-white", title: "Overcharged interest on my loan", replies: 2, status: "No reply yet", statusColor: "bg-gray-100 text-gray-600" },
+                { company: "DoorDash", logo: "D", color: "bg-red-500 text-white", title: "Driver ate my food, didn't refund", replies: 7, status: "Response", statusColor: "bg-green-100 text-green-700" },
+                { company: "Comcast", logo: "C", color: "bg-blue-600 text-white", title: "Internet down for 3 days straight", replies: 12, status: "Resolved", statusColor: "bg-primary/20 text-primary" },
+              ].map((report, i) => (
+                <div key={i} className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-muted/20 transition-colors border-b border-border/40 last:border-0">
+                  <div className="col-span-3 flex items-center gap-3 pl-4">
+                    <div className={`h-8 w-8 rounded-lg ${report.color} flex items-center justify-center font-bold text-xs`}>
+                      {report.logo}
+                    </div>
+                    <span className="font-bold text-sm">{report.company}</span>
+                  </div>
+                  <div className="col-span-5 text-sm truncate pr-4">
+                    {report.title}
+                  </div>
+                  <div className="col-span-2 text-center text-sm text-muted-foreground">
+                    {report.replies}
+                  </div>
+                  <div className="col-span-2 flex justify-center">
+                    <Badge variant="outline" className={`rounded-full border-0 px-3 py-1 font-normal ${report.statusColor}`}>
+                      {report.status}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <Button variant="secondary" size="lg" className="rounded-full px-8 bg-primary/80 text-primary-foreground hover:bg-primary">
+                Browse all reports
+              </Button>
             </div>
           </div>
-          
-          <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© 2024 Report Here. All rights reserved.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-foreground">Privacy Policy</a>
-              <a href="#" className="hover:text-foreground">Terms of Service</a>
-              <a href="#" className="hover:text-foreground">Cookie Policy</a>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-white border-t border-border/60 pt-16 pb-8">
+          <div className="container">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-16">
+              <div className="col-span-2 lg:col-span-2">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
+                    <Heart className="h-5 w-5 fill-current" />
+                  </div>
+                  <span className="text-xl font-heading font-bold text-foreground">Report Here</span>
+                </div>
+                <p className="text-muted-foreground max-w-xs mb-6">
+                  Building trust between consumers and companies through transparency and dialogue.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="font-bold mb-6">Consumers</h4>
+                <ul className="space-y-4 text-sm text-muted-foreground">
+                  <li><a href="#" className="hover:text-primary">File a Complaint</a></li>
+                  <li><a href="#" className="hover:text-primary">My Reports</a></li>
+                  <li><a href="#" className="hover:text-primary">Rankings</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-bold mb-6">Companies</h4>
+                <ul className="space-y-4 text-sm text-muted-foreground">
+                  <li><a href="#" className="hover:text-primary">Company Login</a></li>
+                  <li><a href="#" className="hover:text-primary">Register Company</a></li>
+                  <li><a href="#" className="hover:text-primary">Success Stories</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-bold mb-6">About</h4>
+                <ul className="space-y-4 text-sm text-muted-foreground">
+                  <li><a href="#" className="hover:text-primary">Our Story</a></li>
+                  <li><a href="#" className="hover:text-primary">Careers</a></li>
+                  <li><a href="#" className="hover:text-primary">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+              <p>© 2024 Report Here. All rights reserved.</p>
+              <div className="flex gap-6">
+                <a href="#" className="hover:text-foreground">Privacy Policy</a>
+                <a href="#" className="hover:text-foreground">Terms of Service</a>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </main>
     </div>
   );
 }
