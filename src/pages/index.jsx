@@ -102,6 +102,10 @@ import Contact from "./Contact";
 
 import LegalDisclaimer from "./LegalDisclaimer";
 
+import ClaimBusiness from "./ClaimBusiness.jsx";
+
+import AdminCompanyClaims from "./AdminCompanyClaims.jsx";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -195,6 +199,10 @@ const PAGES = {
     Contact: Contact,
     
     LegalDisclaimer: LegalDisclaimer,
+    
+    ClaimBusiness: ClaimBusiness,
+    
+    AdminCompanyClaims: AdminCompanyClaims,
     
     BusinessDashboard: BusinessDashboard,
     
@@ -328,6 +336,10 @@ function PagesContent() {
                 <Route path="/contact" element={<Contact />} />
                 
                 <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
+                
+                <Route path="/claim/:companyId" element={<ClaimBusiness />} />
+                
+                <Route path="/admin/claims" element={<AdminCompanyClaims />} />
                 
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
                 
