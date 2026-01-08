@@ -56,8 +56,7 @@ export default function Home() {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1]">
                 Check first. <br />
                 <span className="text-primary">Speak up</span> if <br />
-                something went <br />
-                wrong.
+                something went wrong.
               </h1>
               
               <h2 className="text-xl md:text-2xl text-foreground/90 mb-4 font-medium drop-shadow-sm">
