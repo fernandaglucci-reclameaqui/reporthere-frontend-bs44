@@ -27,9 +27,9 @@ export default function Home() {
 
           <div className="flex items-center gap-4">
             <Button className="rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-6 h-10 shadow-md">
-              File a Complaint
+              For Consumers
             </Button>
-            <Button variant="outline" className="rounded-md border-border hover:bg-muted font-medium px-4 h-10 hidden sm:flex">
+            <Button variant="outline" className="rounded-md border-primary text-primary hover:bg-primary/5 font-bold px-4 h-10 hidden sm:flex border-2">
               For Businesses
             </Button>
             <Button variant="ghost" className="rounded-md hover:bg-muted font-medium px-4 h-10">
@@ -45,7 +45,7 @@ export default function Home() {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/images/hero-woman-walking.jpg" 
+              src="/images/hero-official.png" 
               alt="Woman walking confidently in city" 
               className="w-full h-full object-cover object-center"
             />
