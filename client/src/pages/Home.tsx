@@ -48,7 +48,8 @@ export default function Home() {
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent w-full md:w-3/4 lg:w-2/3"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent h-32 bottom-0"></div>
+            {/* Stronger bottom fade to blend with next section */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent h-48 bottom-0"></div>
           </div>
 
           <div className="container relative z-10 pt-10 pb-20">
@@ -83,9 +84,10 @@ export default function Home() {
         {/* Value Props Section */}
         <section className="py-16 bg-background">
           <div className="container">
-            {/* 3 Columns */}
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="flex flex-col items-center text-center space-y-3 group">
+            {/* 3 Columns with Vertical Dividers */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12 relative">
+              {/* Column 1 */}
+              <div className="flex flex-col items-center text-center space-y-3 group relative">
                 <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#8BA888] to-[#5e7a5b] flex items-center justify-center text-white mb-3 shadow-lg shadow-primary/20 transform group-hover:scale-110 transition-all duration-300">
                   <Store className="h-8 w-8 fill-white/20" />
                 </div>
@@ -93,9 +95,12 @@ export default function Home() {
                 <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                   See what really happened to others — not ads, not promises.
                 </p>
+                {/* Vertical Divider (Desktop only) */}
+                <div className="hidden md:block absolute right-[-1rem] top-4 bottom-4 w-[2px] bg-border/60"></div>
               </div>
               
-              <div className="flex flex-col items-center text-center space-y-3 group">
+              {/* Column 2 */}
+              <div className="flex flex-col items-center text-center space-y-3 group relative">
                 <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#D97706] to-[#B45309] flex items-center justify-center text-white mb-3 shadow-lg shadow-orange-500/20 transform group-hover:scale-110 transition-all duration-300">
                   <MessageSquareWarning className="h-8 w-8 fill-white/20" />
                 </div>
@@ -103,8 +108,11 @@ export default function Home() {
                 <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                   Share your experience so others don't repeat the same mistake.
                 </p>
+                {/* Vertical Divider (Desktop only) */}
+                <div className="hidden md:block absolute right-[-1rem] top-4 bottom-4 w-[2px] bg-border/60"></div>
               </div>
 
+              {/* Column 3 */}
               <div className="flex flex-col items-center text-center space-y-3 group">
                 <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#8BA888] to-[#5e7a5b] flex items-center justify-center text-white mb-3 shadow-lg shadow-primary/20 transform group-hover:scale-110 transition-all duration-300">
                   <MessageSquareQuote className="h-8 w-8 fill-white/20" />
@@ -116,8 +124,8 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Divider 1 */}
-            <div className="w-full h-px bg-border/60 mb-8"></div>
+            {/* Divider 1 - Thicker & Toned */}
+            <div className="w-full h-[2px] bg-border/60 mb-8"></div>
 
             {/* Mission Statement */}
             <div className="text-center mb-8">
@@ -126,8 +134,8 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Divider 2 */}
-            <div className="w-full h-px bg-border/60"></div>
+            {/* Divider 2 - Thicker & Toned */}
+            <div className="w-full h-[2px] bg-border/60"></div>
           </div>
         </section>
 
