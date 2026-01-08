@@ -43,7 +43,7 @@ export default function Home() {
           {/* Background Image with Fade */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/images/hero-woman-walking.jpg" 
+              src="/images/hero-official.png" 
               alt="Woman walking in city" 
               className="w-full h-full object-cover object-center"
             />
