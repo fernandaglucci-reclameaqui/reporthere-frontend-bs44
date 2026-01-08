@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, PenLine, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, Users, Store, MessageSquareWarning, MessageSquareQuote } from "lucide-react";
+import { Search, PenLine, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, Users, Store, MessageSquareWarning, MessageSquareQuote, Heart, BookOpen } from "lucide-react";
 
 export default function Home() {
   return (
@@ -142,19 +142,28 @@ export default function Home() {
         {/* Most Searched Companies - Base Background (Reset) & No Top Padding */}
         <section className="pb-16 pt-0 bg-background">
           <div className="container">
-            <div className="mb-6 pt-8">
-              <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
-              <p className="text-muted-foreground">What people are checking right now.</p>
+            <div className="mb-6 pt-8 flex items-end justify-between">
+              <div>
+                <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
+                <p className="text-muted-foreground">What people are checking right now.</p>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100 animate-pulse">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Live Updates
+              </div>
             </div>
 
             {/* Transparent Table - No bg-card, just borders */}
-            <div className="w-full rounded-xl border border-border/60 overflow-hidden">
+            <div className="w-full rounded-xl border border-border/40 overflow-hidden">
               {[
                 { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-full-logo.png", logoClass: "object-contain p-1" },
                 { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "/images/xyz-blue-logo.jpg", logoClass: "object-cover" },
                 { rank: 3, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-red-logo.png", logoClass: "object-contain p-1" },
               ].map((company, i) => (
-                <div key={i} className="flex items-center justify-between p-4 border-b border-border/40 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
+                <div key={i} className="flex items-center justify-between p-4 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
                   <div className="flex items-center gap-4">
                     <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm group-hover:scale-110 transition-transform shadow-md">
                       {company.rank}
@@ -176,6 +185,57 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* What You Can Do Here Section */}
+        <section className="py-20 bg-muted/10">
+          <div className="container text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-16 text-foreground">What You Can Do Here</h2>
+            
+            <div className="grid md:grid-cols-3 gap-12">
+              {/* Column 1 */}
+              <div className="flex flex-col items-center space-y-6 group">
+                <div className="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <Heart className="w-10 h-10 text-[#2C4A3B] stroke-[1.5]" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Share Your Story</h3>
+                <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
+                  Your voice helps others make better choices tomorrow.
+                </p>
+                <Button variant="outline" className="mt-4 border-[#2C4A3B] text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-white rounded-full px-8 font-medium transition-all duration-300">
+                  File a Complaint
+                </Button>
+              </div>
+
+              {/* Column 2 */}
+              <div className="flex flex-col items-center space-y-6 group">
+                <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <BookOpen className="w-10 h-10 text-[#2C4A3B] stroke-[1.5]" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Read Other People's Stories</h3>
+                <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
+                  Real stories from real people — everyday experiences that matter.
+                </p>
+                <Button variant="outline" className="mt-4 border-[#2C4A3B] text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-white rounded-full px-8 font-medium transition-all duration-300">
+                  Browse Complaints
+                </Button>
+              </div>
+
+              {/* Column 3 */}
+              <div className="flex flex-col items-center space-y-6 group">
+                <div className="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <ShieldCheck className="w-10 h-10 text-[#2C4A3B] stroke-[1.5]" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Watch Problems Get Solved</h3>
+                <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
+                  When businesses respond with kindness, everyone wins.
+                </p>
+                <Button variant="outline" className="mt-4 border-[#2C4A3B] text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-white rounded-full px-8 font-medium transition-all duration-300">
+                  For Businesses
+                </Button>
+              </div>
             </div>
           </div>
         </section>
