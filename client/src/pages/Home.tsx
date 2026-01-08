@@ -64,7 +64,7 @@ export default function Home() {
                 Read real experiences before you buy — or share yours to help the next person choose better.
               </h2>
               <p className="text-sm text-muted-foreground/80 mb-10">
-                Good or bad, every experience helps build a clearer picture.
+                Every experience helps build a clearer picture.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
