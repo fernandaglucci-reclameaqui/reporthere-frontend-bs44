@@ -180,22 +180,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Trust / Transparency Section - Immersive "Mirror" Effect */}
-        <section className="relative min-h-[800px] flex flex-col justify-end overflow-hidden">
-          {/* Full Background Image */}
+        {/* Unified Trust & Community Section */}
+        <section className="relative min-h-[1200px] flex flex-col overflow-hidden">
+          {/* Unified Background Image */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/images/couple-talking-trust.jpg" 
-              alt="Couple talking at cafe" 
+              src="/images/couple-table-unified.png" 
+              alt="Couple talking at cafe with green table" 
               className="w-full h-full object-cover object-center"
             />
-            {/* Left Fade for Text Readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent w-full md:w-2/3 lg:w-1/2"></div>
+            {/* Left Fade for Trust Text Readability */}
+            <div className="absolute top-0 left-0 bottom-1/2 bg-gradient-to-r from-background via-background/90 to-transparent w-full md:w-2/3 lg:w-1/2"></div>
             {/* Top Fade to blend with previous section */}
             <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent"></div>
           </div>
 
-          <div className="container relative z-10 pb-32 pt-24">
+          {/* Trust Content (Top Left) */}
+          <div className="container relative z-10 pt-24 pb-48">
             <div className="max-w-xl space-y-8">
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
@@ -223,12 +224,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* "Green Table" Transition - Dark Green Bottom Section */}
-          <div className="relative z-20 bg-[#2C4A3B] text-white">
-            {/* Top Gradient to blend with image "table" */}
-            <div className="absolute -top-24 left-0 right-0 h-24 bg-gradient-to-t from-[#2C4A3B] to-transparent"></div>
-            
-            <div className="container py-16 text-center space-y-6">
+          {/* Community Content (Bottom - Over Green Table) */}
+          <div className="relative z-10 mt-auto pb-24 text-white">
+            <div className="container text-center space-y-6">
               <h2 className="text-2xl md:text-4xl font-bold max-w-4xl mx-auto leading-tight drop-shadow-md">
                 Your experience doesn't end with you.
               </h2>
