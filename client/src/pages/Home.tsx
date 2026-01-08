@@ -134,20 +134,21 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Divider 2 - Thicker & Toned */}
-            <div className="w-full h-[2px] bg-border/60"></div>
+            {/* Divider 2 - Green, Thick, No Gap */}
+            <div className="w-full h-1 bg-[#2C4A3B]"></div>
           </div>
         </section>
 
-        {/* Most Searched Companies - Fluid Background */}
-        <section className="py-12 bg-gradient-to-b from-background to-muted/20">
+        {/* Most Searched Companies - Base Background (Reset) & No Top Padding */}
+        <section className="pb-16 pt-0 bg-background">
           <div className="container">
-            <div className="mb-6">
+            <div className="mb-6 pt-8">
               <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
               <p className="text-muted-foreground">What people are checking right now.</p>
             </div>
 
-            <div className="w-full bg-card rounded-xl border border-border/40 overflow-hidden shadow-sm">
+            {/* Transparent Table - No bg-card, just borders */}
+            <div className="w-full rounded-xl border border-border/60 overflow-hidden">
               {[
                 { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-full-logo.png", logoClass: "object-contain p-1" },
                 { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "/images/xyz-blue-logo.jpg", logoClass: "object-cover" },
