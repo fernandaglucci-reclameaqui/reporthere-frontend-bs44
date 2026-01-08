@@ -47,7 +47,7 @@ export default function Home() {
               alt="Woman walking in city" 
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent w-full md:w-2/3 lg:w-1/2"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent w-full md:w-3/4 lg:w-2/3"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent h-32 bottom-0"></div>
           </div>
 
@@ -60,7 +60,7 @@ export default function Home() {
                 wrong.
               </h1>
               
-              <h2 className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
+              <h2 className="text-xl md:text-2xl text-foreground/90 mb-4 font-medium drop-shadow-sm">
                 Read real experiences before you buy — or share yours to help the next person choose better.
               </h2>
               <p className="text-sm text-muted-foreground/80 mb-10">
