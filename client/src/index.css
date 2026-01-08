@@ -43,8 +43,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  
-  --font-heading: "Nunito", sans-serif;
+  --font-heading: "Inter", sans-serif;
   --font-body: "Lato", sans-serif;
 }
 
