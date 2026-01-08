@@ -11,20 +11,29 @@ export default function Home() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
-              <Heart className="h-5 w-5 fill-current" />
-            </div>
-            <span className="text-xl font-heading font-bold text-primary">Report Here</span>
+            <img src="/images/logo-shield-check.png" alt="Report Here Logo" className="h-10 w-10 object-contain" />
+            <span className="text-2xl font-heading font-bold text-primary tracking-tight">ReportHere</span>
           </div>
           
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">Browse reports</a>
-            <a href="#" className="hover:text-primary transition-colors">For companies</a>
+          <nav className="hidden lg:flex items-center gap-8 text-base font-medium text-foreground/80">
+            <a href="#" className="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary py-1">Companies</a>
+            <div className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors group relative">
+              <span>Categories</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-180 transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <a href="#" className="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary py-1">Blog</a>
+            <a href="#" className="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary py-1">About</a>
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 px-6">
-              Sign in
+          <div className="flex items-center gap-4">
+            <Button className="rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-6 h-10 shadow-md">
+              File a Complaint
+            </Button>
+            <Button variant="outline" className="rounded-md border-border hover:bg-muted font-medium px-4 h-10 hidden sm:flex">
+              For Businesses
+            </Button>
+            <Button variant="ghost" className="rounded-md hover:bg-muted font-medium px-4 h-10">
+              Login
             </Button>
           </div>
         </div>
@@ -36,8 +45,8 @@ export default function Home() {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/images/hero-shopping-heart.jpg" 
-              alt="Woman shopping happily" 
+              src="/images/hero-woman-walking.jpg" 
+              alt="Woman walking confidently in city" 
               className="w-full h-full object-cover object-center"
             />
             {/* Gradient Overlay - White/Cream to Transparent to blend image */}
