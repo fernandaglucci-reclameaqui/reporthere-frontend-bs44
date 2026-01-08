@@ -179,86 +179,75 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Trust / Transparency Section */}
-        <section className="py-24 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
-          <div className="container relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
-                    ReportHere is not about attacking companies. <br/>
-                    <span className="text-primary">It's about transparency.</span>
-                  </h2>
-                  <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-primary/40 rounded-full"></div>
-                </div>
+        {/* Trust / Transparency Section - Immersive "Mirror" Effect */}
+        <section className="relative min-h-[800px] flex flex-col justify-end overflow-hidden">
+          {/* Full Background Image */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="/images/couple-talking-trust.jpg" 
+              alt="Couple talking at cafe" 
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Left Fade for Text Readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent w-full md:w-2/3 lg:w-1/2"></div>
+            {/* Top Fade to blend with previous section */}
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent"></div>
+          </div>
 
-                <ul className="space-y-6">
-                  {[
-                    "Reports are written by real people",
-                    "Companies can respond publicly",
-                    "No paywall to share an experience",
-                    "No manipulation or visibility"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4 text-lg font-medium text-foreground/80 group">
-                      <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <CheckCircle2 className="h-5 w-5 shrink-0" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+          <div className="container relative z-10 pb-32 pt-24">
+            <div className="max-w-xl space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
+                  ReportHere is not about attacking companies. <br/>
+                  <span className="text-primary">It's about transparency.</span>
+                </h2>
+                <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-primary/40 rounded-full"></div>
               </div>
 
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-tr from-primary/30 to-secondary/30 rounded-[2rem] blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white/50">
-                  <img 
-                    src="/images/couple-talking-trust.jpg" 
-                    alt="Couple talking at cafe" 
-                    className="w-full object-cover aspect-[4/3] transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                </div>
-              </div>
+              <ul className="space-y-6">
+                {[
+                  "Reports are written by real people",
+                  "Companies can respond publicly",
+                  "No paywall to share an experience",
+                  "No manipulation or visibility"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4 text-lg font-medium text-foreground/80 group">
+                    <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shadow-sm">
+                      <CheckCircle2 className="h-5 w-5 shrink-0" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </section>
 
-        {/* Bottom Community Section - Dark Green */}
-        <section className="relative py-32 bg-[#1a3c28] overflow-hidden text-white">
-          {/* Background Texture */}
-          <div className="absolute inset-0 z-0 opacity-10 mix-blend-overlay">
-             <img 
-              src="/images/couple-talking-trust.jpg" 
-              alt="Community background" 
-              className="w-full h-full object-cover filter grayscale"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a3c28] via-[#1a3c28]/95 to-[#1a3c28] z-0"></div>
-          
-          {/* Top Cut Effect - Matching background color */}
-          <div className="absolute top-0 left-0 right-0 h-16 bg-background" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 20%)" }}></div>
-
-          <div className="container relative z-10 text-center space-y-8 pt-10">
-            <h2 className="text-3xl md:text-5xl font-bold max-w-4xl mx-auto leading-tight drop-shadow-md">
-              Your experience doesn't end with you.
-            </h2>
-            <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto font-medium">
-              When you share it, someone else makes a <span className="text-[#A8C5A4] font-bold underline decoration-2 underline-offset-4">better decision</span>.
-            </p>
+          {/* "Green Table" Transition - Dark Green Bottom Section */}
+          <div className="relative z-20 bg-[#2C4A3B] text-white">
+            {/* Top Gradient to blend with image "table" */}
+            <div className="absolute -top-24 left-0 right-0 h-24 bg-gradient-to-t from-[#2C4A3B] to-transparent"></div>
             
-            <div className="pt-10">
-              <div className="bg-white/5 backdrop-blur-md rounded-3xl p-10 max-w-3xl mx-auto border border-white/10 shadow-2xl">
-                <p className="text-lg mb-8 font-medium text-white/90">Before you trust a company, see what others learned the hard way.</p>
-                <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                  <Button size="lg" className="bg-[#8BA888] hover:bg-[#7a9677] text-white font-bold h-14 px-8 rounded-xl shadow-lg transition-all hover:scale-105">
-                    <Search className="h-5 w-5 mr-2" />
-                    Search a company
-                  </Button>
-                  <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 font-bold h-14 px-8 rounded-xl transition-all hover:border-white">
-                    <PenLine className="h-5 w-5 mr-2" />
-                    Share an experience
-                  </Button>
+            <div className="container py-16 text-center space-y-6">
+              <h2 className="text-2xl md:text-4xl font-bold max-w-4xl mx-auto leading-tight drop-shadow-md">
+                Your experience doesn't end with you.
+              </h2>
+              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium">
+                When you share it, someone else makes a <span className="text-[#A8C5A4] font-bold underline decoration-2 underline-offset-4">better decision</span>.
+              </p>
+              
+              <div className="pt-8 pb-4">
+                <div className="bg-white rounded-lg p-8 max-w-4xl mx-auto shadow-2xl text-foreground">
+                  <p className="text-lg mb-6 font-medium text-center text-muted-foreground">Before you trust a company, see what others learned the hard way.</p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" className="bg-[#2C4A3B] hover:bg-[#1a3c28] text-white font-bold h-14 px-8 rounded-md shadow-lg w-full sm:w-auto">
+                      <Search className="h-5 w-5 mr-2" />
+                      Search a company
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-2 border-input hover:bg-accent hover:text-accent-foreground font-bold h-14 px-8 rounded-md w-full sm:w-auto">
+                      <PenLine className="h-5 w-5 mr-2" />
+                      Share an experience
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
