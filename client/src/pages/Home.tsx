@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, PenLine, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, Users } from "lucide-react";
+import { Search, PenLine, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, Users, Store, MessageSquareWarning, MessageSquareQuote } from "lucide-react";
 
 export default function Home() {
   return (
@@ -81,76 +81,86 @@ export default function Home() {
         </section>
 
         {/* Value Props Section */}
-        <section className="py-16 bg-background border-b border-border/40">
+        <section className="py-16 bg-background">
           <div className="container">
-            <div className="grid md:grid-cols-3 gap-12">
-              <div className="flex flex-col items-center text-center space-y-4 p-6 rounded-2xl hover:bg-muted/30 transition-colors">
-                <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-2">
-                  <Search className="h-8 w-8" />
+            {/* 3 Columns */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-2">
+                  <Store className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold">Before you buy</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-lg font-bold text-foreground">Before you buy</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                   See what really happened to others — not ads, not promises.
                 </p>
               </div>
               
-              <div className="flex flex-col items-center text-center space-y-4 p-6 rounded-2xl hover:bg-muted/30 transition-colors">
-                <div className="h-16 w-16 rounded-2xl bg-secondary/20 flex items-center justify-center text-secondary-foreground mb-2">
-                  <MessageSquare className="h-8 w-8" />
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-2">
+                  <MessageSquareWarning className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold">If something went wrong</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-lg font-bold text-foreground">If something went wrong</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                   Share your experience so others don't repeat the same mistake.
                 </p>
               </div>
 
-              <div className="flex flex-col items-center text-center space-y-4 p-6 rounded-2xl hover:bg-muted/30 transition-colors">
-                <div className="h-16 w-16 rounded-2xl bg-accent/20 flex items-center justify-center text-accent-foreground mb-2">
-                  <CheckCircle2 className="h-8 w-8" />
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-2">
+                  <MessageSquareQuote className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold">When companies respond</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-lg font-bold text-foreground">When companies respond</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                   Problems can be clarified, fixed, or publicly addressed.
                 </p>
               </div>
             </div>
             
-            <div className="mt-16 text-center border-t border-border/40 pt-8">
-              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">Mission</p>
-              <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            {/* Divider 1 */}
+            <div className="w-full h-px bg-border/60 mb-8"></div>
+
+            {/* Mission Statement */}
+            <div className="text-center mb-8">
+              <p className="text-lg md:text-xl text-foreground/80 font-medium max-w-3xl mx-auto">
                 This is how better decisions — and better businesses — are built.
               </p>
             </div>
+
+            {/* Divider 2 */}
+            <div className="w-full h-px bg-border/60"></div>
           </div>
         </section>
 
         {/* Most Searched Companies */}
-        <section className="py-20 bg-muted/30">
+        <section className="py-16 bg-background">
           <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-2">Most Searched Companies</h2>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
               <p className="text-muted-foreground">What people are checking right now.</p>
             </div>
 
-            <div className="max-w-4xl mx-auto bg-card rounded-3xl shadow-sm border border-border/50 overflow-hidden">
+            <div className="w-full bg-card rounded-xl border border-border/40 overflow-hidden shadow-sm">
               {[
-                { rank: 1, name: "Amazon", category: "Online Retail", logo: "A" },
-                { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "X" },
-                { rank: 3, name: "ABC Movers", category: "Moving Services", logo: "M" },
+                { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-logo.png" },
+                { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "/images/xyz-logo.png" },
+                { rank: 3, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-logo.png" },
               ].map((company, i) => (
-                <div key={i} className="flex items-center justify-between p-6 border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors group cursor-pointer">
+                <div key={i} className="flex items-center justify-between p-4 border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors group cursor-pointer">
                   <div className="flex items-center gap-4">
-                    <div className="h-10 w-10 rounded-full bg-foreground text-background flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                    <div className="h-8 w-8 rounded-full bg-foreground text-background flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform">
                       {company.rank}
                     </div>
                     <div className="flex items-center gap-3">
+                      {/* Placeholder for logo if image fails */}
                       <div className="font-bold text-lg">{company.name}</div>
                     </div>
                   </div>
-                  <div className="hidden md:block text-muted-foreground font-medium">
+                  
+                  <div className="hidden md:block text-muted-foreground text-sm font-medium">
                     {company.category}
                   </div>
-                  <div className="text-2xl font-bold text-muted-foreground/50 group-hover:text-primary transition-colors">
+                  
+                  <div className="text-xl font-bold text-muted-foreground/50 group-hover:text-primary transition-colors">
                     #{company.rank}
                   </div>
                 </div>
