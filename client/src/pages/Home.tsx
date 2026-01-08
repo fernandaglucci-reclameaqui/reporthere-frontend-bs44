@@ -52,7 +52,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent h-48 bottom-0"></div>
           </div>
 
-          <div className="container relative z-10 pt-10 pb-20">
+          <div className="container relative z-10 pt-10 pb-12">
             <div className="max-w-2xl space-y-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1]">
                 Check first. <br />
@@ -63,7 +63,7 @@ export default function Home() {
               <h2 className="text-xl md:text-2xl text-foreground/90 mb-4 font-medium drop-shadow-sm">
                 Read real experiences before you buy — or share yours to help the next person choose better.
               </h2>
-              <p className="text-sm text-muted-foreground/80 mb-10">
+              <p className="text-sm text-muted-foreground/80 mb-8">
                 Every experience helps build a clearer picture.
               </p>
 
@@ -81,11 +81,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Value Props Section */}
-        <section className="py-16 bg-background">
+        {/* Value Props Section - Fluid Gradient Background */}
+        <section className="py-8 bg-gradient-to-b from-background via-muted/10 to-background">
           <div className="container">
             {/* 3 Columns with Vertical Dividers */}
-            <div className="grid md:grid-cols-3 gap-8 mb-12 relative">
+            <div className="grid md:grid-cols-3 gap-8 mb-8 relative">
               {/* Column 1 */}
               <div className="flex flex-col items-center text-center space-y-3 group relative">
                 <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#8BA888] to-[#5e7a5b] flex items-center justify-center text-white mb-3 shadow-lg shadow-primary/20 transform group-hover:scale-110 transition-all duration-300">
@@ -125,10 +125,10 @@ export default function Home() {
             </div>
             
             {/* Divider 1 - Thicker & Toned */}
-            <div className="w-full h-[2px] bg-border/60 mb-8"></div>
+            <div className="w-full h-[2px] bg-border/60 mb-6"></div>
 
             {/* Mission Statement */}
-            <div className="text-center mb-8">
+            <div className="text-center mb-6">
               <p className="text-lg md:text-xl text-foreground/80 font-medium max-w-3xl mx-auto">
                 This is how better decisions — and better businesses — are built.
               </p>
@@ -139,28 +139,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Most Searched Companies */}
-        <section className="py-16 bg-background">
+        {/* Most Searched Companies - Fluid Background */}
+        <section className="py-12 bg-gradient-to-b from-background to-muted/20">
           <div className="container">
-            <div className="mb-8">
+            <div className="mb-6">
               <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
               <p className="text-muted-foreground">What people are checking right now.</p>
             </div>
 
             <div className="w-full bg-card rounded-xl border border-border/40 overflow-hidden shadow-sm">
               {[
-                { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-logo.jpg" },
-                { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "/images/xyz-logo.jpg" },
-                { rank: 3, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-logo.jpg" },
+                { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-full-logo.png", logoClass: "object-contain p-1" },
+                { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "/images/xyz-blue-logo.jpg", logoClass: "object-cover" },
+                { rank: 3, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-red-logo.png", logoClass: "object-contain p-1" },
               ].map((company, i) => (
                 <div key={i} className="flex items-center justify-between p-4 border-b border-border/40 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
                   <div className="flex items-center gap-4">
-                    <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform shadow-md">
+                    <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm group-hover:scale-110 transition-transform shadow-md">
                       {company.rank}
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-lg overflow-hidden border border-border/20 shadow-sm">
-                        <img src={company.logo} alt={company.name} className="w-full h-full object-cover" />
+                      <div className="h-12 w-24 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white flex items-center justify-center">
+                        <img src={company.logo} alt={company.name} className={`w-full h-full ${company.logoClass}`} />
                       </div>
                       <div className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">{company.name}</div>
                     </div>
@@ -170,7 +170,7 @@ export default function Home() {
                     {company.category}
                   </div>
                   
-                  <div className="text-xl font-bold text-muted-foreground/30 group-hover:text-primary transition-colors">
+                  <div className="text-xl font-extrabold text-muted-foreground/30 group-hover:text-primary transition-colors">
                     #{company.rank}
                   </div>
                 </div>
