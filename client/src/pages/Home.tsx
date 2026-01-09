@@ -125,10 +125,10 @@ export default function Home() {
             </div>
             
             {/* Divider 1 - Green, Thick, Balanced */}
-            <div className="w-full h-1 bg-[#2C4A3B] mb-4"></div>
+            <div className="w-full h-1 bg-[#2C4A3B] mb-3"></div>
 
             {/* Mission Statement */}
-            <div className="text-center mb-4">
+            <div className="text-center mb-3">
               <p className="text-lg md:text-xl text-foreground/80 font-medium max-w-3xl mx-auto">
                 This is how better decisions — and better businesses — are built.
               </p>
@@ -142,7 +142,7 @@ export default function Home() {
         {/* Most Searched Companies - Base Background (Reset) & No Top Padding */}
         <section className="pb-6 pt-0 bg-background">
           <div className="container">
-            <div className="mb-4 pt-4 flex items-end justify-between">
+            <div className="mb-4 pt-3 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
                 <p className="text-muted-foreground">What people are checking right now.</p>
@@ -163,7 +163,7 @@ export default function Home() {
                 { rank: 2, name: "Maelys Cosmetics", category: "Beauty & Cosmetics", logo: "/images/maelys-logo.png", logoClass: "object-contain p-1" },
                 { rank: 3, name: "Delta Airlines", category: "Airlines", logo: "/images/delta-widget.webp", logoClass: "object-contain p-2" },
                 { rank: 4, name: "Target", category: "Retail", logo: "/images/target-logo.png", logoClass: "object-contain p-1" },
-                { rank: 5, name: "PayPal", category: "Financial Services", logo: "/images/paypal-logo.png", logoClass: "object-contain p-1" },
+                { rank: 5, name: "PayPal", category: "Financial Services", logo: "/images/paypal-logo.png", logoClass: "object-contain p-0.5" },
               ].map((company, i) => (
                 <div key={i} className="flex items-center justify-between p-3 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
                   <div className="flex items-center gap-4">
@@ -182,7 +182,7 @@ export default function Home() {
                   </div>
                   
                   {/* Rank Number (Right Side) */}
-                  <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm group-hover:scale-110 transition-transform shadow-md">
+                  <div className="h-8 w-8 rounded-full bg-[#E8F5E9] text-[#2E7D32] flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform shadow-sm border border-[#2E7D32]/20">
                     #{company.rank}
                   </div>
                 </div>
