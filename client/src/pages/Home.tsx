@@ -139,10 +139,70 @@ export default function Home() {
           </div>
         </section>
 
+        {/* What You Can Do Here Section - Moved UP */}
+        <section className="py-6 bg-background">
+          <div className="container text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">What You Can Do Here</h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Card 1 */}
+              <div className="flex flex-col items-center space-y-4 group relative">
+                <div className="h-14 w-14 flex items-center justify-center mb-1 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <img src="/images/icon-file-complaint.png" alt="File a Complaint" className="w-full h-full object-contain drop-shadow-md" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">File a Complaint</h3>
+                <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
+                  Share your story openly. Help others avoid the same issues and push for better service.
+                </p>
+                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-sm">
+                  Start a report &rarr;
+                </Button>
+                {/* Vertical Divider (Desktop only) */}
+                <div className="hidden md:block absolute right-[-1rem] top-6 bottom-6 w-[1px] bg-border/60"></div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="flex flex-col items-center space-y-4 group relative">
+                <div className="h-14 w-14 flex items-center justify-center mb-1 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <img src="/images/icon-browse.jpg" alt="Browse Complaints" className="w-full h-full object-contain drop-shadow-md rounded-full" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Browse Complaints</h3>
+                <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
+                  Research companies before you buy. See how they treat their customers when things go wrong.
+                </p>
+                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-sm">
+                  Search companies &rarr;
+                </Button>
+                {/* Vertical Divider (Desktop only) */}
+                <div className="hidden md:block absolute right-[-1rem] top-6 bottom-6 w-[1px] bg-border/60"></div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="flex flex-col items-center space-y-4 group">
+                <div className="h-14 w-14 flex items-center justify-center mb-1 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <img src="/images/icon-business.png" alt="For Businesses" className="w-full h-full object-contain drop-shadow-md" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">For Businesses</h3>
+                <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
+                  Claim your profile, respond to customers, and build trust by showing you care.
+                </p>
+                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-sm">
+                  Business login &rarr;
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Divider between sections */}
+        <div className="container">
+          <div className="w-full h-1 bg-[#2C4A3B] opacity-20"></div>
+        </div>
+
         {/* Most Searched Companies - Base Background (Reset) & No Top Padding */}
-        <section className="pb-6 pt-0 bg-background">
+        <section className="pb-6 pt-6 bg-background">
           <div className="container">
-            <div className="mb-4 pt-3 flex items-end justify-between">
+            <div className="mb-4 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
                 <p className="text-muted-foreground">What people are checking right now.</p>
@@ -181,7 +241,7 @@ export default function Home() {
                   
                   {/* Rank Number (Right Side - Spans 2 cols - Right Aligned) */}
                   <div className="col-span-4 md:col-span-2 flex justify-end">
-                    <div className="h-8 w-8 rounded-full bg-[#E8F5E9] text-[#2E7D32] flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform shadow-sm border border-[#2E7D32]/20">
+                    <div className="h-6 w-6 rounded-full bg-green-50 text-green-700 text-xs font-bold flex items-center justify-center border border-green-100">
                       #{company.rank}
                     </div>
                   </div>
@@ -191,129 +251,69 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Divider between sections */}
-        <div className="container">
-          <div className="w-full h-1 bg-[#2C4A3B] opacity-20"></div>
-        </div>
-
-        {/* What You Can Do Here Section */}
-        <section className="py-8 bg-muted/10">
-          <div className="container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">What You Can Do Here</h2>
-            
-            <div className="grid md:grid-cols-3 gap-12">
-              {/* Card 1 */}
-              <div className="flex flex-col items-center space-y-6 group relative">
-                <div className="h-16 w-16 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <img src="/images/icon-file-complaint.png" alt="File a Complaint" className="w-full h-full object-contain drop-shadow-md" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground">File a Complaint</h3>
-                <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
-                  Share your story openly. Help others avoid the same issues and push for better service.
-                </p>
-                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
-                  Start a report &rarr;
-                </Button>
-                {/* Vertical Divider (Desktop only) */}
-                <div className="hidden md:block absolute right-[-1.5rem] top-8 bottom-8 w-[1px] bg-border/60"></div>
-              </div>
-
-              {/* Card 2 */}
-              <div className="flex flex-col items-center space-y-6 group relative">
-                <div className="h-16 w-16 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <img src="/images/icon-browse.jpg" alt="Browse Complaints" className="w-full h-full object-contain drop-shadow-md rounded-full" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground">Browse Complaints</h3>
-                <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
-                  Research companies before you buy. See how they treat their customers when things go wrong.
-                </p>
-                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
-                  Search companies &rarr;
-                </Button>
-                {/* Vertical Divider (Desktop only) */}
-                <div className="hidden md:block absolute right-[-1.5rem] top-8 bottom-8 w-[1px] bg-border/60"></div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="flex flex-col items-center space-y-6 group">
-                <div className="h-16 w-16 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <img src="/images/icon-business.png" alt="For Businesses" className="w-full h-full object-contain drop-shadow-md" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground">For Businesses</h3>
-                <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
-                  Claim your profile, respond to customers, and build trust by showing you care.
-                </p>
-                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
-                  Business login &rarr;
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Sentiment Analysis Section */}
-        <section className="py-16 bg-background">
+        <section className="py-12 bg-background">
           <div className="container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">How Did You Feel?</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-12 text-lg">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">How Did You Feel?</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-10 text-base">
               After every interaction, we ask one simple question: How did you feel?
               <br />
               Your answer helps others understand what to expect.
             </p>
             
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
-              {/* Sentiment 1: Green */}
-              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/sentiment-green.png" alt="You Nailed It!" className="w-full h-full object-contain" />
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
+              {/* Sentiment 1: Dark Green (Best) */}
+              <div className="flex flex-col items-center space-y-3 group cursor-pointer">
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/face-dark-green.png" alt="You Nailed It!" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-lg mb-1">You Nailed It!</h3>
-                  <p className="text-sm text-muted-foreground">Positive experience</p>
+                  <h3 className="font-bold text-foreground text-base mb-0.5">You Nailed It!</h3>
+                  <p className="text-xs text-muted-foreground">Positive experience</p>
                 </div>
               </div>
 
-              {/* Sentiment 2: Yellow */}
-              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/sentiment-yellow.png" alt="It's Meh..." className="w-full h-full object-contain" />
+              {/* Sentiment 2: Medium Dark Green */}
+              <div className="flex flex-col items-center space-y-3 group cursor-pointer">
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/face-medium-dark-green.png" alt="It's Meh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-lg mb-1">It's Meh...</h3>
-                  <p className="text-sm text-muted-foreground">Neutral / okay</p>
+                  <h3 className="font-bold text-foreground text-base mb-0.5">It's Meh...</h3>
+                  <p className="text-xs text-muted-foreground">Neutral / okay</p>
                 </div>
               </div>
 
-              {/* Sentiment 3: Orange */}
-              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/sentiment-orange.png" alt="Uh Oh..." className="w-full h-full object-contain" />
+              {/* Sentiment 3: Medium Green */}
+              <div className="flex flex-col items-center space-y-3 group cursor-pointer">
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/face-medium-green.png" alt="Uh Oh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-lg mb-1">Uh Oh...</h3>
-                  <p className="text-sm text-muted-foreground">Could be better</p>
+                  <h3 className="font-bold text-foreground text-base mb-0.5">Uh Oh...</h3>
+                  <p className="text-xs text-muted-foreground">Could be better</p>
                 </div>
               </div>
 
-              {/* Sentiment 4: Red */}
-              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/sentiment-red.png" alt="Pretty Disappointing" className="w-full h-full object-contain" />
+              {/* Sentiment 4: Light Green */}
+              <div className="flex flex-col items-center space-y-3 group cursor-pointer">
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/face-light-green.png" alt="Pretty Disappointing" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-lg mb-1">Pretty Disappointing</h3>
-                  <p className="text-sm text-muted-foreground">Negative experience</p>
+                  <h3 className="font-bold text-foreground text-base mb-0.5">Pretty Disappointing</h3>
+                  <p className="text-xs text-muted-foreground">Negative experience</p>
                 </div>
               </div>
 
-              {/* Sentiment 5: Purple */}
-              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/sentiment-purple.png" alt="Feeling Ignored" className="w-full h-full object-contain" />
+              {/* Sentiment 5: Pale Green (Worst) */}
+              <div className="flex flex-col items-center space-y-3 group cursor-pointer">
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/face-pale-green.png" alt="Feeling Ignored" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-lg mb-1">Feeling Ignored</h3>
-                  <p className="text-sm text-muted-foreground">No response / unresolved</p>
+                  <h3 className="font-bold text-foreground text-base mb-0.5">Feeling Ignored</h3>
+                  <p className="text-xs text-muted-foreground">No response / unresolved</p>
                 </div>
               </div>
             </div>
@@ -387,37 +387,37 @@ export default function Home() {
                 <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold mb-4 text-green-300">Resources</h4>
+              <ul className="space-y-2 text-sm text-green-100/80">
                 <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4 text-green-300">Community</h4>
-              <ul className="space-y-2 text-sm text-green-100/80">
-                <li><a href="#" className="hover:text-white transition-colors">Guidelines</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Trust & Safety</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Guidelines</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-bold mb-4 text-green-300">For Businesses</h4>
-              <ul className="space-y-2 text-sm text-green-100/80">
-                <li><a href="#" className="hover:text-white transition-colors">Claim Profile</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Business Solutions</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Success Stories</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Resources</a></li>
-              </ul>
+              <h4 className="font-bold mb-4 text-green-300">Stay Updated</h4>
+              <div className="flex gap-2">
+                <Input placeholder="Enter your email" className="bg-white/10 border-white/20 text-white placeholder:text-white/50" />
+                <Button className="bg-green-500 hover:bg-green-400 text-white">
+                  Subscribe
+                </Button>
+              </div>
             </div>
           </div>
           
-          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-green-100/60">
-            <p>&copy; 2024 ReportHere Inc. All rights reserved.</p>
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-green-100/60">
+            <p>&copy; 2025 ReportHere. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <a href="#" className="hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>
