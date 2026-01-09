@@ -125,10 +125,10 @@ export default function Home() {
             </div>
             
             {/* Divider 1 - Green, Thick, Balanced */}
-            <div className="w-full h-1 bg-[#2C4A3B] mb-6"></div>
+            <div className="w-full h-1 bg-[#2C4A3B] mb-4"></div>
 
             {/* Mission Statement */}
-            <div className="text-center mb-6">
+            <div className="text-center mb-4">
               <p className="text-lg md:text-xl text-foreground/80 font-medium max-w-3xl mx-auto">
                 This is how better decisions — and better businesses — are built.
               </p>
@@ -140,9 +140,9 @@ export default function Home() {
         </section>
 
         {/* Most Searched Companies - Base Background (Reset) & No Top Padding */}
-        <section className="pb-8 pt-0 bg-background">
+        <section className="pb-6 pt-0 bg-background">
           <div className="container">
-            <div className="mb-6 pt-8 flex items-end justify-between">
+            <div className="mb-4 pt-6 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
                 <p className="text-muted-foreground">What people are checking right now.</p>
@@ -196,13 +196,13 @@ export default function Home() {
         </div>
 
         {/* What You Can Do Here Section */}
-        <section className="py-12 bg-muted/10">
+        <section className="py-8 bg-muted/10">
           <div className="container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-foreground">What You Can Do Here</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">What You Can Do Here</h2>
             
             <div className="grid md:grid-cols-3 gap-12">
               {/* Card 1 */}
-              <div className="flex flex-col items-center space-y-6 group">
+              <div className="flex flex-col items-center space-y-6 group relative">
                 <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <PenLine className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
                 </div>
@@ -213,10 +213,12 @@ export default function Home() {
                 <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
                   Start a report &rarr;
                 </Button>
+                {/* Vertical Divider (Desktop only) */}
+                <div className="hidden md:block absolute right-[-1.5rem] top-8 bottom-8 w-[1px] bg-border/60"></div>
               </div>
 
               {/* Card 2 */}
-              <div className="flex flex-col items-center space-y-6 group">
+              <div className="flex flex-col items-center space-y-6 group relative">
                 <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <BookOpen className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
                 </div>
@@ -227,6 +229,8 @@ export default function Home() {
                 <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
                   Search companies &rarr;
                 </Button>
+                {/* Vertical Divider (Desktop only) */}
+                <div className="hidden md:block absolute right-[-1.5rem] top-8 bottom-8 w-[1px] bg-border/60"></div>
               </div>
 
               {/* Card 3 */}
@@ -292,6 +296,62 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-[#2C4A3B] text-white py-12 border-t border-white/10">
+        <div className="container">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="col-span-1 md:col-span-1">
+              <div className="flex items-center gap-2 mb-4">
+                <ShieldCheck className="h-8 w-8 text-green-300" />
+                <span className="text-xl font-bold tracking-tight">ReportHere</span>
+              </div>
+              <p className="text-green-100/80 text-sm leading-relaxed">
+                Building trust through transparency. Join thousands of consumers making better decisions every day.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-bold mb-4 text-green-300">Company</h4>
+              <ul className="space-y-2 text-sm text-green-100/80">
+                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold mb-4 text-green-300">Community</h4>
+              <ul className="space-y-2 text-sm text-green-100/80">
+                <li><a href="#" className="hover:text-white transition-colors">Guidelines</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Trust & Safety</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold mb-4 text-green-300">For Businesses</h4>
+              <ul className="space-y-2 text-sm text-green-100/80">
+                <li><a href="#" className="hover:text-white transition-colors">Claim Profile</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Business Solutions</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Success Stories</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Resources</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-green-100/60">
+            <p>&copy; 2024 ReportHere Inc. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
