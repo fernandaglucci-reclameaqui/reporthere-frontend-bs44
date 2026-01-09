@@ -204,7 +204,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-12">
               {/* Card 1 */}
               <div className="flex flex-col items-center space-y-6 group relative">
-                <div className="h-24 w-24 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <div className="h-16 w-16 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <img src="/images/icon-file-complaint.png" alt="File a Complaint" className="w-full h-full object-contain drop-shadow-md" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">File a Complaint</h3>
@@ -220,7 +220,7 @@ export default function Home() {
 
               {/* Card 2 */}
               <div className="flex flex-col items-center space-y-6 group relative">
-                <div className="h-24 w-24 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <div className="h-16 w-16 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <img src="/images/icon-browse.jpg" alt="Browse Complaints" className="w-full h-full object-contain drop-shadow-md rounded-full" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">Browse Complaints</h3>
@@ -236,7 +236,7 @@ export default function Home() {
 
               {/* Card 3 */}
               <div className="flex flex-col items-center space-y-6 group">
-                <div className="h-24 w-24 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <div className="h-16 w-16 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <img src="/images/icon-business.png" alt="For Businesses" className="w-full h-full object-contain drop-shadow-md" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">For Businesses</h3>
@@ -246,6 +246,75 @@ export default function Home() {
                 <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
                   Business login &rarr;
                 </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sentiment Analysis Section */}
+        <section className="py-16 bg-background">
+          <div className="container text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">How Did You Feel?</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-12 text-lg">
+              After every interaction, we ask one simple question: How did you feel?
+              <br />
+              Your answer helps others understand what to expect.
+            </p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
+              {/* Sentiment 1: Green */}
+              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/sentiment-green.png" alt="You Nailed It!" className="w-full h-full object-contain" />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-foreground text-lg mb-1">You Nailed It!</h3>
+                  <p className="text-sm text-muted-foreground">Positive experience</p>
+                </div>
+              </div>
+
+              {/* Sentiment 2: Yellow */}
+              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/sentiment-yellow.png" alt="It's Meh..." className="w-full h-full object-contain" />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-foreground text-lg mb-1">It's Meh...</h3>
+                  <p className="text-sm text-muted-foreground">Neutral / okay</p>
+                </div>
+              </div>
+
+              {/* Sentiment 3: Orange */}
+              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/sentiment-orange.png" alt="Uh Oh..." className="w-full h-full object-contain" />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-foreground text-lg mb-1">Uh Oh...</h3>
+                  <p className="text-sm text-muted-foreground">Could be better</p>
+                </div>
+              </div>
+
+              {/* Sentiment 4: Red */}
+              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/sentiment-red.png" alt="Pretty Disappointing" className="w-full h-full object-contain" />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-foreground text-lg mb-1">Pretty Disappointing</h3>
+                  <p className="text-sm text-muted-foreground">Negative experience</p>
+                </div>
+              </div>
+
+              {/* Sentiment 5: Purple */}
+              <div className="flex flex-col items-center space-y-4 group cursor-pointer">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
+                  <img src="/images/sentiment-purple.png" alt="Feeling Ignored" className="w-full h-full object-contain" />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-foreground text-lg mb-1">Feeling Ignored</h3>
+                  <p className="text-sm text-muted-foreground">No response / unresolved</p>
+                </div>
               </div>
             </div>
           </div>
