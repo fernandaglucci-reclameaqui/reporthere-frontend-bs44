@@ -365,63 +365,39 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
 
-      {/* Footer */}
-      <footer className="bg-[#2C4A3B] text-white py-12 border-t border-white/10">
-        <div className="container">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div className="col-span-1 md:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <ShieldCheck className="h-8 w-8 text-green-300" />
-                <span className="text-xl font-bold tracking-tight">ReportHere</span>
-              </div>
-              <p className="text-green-100/80 text-sm leading-relaxed">
-                Building trust through transparency. Join thousands of consumers making better decisions every day.
+        {/* Footer Section with Image Background */}
+        <section className="relative w-full h-[600px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/images/footer-bg.png")' }}>
+          {/* Content Container */}
+          <div className="container h-full flex flex-col justify-between relative z-10">
+            
+            {/* Placeholder Text Area (Top Half) */}
+            <div className="pt-20 md:pt-32 max-w-2xl">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+                (HOLD FOR THE TEXT BECAUSE I AM ADJUSTING IT)
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                This space is reserved for your upcoming copy.
               </p>
             </div>
-            
-            <div>
-              <h4 className="font-bold mb-4 text-green-300">Company</h4>
-              <ul className="space-y-2 text-sm text-green-100/80">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4 text-green-300">Resources</h4>
-              <ul className="space-y-2 text-sm text-green-100/80">
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Guidelines</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4 text-green-300">Stay Updated</h4>
-              <div className="flex gap-2">
-                <Input placeholder="Enter your email" className="bg-white/10 border-white/20 text-white placeholder:text-white/50" />
-                <Button className="bg-green-500 hover:bg-green-400 text-white">
-                  Subscribe
-                </Button>
+
+            {/* Footer Menu (Bottom Green Area) */}
+            <div className="pb-12 md:pb-20">
+              <div className="flex flex-wrap gap-x-8 gap-y-4 text-white/90 font-medium text-sm md:text-base">
+                <a href="#" className="hover:text-white transition-colors">About Us</a>
+                <a href="#" className="hover:text-white transition-colors">Community Guidelines</a>
+                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" className="hover:text-white transition-colors">Contact Support</a>
+                <a href="#" className="hover:text-white transition-colors">For Businesses</a>
+              </div>
+              <div className="mt-6 text-white/60 text-xs">
+                &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
               </div>
             </div>
           </div>
-          
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-green-100/60">
-            <p>&copy; 2025 ReportHere. All rights reserved.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Cookies</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+        </section>
+      </main>
     </div>
   );
 }
