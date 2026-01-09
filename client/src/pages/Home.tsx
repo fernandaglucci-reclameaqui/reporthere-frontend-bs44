@@ -408,19 +408,65 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Footer Menu - Moved to very bottom */}
-          <div className="bg-[#2C4A3B] text-white py-8">
+          {/* New Detailed Footer */}
+          <div className="bg-white pt-12 pb-8 border-t border-border/20">
             <div className="container">
-              <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-medium text-sm">
-                <a href="#" className="hover:text-green-300 transition-colors">About Us</a>
-                <a href="#" className="hover:text-green-300 transition-colors">Community Guidelines</a>
-                <a href="#" className="hover:text-green-300 transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-green-300 transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-green-300 transition-colors">Contact Support</a>
-                <a href="#" className="hover:text-green-300 transition-colors">For Businesses</a>
+              {/* Free Disclaimer */}
+              <div className="text-center mb-16">
+                <p className="text-muted-foreground text-sm">
+                  * 100% free for consumers. Free for businesses on the basic package.
+                </p>
               </div>
-              <div className="mt-6 text-center text-white/60 text-xs">
-                &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
+
+              {/* 4-Column Links */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-5xl mx-auto">
+                {/* Column 1: About */}
+                <div className="flex flex-col space-y-4">
+                  <h4 className="font-bold text-foreground text-lg">About</h4>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">About Us</a>
+                </div>
+
+                {/* Column 2: For Users */}
+                <div className="flex flex-col space-y-4">
+                  <h4 className="font-bold text-foreground text-lg">For Users</h4>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">For Consumers</a>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">For Businesses</a>
+                </div>
+
+                {/* Column 3: Support */}
+                <div className="flex flex-col space-y-4">
+                  <h4 className="font-bold text-foreground text-lg">Support</h4>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">FAQ</a>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Contact</a>
+                </div>
+
+                {/* Column 4: Legal */}
+                <div className="flex flex-col space-y-4">
+                  <h4 className="font-bold text-foreground text-lg">Legal</h4>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Terms of Service</a>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Privacy Policy</a>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Legal Disclaimer</a>
+                </div>
+              </div>
+
+              {/* Bottom Section: Beta Badge & Copyright */}
+              <div className="border-t border-border/20 pt-12 flex flex-col items-center text-center space-y-6">
+                <div className="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase">
+                  BETA
+                </div>
+                
+                <div className="space-y-2 max-w-3xl mx-auto">
+                  <p className="text-muted-foreground text-sm">
+                    ReportHere is currently in beta. We're actively improving the platform and welcome your feedback.
+                  </p>
+                  <p className="text-muted-foreground/60 text-xs italic">
+                    ReportHere is an independent platform and is not affiliated with, endorsed by, or connected to any similar complaint or reputation management platforms.
+                  </p>
+                </div>
+
+                <div className="text-muted-foreground text-sm">
+                  &copy; 2026 ReportHere. All rights reserved.
+                </div>
               </div>
             </div>
           </div>
