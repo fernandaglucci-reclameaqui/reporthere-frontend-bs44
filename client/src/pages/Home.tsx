@@ -397,12 +397,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* New Detailed Footer */}
-          <div className="bg-white pt-8 pb-8 border-t border-border/20">
+          {/* New Detailed Footer - Dark Green Theme */}
+          <div className="bg-[#2C4A3B] pt-8 pb-8 border-t border-white/10">
             <div className="container">
               {/* Free Disclaimer */}
               <div className="text-center mb-8">
-                <p className="text-muted-foreground text-sm">
+                <p className="text-white/80 text-sm">
                   * 100% free for consumers. Free for businesses on the basic package.
                 </p>
               </div>
@@ -411,49 +411,49 @@ export default function Home() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 max-w-5xl mx-auto">
                 {/* Column 1: About */}
                 <div className="flex flex-col space-y-4">
-                  <h4 className="font-bold text-foreground text-lg">About</h4>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">About Us</a>
+                  <h4 className="font-bold text-white text-lg">About</h4>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">About Us</a>
                 </div>
 
                 {/* Column 2: For Users */}
                 <div className="flex flex-col space-y-4">
-                  <h4 className="font-bold text-foreground text-lg">For Users</h4>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">For Consumers</a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">For Businesses</a>
+                  <h4 className="font-bold text-white text-lg">For Users</h4>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">For Consumers</a>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">For Businesses</a>
                 </div>
 
                 {/* Column 3: Support */}
                 <div className="flex flex-col space-y-4">
-                  <h4 className="font-bold text-foreground text-lg">Support</h4>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">FAQ</a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Contact</a>
+                  <h4 className="font-bold text-white text-lg">Support</h4>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">FAQ</a>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">Contact</a>
                 </div>
 
                 {/* Column 4: Legal */}
                 <div className="flex flex-col space-y-4">
-                  <h4 className="font-bold text-foreground text-lg">Legal</h4>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Terms of Service</a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Privacy Policy</a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors underline decoration-muted-foreground/30 underline-offset-4">Legal Disclaimer</a>
+                  <h4 className="font-bold text-white text-lg">Legal</h4>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">Terms of Service</a>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">Privacy Policy</a>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors underline decoration-white/30 underline-offset-4">Legal Disclaimer</a>
                 </div>
               </div>
 
               {/* Bottom Section: Beta Badge & Copyright */}
-              <div className="border-t border-border/20 pt-8 flex flex-col items-center text-center space-y-4">
-                <div className="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase">
+              <div className="border-t border-white/10 pt-8 flex flex-col items-center text-center space-y-4">
+                <div className="bg-white/20 text-white px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase backdrop-blur-sm">
                   BETA
                 </div>
                 
                 <div className="space-y-1 max-w-3xl mx-auto">
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-white/80 text-sm">
                     ReportHere is currently in beta. We're actively improving the platform and welcome your feedback.
                   </p>
-                  <p className="text-muted-foreground/60 text-xs italic">
+                  <p className="text-white/50 text-xs italic">
                     ReportHere is an independent platform and is not affiliated with, endorsed by, or connected to any similar complaint or reputation management platforms.
                   </p>
                 </div>
 
-                <div className="text-muted-foreground text-sm">
+                <div className="text-white/60 text-sm">
                   &copy; 2026 ReportHere. All rights reserved.
                 </div>
               </div>
