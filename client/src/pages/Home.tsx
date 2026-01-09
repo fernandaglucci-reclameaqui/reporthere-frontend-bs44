@@ -45,7 +45,7 @@ export default function Home() {
             <img 
               src="/images/hero-official.png" 
               alt="Woman walking in city" 
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-[center_20%]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent w-full md:w-3/4 lg:w-2/3"></div>
             {/* Stronger bottom fade to blend with next section */}
@@ -329,7 +329,7 @@ export default function Home() {
               <img 
                 src="/images/city-conversation-full.png" 
                 alt="City conversation scene" 
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-[center_top]"
               />
             </div>
             
