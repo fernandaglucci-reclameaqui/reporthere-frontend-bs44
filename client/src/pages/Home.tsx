@@ -6,31 +6,31 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-body">
       {/* Navigation */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#2C4A3B] backdrop-blur-md shadow-md">
         <div className="container flex h-20 items-center justify-between">
           <div className="flex items-center gap-3">
-            <ShieldCheck className="h-16 w-16 text-primary fill-primary/20" />
-            <span className="text-3xl font-bold text-primary tracking-tight">ReportHere</span>
+            <ShieldCheck className="h-16 w-16 text-white fill-white/20" />
+            <span className="text-3xl font-bold text-white tracking-tight">ReportHere</span>
           </div>
           
-          <nav className="hidden lg:flex items-center gap-8 text-base font-medium text-foreground/80">
-            <a href="#" className="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary py-1">Companies</a>
-            <div className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors group relative">
+          <nav className="hidden lg:flex items-center gap-8 text-base font-medium text-white/90">
+            <a href="#" className="hover:text-white transition-colors border-b-2 border-transparent hover:border-white py-1">Companies</a>
+            <div className="flex items-center gap-1 cursor-pointer hover:text-white transition-colors group relative">
               <span>Categories</span>
-              <ChevronDown className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+              <ChevronDown className="h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
             </div>
-            <a href="#" className="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary py-1">Blog</a>
-            <a href="#" className="hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary py-1">About</a>
+            <a href="#" className="hover:text-white transition-colors border-b-2 border-transparent hover:border-white py-1">Blog</a>
+            <a href="#" className="hover:text-white transition-colors border-b-2 border-transparent hover:border-white py-1">About</a>
           </nav>
 
           <div className="flex items-center gap-3">
-            <Button variant="default" className="bg-primary hover:bg-primary/90 text-white font-semibold shadow-md rounded-lg px-6">
+            <Button variant="default" className="bg-white hover:bg-white/90 text-[#2C4A3B] font-bold shadow-md rounded-lg px-6">
               For Consumers
             </Button>
-            <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary/5 font-bold rounded-lg px-6">
+            <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 font-bold rounded-lg px-6 bg-transparent">
               For Businesses
             </Button>
-            <Button variant="ghost" className="text-muted-foreground hover:text-foreground font-medium">
+            <Button variant="ghost" className="text-white/80 hover:text-white font-medium hover:bg-white/10">
               Login
             </Button>
           </div>
@@ -370,26 +370,9 @@ export default function Home() {
 
         {/* Footer Section with Image Background */}
         <section className="relative w-full">
-          {/* Image Background Area */}
-          <div className="relative w-full h-[280px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/images/footer-bg.png")' }}>
-            <div className="container h-full relative z-10">
-              {/* Top Left Text Placeholder */}
-              <div className="absolute top-8 left-4 md:left-8 max-w-lg">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground/80 leading-tight bg-white/50 backdrop-blur-sm p-2 rounded-lg inline-block">
-                  (Hold for text)
-                </h2>
-              </div>
-
-              {/* Centered Text on Green Table Area */}
-              <div className="absolute bottom-4 left-0 right-0 text-center px-4">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-1 drop-shadow-md">
-                  Your experience doesn't end with you.
-                </h3>
-                <p className="text-white/90 text-sm md:text-base drop-shadow-md">
-                  When you share it, someone else makes a better decision.
-                </p>
-              </div>
-            </div>
+          {/* Image Background Area - Reduced Height */}
+          <div className="relative w-full h-[60px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/images/footer-bg.png")' }}>
+            {/* Overlay text removed for cleaner look as requested */}
           </div>
 
           {/* White Section with Buttons */}
@@ -409,17 +392,17 @@ export default function Home() {
           </div>
 
           {/* New Detailed Footer */}
-          <div className="bg-white pt-12 pb-8 border-t border-border/20">
+          <div className="bg-white pt-8 pb-8 border-t border-border/20">
             <div className="container">
               {/* Free Disclaimer */}
-              <div className="text-center mb-16">
+              <div className="text-center mb-8">
                 <p className="text-muted-foreground text-sm">
                   * 100% free for consumers. Free for businesses on the basic package.
                 </p>
               </div>
 
               {/* 4-Column Links */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-5xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 max-w-5xl mx-auto">
                 {/* Column 1: About */}
                 <div className="flex flex-col space-y-4">
                   <h4 className="font-bold text-foreground text-lg">About</h4>
@@ -450,12 +433,12 @@ export default function Home() {
               </div>
 
               {/* Bottom Section: Beta Badge & Copyright */}
-              <div className="border-t border-border/20 pt-12 flex flex-col items-center text-center space-y-6">
+              <div className="border-t border-border/20 pt-8 flex flex-col items-center text-center space-y-4">
                 <div className="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase">
                   BETA
                 </div>
                 
-                <div className="space-y-2 max-w-3xl mx-auto">
+                <div className="space-y-1 max-w-3xl mx-auto">
                   <p className="text-muted-foreground text-sm">
                     ReportHere is currently in beta. We're actively improving the platform and welcome your feedback.
                   </p>
