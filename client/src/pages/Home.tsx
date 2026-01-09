@@ -320,22 +320,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Trust/Community Section - Full Width Image with Green Table */}
+        {/* Combined Trust & Footer Image Section */}
         <section className="relative w-full overflow-hidden">
-          {/* Container for the image and overlays - Min height ensures it doesn't collapse */}
-          <div className="relative w-full min-h-[500px] flex items-center">
-            {/* Full width image as background to ensure coverage */}
+          {/* Single Container with Full Height Image */}
+          <div className="relative w-full min-h-[600px] flex flex-col justify-between">
+            {/* Full width background image */}
             <div className="absolute inset-0 w-full h-full">
               <img 
-                src="/images/couple-green-table.png" 
-                alt="" 
+                src="/images/city-conversation-full.png" 
+                alt="City conversation scene" 
                 className="w-full h-full object-cover object-center"
               />
             </div>
             
-            {/* Overlay for Trust Text (Top Left) - Faded background for readability */}
-            <div className="relative z-10 w-full md:w-1/2 h-full min-h-[500px] bg-gradient-to-r from-background/95 via-background/80 to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24 py-12">
-              <div className="max-w-md space-y-6">
+            {/* Top Content Area */}
+            <div className="relative z-10 w-full flex flex-col md:flex-row justify-between items-start pt-16 md:pt-24 px-8 md:px-16 lg:px-24">
+              {/* Left: Trust Text (Over lighter background) */}
+              <div className="max-w-md space-y-6 bg-background/80 backdrop-blur-sm p-8 rounded-2xl md:bg-transparent md:backdrop-blur-none md:p-0">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                   This is about transparency.
                 </h2>
@@ -348,33 +349,38 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
+
+              {/* Right: Community Card (Floating) */}
+              <div className="mt-8 md:mt-0 max-w-sm w-full">
+                <div className="bg-[#2C4A3B]/95 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-white/10 transform md:translate-y-12">
+                  <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-end gap-2">
+                    <Users className="h-5 w-5 text-green-300" />
+                    Join the Community
+                  </h3>
+                  <p className="text-green-100 text-sm mb-4 text-right">
+                    Thousands of people helping each other make smarter decisions every day.
+                  </p>
+                  <Button size="sm" className="bg-white text-[#2C4A3B] hover:bg-green-50 font-bold w-full h-10">
+                    Sign up free
+                  </Button>
+                </div>
+              </div>
             </div>
 
-            {/* Overlay for Community Text (Bottom Right - On the Green Table) */}
-            <div className="absolute bottom-[10%] right-[5%] md:right-[10%] max-w-sm text-right z-10">
-              <div className="bg-[#2C4A3B]/90 backdrop-blur-sm p-6 rounded-xl shadow-xl border border-white/10">
-                <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-end gap-2">
-                  <Users className="h-5 w-5 text-green-300" />
-                  Join the Community
-                </h3>
-                <p className="text-green-100 text-sm mb-4">
-                  Thousands of people helping each other make smarter decisions every day.
-                </p>
-                <Button size="sm" className="bg-white text-[#2C4A3B] hover:bg-green-50 font-bold w-full">
-                  Sign up free
-                </Button>
-              </div>
+            {/* Bottom Content Area (Over Green Table) */}
+            <div className="relative z-10 w-full text-center pb-12 pt-32 md:pt-48 px-4">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 drop-shadow-md">
+                Your experience doesn't end with you.
+              </h3>
+              <p className="text-white/90 text-sm md:text-base drop-shadow-md max-w-2xl mx-auto">
+                When you share it, someone else makes a better decision.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Footer Section with Image Background */}
+        {/* Footer Section - Buttons & Links */}
         <section className="relative w-full">
-          {/* Image Background Area - Reduced Height */}
-          <div className="relative w-full h-[60px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/images/footer-bg.png")' }}>
-            {/* Overlay text removed for cleaner look as requested */}
-          </div>
-
           {/* White Section with Buttons */}
           <div className="bg-background py-12 border-b border-border/40">
             <div className="container max-w-4xl mx-auto text-center">
