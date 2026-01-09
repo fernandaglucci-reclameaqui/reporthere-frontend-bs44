@@ -6,31 +6,31 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background font-body">
       {/* Navigation */}
-      <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#2C4A3B] backdrop-blur-md shadow-md">
-        <div className="container flex h-20 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="h-16 w-16 text-white fill-white/20" />
-            <span className="text-3xl font-bold text-white tracking-tight">ReportHere</span>
+      <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
+        <div className="container flex h-28 items-center justify-between">
+          <div className="flex items-center gap-4">
+            <ShieldCheck className="h-20 w-20 text-[#2C4A3B] fill-transparent" />
+            <span className="text-4xl font-bold text-[#2C4A3B] tracking-tight">ReportHere</span>
           </div>
           
-          <nav className="hidden lg:flex items-center gap-8 text-base font-medium text-white/90">
-            <a href="#" className="hover:text-white transition-colors border-b-2 border-transparent hover:border-white py-1">Companies</a>
-            <div className="flex items-center gap-1 cursor-pointer hover:text-white transition-colors group relative">
+          <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-gray-600">
+            <a href="#" className="hover:text-[#2C4A3B] transition-colors border-b-2 border-transparent hover:border-[#2C4A3B] py-1">Companies</a>
+            <div className="flex items-center gap-1 cursor-pointer hover:text-[#2C4A3B] transition-colors group relative">
               <span>Categories</span>
               <ChevronDown className="h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
             </div>
-            <a href="#" className="hover:text-white transition-colors border-b-2 border-transparent hover:border-white py-1">Blog</a>
-            <a href="#" className="hover:text-white transition-colors border-b-2 border-transparent hover:border-white py-1">About</a>
+            <a href="#" className="hover:text-[#2C4A3B] transition-colors border-b-2 border-transparent hover:border-[#2C4A3B] py-1">Blog</a>
+            <a href="#" className="hover:text-[#2C4A3B] transition-colors border-b-2 border-transparent hover:border-[#2C4A3B] py-1">About</a>
           </nav>
 
           <div className="flex items-center gap-3">
-            <Button variant="default" className="bg-white hover:bg-white/90 text-[#2C4A3B] font-bold shadow-md rounded-lg px-6">
+            <Button variant="default" className="bg-[#2C4A3B] hover:bg-[#1e3329] text-white font-bold shadow-md rounded-lg px-6 py-6 text-lg">
               For Consumers
             </Button>
-            <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 font-bold rounded-lg px-6 bg-transparent">
+            <Button variant="outline" className="border-2 border-[#2C4A3B] text-[#2C4A3B] hover:bg-[#2C4A3B]/5 font-bold rounded-lg px-6 py-6 text-lg bg-transparent">
               For Businesses
             </Button>
-            <Button variant="ghost" className="text-white/80 hover:text-white font-medium hover:bg-white/10">
+            <Button variant="ghost" className="text-gray-600 hover:text-[#2C4A3B] font-medium hover:bg-gray-100 text-lg">
               Login
             </Button>
           </div>
