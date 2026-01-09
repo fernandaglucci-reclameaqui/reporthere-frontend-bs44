@@ -252,7 +252,7 @@ export default function Home() {
         </section>
 
         {/* Sentiment Analysis Section */}
-        <section className="py-12 bg-background">
+        <section className="py-6 bg-background">
           <div className="container text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">How Did You Feel?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-10 text-base">
