@@ -264,56 +264,56 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
               {/* Sentiment 1: Very Satisfied */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
                   <img src="/images/very_satisfied.svg" alt="You Nailed It!" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-base mb-0.5">You Nailed It!</h3>
-                  <p className="text-xs text-muted-foreground">Positive experience</p>
+                  <h3 className="font-bold text-foreground text-lg mb-0.5">You Nailed It!</h3>
+                  <p className="text-sm text-muted-foreground">Positive experience</p>
                 </div>
               </div>
 
               {/* Sentiment 2: Okay */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
                   <img src="/images/okay.svg" alt="It's Meh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-base mb-0.5">It's Meh...</h3>
-                  <p className="text-xs text-muted-foreground">Neutral / okay</p>
+                  <h3 className="font-bold text-foreground text-lg mb-0.5">It's Meh...</h3>
+                  <p className="text-sm text-muted-foreground">Neutral / okay</p>
                 </div>
               </div>
 
               {/* Sentiment 3: Could Be Better */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
                   <img src="/images/could_be_better.svg" alt="Uh Oh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-base mb-0.5">Uh Oh...</h3>
-                  <p className="text-xs text-muted-foreground">Could be better</p>
+                  <h3 className="font-bold text-foreground text-lg mb-0.5">Uh Oh...</h3>
+                  <p className="text-sm text-muted-foreground">Could be better</p>
                 </div>
               </div>
 
               {/* Sentiment 4: Disappointing */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
                   <img src="/images/disappointing.svg" alt="Pretty Disappointing" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-base mb-0.5">Pretty Disappointing</h3>
-                  <p className="text-xs text-muted-foreground">Negative experience</p>
+                  <h3 className="font-bold text-foreground text-lg mb-0.5">Pretty Disappointing</h3>
+                  <p className="text-sm text-muted-foreground">Negative experience</p>
                 </div>
               </div>
 
               {/* Sentiment 5: No Response */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
                   <img src="/images/no_response.svg" alt="Feeling Ignored" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-bold text-foreground text-base mb-0.5">Feeling Ignored</h3>
-                  <p className="text-xs text-muted-foreground">No response / unresolved</p>
+                  <h3 className="font-bold text-foreground text-lg mb-0.5">Feeling Ignored</h3>
+                  <p className="text-sm text-muted-foreground">No response / unresolved</p>
                 </div>
               </div>
             </div>
@@ -322,17 +322,19 @@ export default function Home() {
 
         {/* Trust/Community Section - Full Width Image with Green Table */}
         <section className="relative w-full overflow-hidden">
-          {/* Container for the image and overlays */}
-          <div className="relative w-full">
-            {/* Full width image */}
-            <img 
-              src="/images/couple-green-table.png" 
-              alt="Couple looking at laptop on green table" 
-              className="w-full h-auto object-cover block"
-            />
+          {/* Container for the image and overlays - Min height ensures it doesn't collapse */}
+          <div className="relative w-full min-h-[500px] flex items-center">
+            {/* Full width image as background to ensure coverage */}
+            <div className="absolute inset-0 w-full h-full">
+              <img 
+                src="/images/couple-green-table.png" 
+                alt="Couple looking at laptop on green table" 
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
             
             {/* Overlay for Trust Text (Top Left) - Faded background for readability */}
-            <div className="absolute top-0 left-0 w-full md:w-1/2 h-full bg-gradient-to-r from-background/90 via-background/60 to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24">
+            <div className="relative z-10 w-full md:w-1/2 h-full min-h-[500px] bg-gradient-to-r from-background/95 via-background/80 to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24 py-12">
               <div className="max-w-md space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                   This is about transparency.
@@ -349,7 +351,7 @@ export default function Home() {
             </div>
 
             {/* Overlay for Community Text (Bottom Right - On the Green Table) */}
-            <div className="absolute bottom-[10%] right-[5%] md:right-[10%] max-w-sm text-right">
+            <div className="absolute bottom-[10%] right-[5%] md:right-[10%] max-w-sm text-right z-10">
               <div className="bg-[#2C4A3B]/90 backdrop-blur-sm p-6 rounded-xl shadow-xl border border-white/10">
                 <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-end gap-2">
                   <Users className="h-5 w-5 text-green-300" />
