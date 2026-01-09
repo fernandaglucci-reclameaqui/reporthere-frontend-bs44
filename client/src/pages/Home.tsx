@@ -164,7 +164,7 @@ export default function Home() {
               {/* Card 2 */}
               <div className="flex flex-col items-center space-y-4 group relative">
                 <div className="h-14 w-14 flex items-center justify-center mb-1 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <img src="/images/icon-browse.jpg" alt="Browse Complaints" className="w-full h-full object-contain drop-shadow-md rounded-full" />
+                  <img src="/images/icon-browse-3d.png" alt="Browse Complaints" className="w-full h-full object-contain drop-shadow-md" />
                 </div>
                 <h3 className="text-lg font-bold text-foreground">Browse Complaints</h3>
                 <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
