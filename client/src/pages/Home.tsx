@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, PenLine, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, Users, Store, MessageSquareWarning, MessageSquareQuote, Heart, BookOpen } from "lucide-react";
+import { Search, PenLine, ChevronDown, CheckCircle2, MessageSquare, ShieldCheck, Users, Store, MessageSquareWarning, MessageSquareQuote, Heart, BookOpen, Check } from "lucide-react";
 
 export default function Home() {
   return (
@@ -367,31 +367,57 @@ export default function Home() {
         </section>
 
         {/* Footer Section with Image Background */}
-        <section className="relative w-full h-[600px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/images/footer-bg.png")' }}>
-          {/* Content Container */}
-          <div className="container h-full flex flex-col justify-between relative z-10">
-            
-            {/* Placeholder Text Area (Top Half) */}
-            <div className="pt-20 md:pt-32 max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                (HOLD FOR THE TEXT BECAUSE I AM ADJUSTING IT)
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                This space is reserved for your upcoming copy.
-              </p>
-            </div>
-
-            {/* Footer Menu (Bottom Green Area) */}
-            <div className="pb-12 md:pb-20">
-              <div className="flex flex-wrap gap-x-8 gap-y-4 text-white/90 font-medium text-sm md:text-base">
-                <a href="#" className="hover:text-white transition-colors">About Us</a>
-                <a href="#" className="hover:text-white transition-colors">Community Guidelines</a>
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors">Contact Support</a>
-                <a href="#" className="hover:text-white transition-colors">For Businesses</a>
+        <section className="relative w-full">
+          {/* Image Background Area */}
+          <div className="relative w-full h-[280px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/images/footer-bg.png")' }}>
+            <div className="container h-full relative z-10">
+              {/* Top Left Text Placeholder */}
+              <div className="absolute top-8 left-4 md:left-8 max-w-lg">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground/80 leading-tight bg-white/50 backdrop-blur-sm p-2 rounded-lg inline-block">
+                  (Hold for text)
+                </h2>
               </div>
-              <div className="mt-6 text-white/60 text-xs">
+
+              {/* Centered Text on Green Table Area */}
+              <div className="absolute bottom-4 left-0 right-0 text-center px-4">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-1 drop-shadow-md">
+                  Your experience doesn't end with you.
+                </h3>
+                <p className="text-white/90 text-sm md:text-base drop-shadow-md">
+                  When you share it, someone else makes a better decision.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* White Section with Buttons */}
+          <div className="bg-background py-12 border-b border-border/40">
+            <div className="container max-w-4xl mx-auto text-center">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button size="lg" className="bg-[#2C4A3B] hover:bg-[#1a3b2e] text-white px-8 h-12 text-base w-full sm:w-auto">
+                  <Search className="mr-2 h-5 w-5" />
+                  Search a company
+                </Button>
+                <Button size="lg" variant="outline" className="px-8 h-12 text-base w-full sm:w-auto">
+                  <PenLine className="mr-2 h-5 w-5" />
+                  Share an experience
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Menu - Moved to very bottom */}
+          <div className="bg-[#2C4A3B] text-white py-8">
+            <div className="container">
+              <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-medium text-sm">
+                <a href="#" className="hover:text-green-300 transition-colors">About Us</a>
+                <a href="#" className="hover:text-green-300 transition-colors">Community Guidelines</a>
+                <a href="#" className="hover:text-green-300 transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-green-300 transition-colors">Terms of Service</a>
+                <a href="#" className="hover:text-green-300 transition-colors">Contact Support</a>
+                <a href="#" className="hover:text-green-300 transition-colors">For Businesses</a>
+              </div>
+              <div className="mt-6 text-center text-white/60 text-xs">
                 &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
               </div>
             </div>
