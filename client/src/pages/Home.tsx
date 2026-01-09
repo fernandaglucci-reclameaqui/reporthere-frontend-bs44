@@ -9,8 +9,8 @@ export default function Home() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container flex h-20 items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/images/logo-shield-check.png" alt="ReportHere Logo" className="h-12 w-auto object-contain" />
-            <span className="text-2xl font-bold text-primary tracking-tight">ReportHere</span>
+            <ShieldCheck className="h-16 w-16 text-primary fill-primary/20" />
+            <span className="text-3xl font-bold text-primary tracking-tight">ReportHere</span>
           </div>
           
           <nav className="hidden lg:flex items-center gap-8 text-base font-medium text-foreground/80">
@@ -264,7 +264,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
               {/* Sentiment 1: Very Satisfied */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
                   <img src="/images/very_satisfied.svg" alt="You Nailed It!" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
@@ -275,7 +275,7 @@ export default function Home() {
 
               {/* Sentiment 2: Okay */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
                   <img src="/images/okay.svg" alt="It's Meh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
@@ -286,7 +286,7 @@ export default function Home() {
 
               {/* Sentiment 3: Could Be Better */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
                   <img src="/images/could_be_better.svg" alt="Uh Oh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
@@ -297,7 +297,7 @@ export default function Home() {
 
               {/* Sentiment 4: Disappointing */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
                   <img src="/images/disappointing.svg" alt="Pretty Disappointing" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
@@ -308,7 +308,7 @@ export default function Home() {
 
               {/* Sentiment 5: No Response */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                <div className="h-24 w-24 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
                   <img src="/images/no_response.svg" alt="Feeling Ignored" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
@@ -328,7 +328,7 @@ export default function Home() {
             <div className="absolute inset-0 w-full h-full">
               <img 
                 src="/images/couple-green-table.png" 
-                alt="Couple looking at laptop on green table" 
+                alt="" 
                 className="w-full h-full object-cover object-center"
               />
             </div>
