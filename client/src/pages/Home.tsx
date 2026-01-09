@@ -125,10 +125,10 @@ export default function Home() {
             </div>
             
             {/* Divider 1 - Green, Thick, Balanced */}
-            <div className="w-full h-1 bg-[#2C4A3B] mb-3"></div>
+            <div className="w-full h-1 bg-[#2C4A3B] mb-1.5"></div>
 
             {/* Mission Statement */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-1.5">
               <p className="text-lg md:text-xl text-foreground/80 font-medium max-w-3xl mx-auto">
                 This is how better decisions — and better businesses — are built.
               </p>
