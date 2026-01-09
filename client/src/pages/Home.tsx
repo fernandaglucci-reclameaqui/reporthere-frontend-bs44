@@ -262,10 +262,10 @@ export default function Home() {
             </p>
             
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
-              {/* Sentiment 1: Dark Green (Best) */}
+              {/* Sentiment 1: Very Satisfied */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/face-dark-green.png" alt="You Nailed It!" className="w-full h-full object-contain" />
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                  <img src="/images/very_satisfied.svg" alt="You Nailed It!" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-foreground text-base mb-0.5">You Nailed It!</h3>
@@ -273,10 +273,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Sentiment 2: Medium Dark Green */}
+              {/* Sentiment 2: Okay */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/face-medium-dark-green.png" alt="It's Meh..." className="w-full h-full object-contain" />
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                  <img src="/images/okay.svg" alt="It's Meh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-foreground text-base mb-0.5">It's Meh...</h3>
@@ -284,10 +284,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Sentiment 3: Medium Green */}
+              {/* Sentiment 3: Could Be Better */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/face-medium-green.png" alt="Uh Oh..." className="w-full h-full object-contain" />
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                  <img src="/images/could_be_better.svg" alt="Uh Oh..." className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-foreground text-base mb-0.5">Uh Oh...</h3>
@@ -295,10 +295,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Sentiment 4: Light Green */}
+              {/* Sentiment 4: Disappointing */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/face-light-green.png" alt="Pretty Disappointing" className="w-full h-full object-contain" />
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                  <img src="/images/disappointing.svg" alt="Pretty Disappointing" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-foreground text-base mb-0.5">Pretty Disappointing</h3>
@@ -306,10 +306,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Sentiment 5: Pale Green (Worst) */}
+              {/* Sentiment 5: No Response */}
               <div className="flex flex-col items-center space-y-3 group cursor-pointer">
-                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-2">
-                  <img src="/images/face-pale-green.png" alt="Feeling Ignored" className="w-full h-full object-contain" />
+                <div className="h-20 w-20 rounded-full bg-white border border-border shadow-sm flex items-center justify-center group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden p-4">
+                  <img src="/images/no_response.svg" alt="Feeling Ignored" className="w-full h-full object-contain" />
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-foreground text-base mb-0.5">Feeling Ignored</h3>
