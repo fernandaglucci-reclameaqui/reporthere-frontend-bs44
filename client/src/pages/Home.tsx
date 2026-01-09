@@ -204,8 +204,8 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-12">
               {/* Card 1 */}
               <div className="flex flex-col items-center space-y-6 group relative">
-                <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <PenLine className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
+                <div className="h-24 w-24 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <img src="/images/icon-file-complaint.png" alt="File a Complaint" className="w-full h-full object-contain drop-shadow-md" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">File a Complaint</h3>
                 <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
@@ -220,8 +220,8 @@ export default function Home() {
 
               {/* Card 2 */}
               <div className="flex flex-col items-center space-y-6 group relative">
-                <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <BookOpen className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
+                <div className="h-24 w-24 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <img src="/images/icon-browse.jpg" alt="Browse Complaints" className="w-full h-full object-contain drop-shadow-md rounded-full" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">Browse Complaints</h3>
                 <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
@@ -236,8 +236,8 @@ export default function Home() {
 
               {/* Card 3 */}
               <div className="flex flex-col items-center space-y-6 group">
-                <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <ShieldCheck className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
+                <div className="h-24 w-24 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <img src="/images/icon-business.png" alt="For Businesses" className="w-full h-full object-contain drop-shadow-md" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">For Businesses</h3>
                 <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
