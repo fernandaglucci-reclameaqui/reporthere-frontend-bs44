@@ -159,11 +159,11 @@ export default function Home() {
             {/* Transparent Table - No bg-card, just borders */}
             <div className="w-full rounded-xl border border-border/40 overflow-hidden">
               {[
-                { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-full-logo.png", logoClass: "object-contain p-1" },
-                { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "/images/xyz-blue-logo.jpg", logoClass: "object-cover" },
-                { rank: 3, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-red-logo.png", logoClass: "object-contain p-1" },
-                { rank: 4, name: "Global Travel", category: "Travel Agency", logo: "/images/global-travel-logo.png", logoClass: "object-contain p-1" },
-                { rank: 5, name: "Fresh Foods", category: "Grocery & Retail", logo: "/images/fresh-foods-logo.png", logoClass: "object-contain p-1" },
+                { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-smile-logo.png", logoClass: "object-contain p-1" },
+                { rank: 2, name: "Maelys Cosmetics", category: "Beauty & Cosmetics", logo: "/images/maelys-logo.png", logoClass: "object-contain p-1" },
+                { rank: 3, name: "Delta Airlines", category: "Airlines", logo: "/images/delta-logo.png", logoClass: "object-contain p-1" },
+                { rank: 4, name: "Target", category: "Retail", logo: "/images/target-logo.png", logoClass: "object-contain p-1" },
+                { rank: 5, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-red-logo.png", logoClass: "object-contain p-1" },
               ].map((company, i) => (
                 <div key={i} className="flex items-center justify-between p-3 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
                   <div className="flex items-center gap-4">
@@ -172,7 +172,6 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-20 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white flex items-center justify-center">
-                        {/* Placeholder for new logos - using existing ones temporarily if files missing, but ideally would be new files */}
                         <img src={company.logo} alt={company.name} className={`w-full h-full ${company.logoClass}`} onError={(e) => {e.currentTarget.src = "/images/amazon-full-logo.png"}} />
                       </div>
                       <div className="font-bold text-base text-foreground group-hover:text-primary transition-colors">{company.name}</div>
@@ -183,9 +182,8 @@ export default function Home() {
                     {company.category}
                   </div>
                   
-                  <div className="text-lg font-extrabold text-muted-foreground/30 group-hover:text-primary transition-colors">
-                    #{company.rank}
-                  </div>
+                  {/* Removed right-side ranking numbers as requested */}
+                  <div className="w-8"></div>
                 </div>
               ))}
             </div>
@@ -198,119 +196,92 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold mb-16 text-foreground">What You Can Do Here</h2>
             
             <div className="grid md:grid-cols-3 gap-12">
-              {/* Column 1 */}
+              {/* Card 1 */}
               <div className="flex flex-col items-center space-y-6 group">
-                <div className="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-                  <Heart className="w-10 h-10 text-[#2C4A3B] stroke-[1.5]" />
+                <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <PenLine className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Share Your Story</h3>
+                <h3 className="text-xl font-bold text-foreground">File a Complaint</h3>
                 <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
-                  Your voice helps others make better choices tomorrow.
+                  Share your story openly. Help others avoid the same issues and push for better service.
                 </p>
-                <Button variant="outline" className="mt-4 border-[#2C4A3B] text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-white rounded-full px-8 font-medium transition-all duration-300">
-                  File a Complaint
+                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
+                  Start a report &rarr;
                 </Button>
               </div>
 
-              {/* Column 2 */}
+              {/* Card 2 */}
               <div className="flex flex-col items-center space-y-6 group">
-                <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-                  <BookOpen className="w-10 h-10 text-[#2C4A3B] stroke-[1.5]" />
+                <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <BookOpen className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Read Other People's Stories</h3>
+                <h3 className="text-xl font-bold text-foreground">Browse Complaints</h3>
                 <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
-                  Real stories from real people — everyday experiences that matter.
+                  Research companies before you buy. See how they treat their customers when things go wrong.
                 </p>
-                <Button variant="outline" className="mt-4 border-[#2C4A3B] text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-white rounded-full px-8 font-medium transition-all duration-300">
-                  Browse Complaints
+                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
+                  Search companies &rarr;
                 </Button>
               </div>
 
-              {/* Column 3 */}
+              {/* Card 3 */}
               <div className="flex flex-col items-center space-y-6 group">
-                <div className="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-                  <ShieldCheck className="w-10 h-10 text-[#2C4A3B] stroke-[1.5]" />
+                <div className="h-24 w-24 rounded-full bg-[#E8F5E9] flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <ShieldCheck className="h-10 w-10 text-[#2E7D32] fill-[#2E7D32]/20" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Watch Problems Get Solved</h3>
+                <h3 className="text-xl font-bold text-foreground">For Businesses</h3>
                 <p className="text-muted-foreground max-w-xs mx-auto leading-relaxed">
-                  When businesses respond with kindness, everyone wins.
+                  Claim your profile, respond to customers, and build trust by showing you care.
                 </p>
-                <Button variant="outline" className="mt-4 border-[#2C4A3B] text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-white rounded-full px-8 font-medium transition-all duration-300">
-                  For Businesses
+                <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-base">
+                  Business login &rarr;
                 </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Unified Trust & Community Section */}
-        <section className="relative min-h-[1200px] flex flex-col overflow-hidden">
-          {/* Unified Background Image */}
-          <div className="absolute inset-0 z-0">
+        {/* Trust/Community Section - Full Width Image with Green Table */}
+        <section className="relative w-full overflow-hidden">
+          {/* Container for the image and overlays */}
+          <div className="relative w-full">
+            {/* Full width image */}
             <img 
-              src="/images/couple-table-unified.png" 
-              alt="Couple talking at cafe with green table" 
-              className="w-full h-full object-cover object-center"
+              src="/images/couple-green-table.png" 
+              alt="Couple looking at laptop on green table" 
+              className="w-full h-auto object-cover block"
             />
-            {/* Left Fade for Trust Text Readability */}
-            <div className="absolute top-0 left-0 bottom-1/2 bg-gradient-to-r from-background via-background/90 to-transparent w-full md:w-2/3 lg:w-1/2"></div>
-            {/* Top Fade to blend with previous section */}
-            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent"></div>
-          </div>
-
-          {/* Trust Content (Top Left) */}
-          <div className="container relative z-10 pt-24 pb-48">
-            <div className="max-w-xl space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
-                  ReportHere is not about attacking companies. <br/>
-                  <span className="text-primary">It's about transparency.</span>
+            
+            {/* Overlay for Trust Text (Top Left) - Faded background for readability */}
+            <div className="absolute top-0 left-0 w-full md:w-1/2 h-full bg-gradient-to-r from-background/90 via-background/60 to-transparent flex flex-col justify-center px-8 md:px-16 lg:px-24">
+              <div className="max-w-md space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  This is about transparency.
                 </h2>
-                <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-primary/40 rounded-full"></div>
-              </div>
-
-              <ul className="space-y-6">
-                {[
-                  "Reports are written by real people",
-                  "Companies can respond publicly",
-                  "No paywall to share an experience",
-                  "No manipulation or visibility"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-lg font-medium text-foreground/80 group">
-                    <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shadow-sm">
-                      <CheckCircle2 className="h-5 w-5 shrink-0" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Community Content (Bottom - Over Green Table) */}
-          <div className="relative z-10 mt-auto pb-24 text-white">
-            <div className="container text-center space-y-6">
-              <h2 className="text-2xl md:text-4xl font-bold max-w-4xl mx-auto leading-tight drop-shadow-md">
-                Your experience doesn't end with you.
-              </h2>
-              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium">
-                When you share it, someone else makes a <span className="text-[#A8C5A4] font-bold underline decoration-2 underline-offset-4">better decision</span>.
-              </p>
-              
-              <div className="pt-8 pb-4">
-                <div className="bg-white rounded-lg p-8 max-w-4xl mx-auto shadow-2xl text-foreground">
-                  <p className="text-lg mb-6 font-medium text-center text-muted-foreground">Before you trust a company, see what others learned the hard way.</p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" className="bg-[#2C4A3B] hover:bg-[#1a3c28] text-white font-bold h-14 px-8 rounded-md shadow-lg w-full sm:w-auto">
-                      <Search className="h-5 w-5 mr-2" />
-                      Search a company
-                    </Button>
-                    <Button size="lg" variant="outline" className="border-2 border-input hover:bg-accent hover:text-accent-foreground font-bold h-14 px-8 rounded-md w-full sm:w-auto">
-                      <PenLine className="h-5 w-5 mr-2" />
-                      Share an experience
-                    </Button>
-                  </div>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  We believe that when companies know people are watching, they do better. And when consumers have the full picture, they choose better.
+                </p>
+                <div className="pt-4">
+                  <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary/90 hover:text-white font-bold rounded-full px-8 h-12 transition-all">
+                    Read our mission
+                  </Button>
                 </div>
+              </div>
+            </div>
+
+            {/* Overlay for Community Text (Bottom Right - On the Green Table) */}
+            <div className="absolute bottom-[10%] right-[5%] md:right-[10%] max-w-sm text-right">
+              <div className="bg-[#2C4A3B]/90 backdrop-blur-sm p-6 rounded-xl shadow-xl border border-white/10">
+                <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-end gap-2">
+                  <Users className="h-5 w-5 text-green-300" />
+                  Join the Community
+                </h3>
+                <p className="text-green-100 text-sm mb-4">
+                  Thousands of people helping each other make smarter decisions every day.
+                </p>
+                <Button size="sm" className="bg-white text-[#2C4A3B] hover:bg-green-50 font-bold w-full">
+                  Sign up free
+                </Button>
               </div>
             </div>
           </div>
