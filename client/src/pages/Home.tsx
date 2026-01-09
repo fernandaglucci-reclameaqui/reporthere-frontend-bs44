@@ -165,25 +165,25 @@ export default function Home() {
                 { rank: 4, name: "Target", category: "Retail", logo: "/images/target-logo.png", logoClass: "object-contain p-1" },
                 { rank: 5, name: "PayPal", category: "Financial Services", logo: "/images/paypal-logo.png", logoClass: "object-contain p-0.5" },
               ].map((company, i) => (
-                <div key={i} className="flex items-center justify-between p-3 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
-                  <div className="flex items-center gap-4">
-                    {/* Logo and Name (Left Side) */}
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-20 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white flex items-center justify-center">
-                        <img src={company.logo} alt={company.name} className={`w-full h-full ${company.logoClass}`} onError={(e) => {e.currentTarget.src = "/images/amazon-full-logo.png"}} />
-                      </div>
-                      <div className="font-bold text-base text-foreground group-hover:text-primary transition-colors">{company.name}</div>
+                <div key={i} className="grid grid-cols-12 items-center p-3 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
+                  {/* Logo and Name (Left Side - Spans 5 cols) */}
+                  <div className="col-span-8 md:col-span-5 flex items-center gap-3">
+                    <div className="h-10 w-20 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white flex items-center justify-center shrink-0">
+                      <img src={company.logo} alt={company.name} className={`w-full h-full ${company.logoClass}`} onError={(e) => {e.currentTarget.src = "/images/amazon-full-logo.png"}} />
                     </div>
+                    <div className="font-bold text-base text-foreground group-hover:text-primary transition-colors truncate">{company.name}</div>
                   </div>
                   
-                  {/* Category (Middle) */}
-                  <div className="hidden md:block text-muted-foreground text-xs font-medium">
+                  {/* Category (Middle - Spans 5 cols - Left Aligned) */}
+                  <div className="hidden md:flex col-span-5 text-muted-foreground text-xs font-medium justify-start pl-4">
                     {company.category}
                   </div>
                   
-                  {/* Rank Number (Right Side) */}
-                  <div className="h-8 w-8 rounded-full bg-[#E8F5E9] text-[#2E7D32] flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform shadow-sm border border-[#2E7D32]/20">
-                    #{company.rank}
+                  {/* Rank Number (Right Side - Spans 2 cols - Right Aligned) */}
+                  <div className="col-span-4 md:col-span-2 flex justify-end">
+                    <div className="h-8 w-8 rounded-full bg-[#E8F5E9] text-[#2E7D32] flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform shadow-sm border border-[#2E7D32]/20">
+                      #{company.rank}
+                    </div>
                   </div>
                 </div>
               ))}
