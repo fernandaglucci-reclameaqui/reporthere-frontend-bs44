@@ -140,7 +140,7 @@ export default function Home() {
         </section>
 
         {/* Most Searched Companies - Base Background (Reset) & No Top Padding */}
-        <section className="pb-16 pt-0 bg-background">
+        <section className="pb-8 pt-0 bg-background">
           <div className="container">
             <div className="mb-6 pt-8 flex items-end justify-between">
               <div>
@@ -190,10 +190,15 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Divider between sections */}
+        <div className="container">
+          <div className="w-full h-1 bg-[#2C4A3B] opacity-20"></div>
+        </div>
+
         {/* What You Can Do Here Section */}
-        <section className="py-20 bg-muted/10">
+        <section className="py-12 bg-muted/10">
           <div className="container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-16 text-foreground">What You Can Do Here</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-foreground">What You Can Do Here</h2>
             
             <div className="grid md:grid-cols-3 gap-12">
               {/* Card 1 */}
