@@ -142,7 +142,7 @@ export default function Home() {
         {/* Most Searched Companies - Base Background (Reset) & No Top Padding */}
         <section className="pb-6 pt-0 bg-background">
           <div className="container">
-            <div className="mb-4 pt-6 flex items-end justify-between">
+            <div className="mb-4 pt-4 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold mb-1">Most Searched Companies</h2>
                 <p className="text-muted-foreground">What people are checking right now.</p>
@@ -161,15 +161,13 @@ export default function Home() {
               {[
                 { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-smile-logo.png", logoClass: "object-contain p-1" },
                 { rank: 2, name: "Maelys Cosmetics", category: "Beauty & Cosmetics", logo: "/images/maelys-logo.png", logoClass: "object-contain p-1" },
-                { rank: 3, name: "Delta Airlines", category: "Airlines", logo: "/images/delta-logo.png", logoClass: "object-contain p-1" },
+                { rank: 3, name: "Delta Airlines", category: "Airlines", logo: "/images/delta-widget.webp", logoClass: "object-contain p-2" },
                 { rank: 4, name: "Target", category: "Retail", logo: "/images/target-logo.png", logoClass: "object-contain p-1" },
-                { rank: 5, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-red-logo.png", logoClass: "object-contain p-1" },
+                { rank: 5, name: "PayPal", category: "Financial Services", logo: "/images/paypal-logo.png", logoClass: "object-contain p-1" },
               ].map((company, i) => (
                 <div key={i} className="flex items-center justify-between p-3 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
                   <div className="flex items-center gap-4">
-                    <div className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-xs group-hover:scale-110 transition-transform shadow-md">
-                      {company.rank}
-                    </div>
+                    {/* Logo and Name (Left Side) */}
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-20 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white flex items-center justify-center">
                         <img src={company.logo} alt={company.name} className={`w-full h-full ${company.logoClass}`} onError={(e) => {e.currentTarget.src = "/images/amazon-full-logo.png"}} />
@@ -178,12 +176,15 @@ export default function Home() {
                     </div>
                   </div>
                   
+                  {/* Category (Middle) */}
                   <div className="hidden md:block text-muted-foreground text-xs font-medium">
                     {company.category}
                   </div>
                   
-                  {/* Removed right-side ranking numbers as requested */}
-                  <div className="w-8"></div>
+                  {/* Rank Number (Right Side) */}
+                  <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm group-hover:scale-110 transition-transform shadow-md">
+                    #{company.rank}
+                  </div>
                 </div>
               ))}
             </div>
