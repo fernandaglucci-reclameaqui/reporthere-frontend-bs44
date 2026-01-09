@@ -124,8 +124,8 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Divider 1 - Thicker & Toned */}
-            <div className="w-full h-[2px] bg-border/60 mb-6"></div>
+            {/* Divider 1 - Green, Thick, Balanced */}
+            <div className="w-full h-1 bg-[#2C4A3B] mb-6"></div>
 
             {/* Mission Statement */}
             <div className="text-center mb-6">
@@ -162,25 +162,28 @@ export default function Home() {
                 { rank: 1, name: "Amazon", category: "Online Retail", logo: "/images/amazon-full-logo.png", logoClass: "object-contain p-1" },
                 { rank: 2, name: "XYZ Electronics", category: "Electronics", logo: "/images/xyz-blue-logo.jpg", logoClass: "object-cover" },
                 { rank: 3, name: "ABC Movers", category: "Moving Services", logo: "/images/abc-red-logo.png", logoClass: "object-contain p-1" },
+                { rank: 4, name: "Global Travel", category: "Travel Agency", logo: "/images/global-travel-logo.png", logoClass: "object-contain p-1" },
+                { rank: 5, name: "Fresh Foods", category: "Grocery & Retail", logo: "/images/fresh-foods-logo.png", logoClass: "object-contain p-1" },
               ].map((company, i) => (
-                <div key={i} className="flex items-center justify-between p-4 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
+                <div key={i} className="flex items-center justify-between p-3 border-b border-border/20 last:border-0 hover:bg-primary/5 transition-colors group cursor-pointer">
                   <div className="flex items-center gap-4">
-                    <div className="h-8 w-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm group-hover:scale-110 transition-transform shadow-md">
+                    <div className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-xs group-hover:scale-110 transition-transform shadow-md">
                       {company.rank}
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="h-12 w-24 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white flex items-center justify-center">
-                        <img src={company.logo} alt={company.name} className={`w-full h-full ${company.logoClass}`} />
+                      <div className="h-10 w-20 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white flex items-center justify-center">
+                        {/* Placeholder for new logos - using existing ones temporarily if files missing, but ideally would be new files */}
+                        <img src={company.logo} alt={company.name} className={`w-full h-full ${company.logoClass}`} onError={(e) => {e.currentTarget.src = "/images/amazon-full-logo.png"}} />
                       </div>
-                      <div className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">{company.name}</div>
+                      <div className="font-bold text-base text-foreground group-hover:text-primary transition-colors">{company.name}</div>
                     </div>
                   </div>
                   
-                  <div className="hidden md:block text-muted-foreground text-sm font-medium">
+                  <div className="hidden md:block text-muted-foreground text-xs font-medium">
                     {company.category}
                   </div>
                   
-                  <div className="text-xl font-extrabold text-muted-foreground/30 group-hover:text-primary transition-colors">
+                  <div className="text-lg font-extrabold text-muted-foreground/30 group-hover:text-primary transition-colors">
                     #{company.rank}
                   </div>
                 </div>
