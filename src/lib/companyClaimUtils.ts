@@ -3,7 +3,7 @@
  * Helper functions for checking claim status and credits
  */
 
-import { supabase } from './supabase';
+import { supabase } from '../api/supabaseClient';
 
 export interface CompanyClaim {
   id: string;
