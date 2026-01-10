@@ -349,15 +349,18 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
+            </div>
 
-              {/* Right: Community Card (Floating) */}
-              <div className="mt-8 md:mt-0 max-w-sm w-full">
-                <div className="bg-[#2C4A3B]/95 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-white/10 transform md:translate-y-12">
-                  <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-end gap-2">
+            {/* Bottom Content Area (Over Green Table) */}
+            <div className="relative z-10 w-full flex flex-col items-center justify-end pb-12 pt-32 md:pt-48 px-4 space-y-8">
+              {/* Community Card (Centered) */}
+              <div className="max-w-sm w-full">
+                <div className="bg-[#2C4A3B]/95 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-white/10">
+                  <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-center gap-2">
                     <Users className="h-5 w-5 text-green-300" />
                     Join the Community
                   </h3>
-                  <p className="text-green-100 text-sm mb-4 text-right">
+                  <p className="text-green-100 text-sm mb-4 text-center">
                     Thousands of people helping each other make smarter decisions every day.
                   </p>
                   <Button size="sm" className="bg-white text-[#2C4A3B] hover:bg-green-50 font-bold w-full h-10">
@@ -365,16 +368,15 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
-            </div>
 
-            {/* Bottom Content Area (Over Green Table) */}
-            <div className="relative z-10 w-full text-center pb-12 pt-32 md:pt-48 px-4">
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 drop-shadow-md">
-                Your experience doesn't end with you.
-              </h3>
-              <p className="text-white/90 text-sm md:text-base drop-shadow-md max-w-2xl mx-auto">
-                When you share it, someone else makes a better decision.
-              </p>
+              <div className="text-center">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 drop-shadow-md">
+                  Your experience doesn't end with you.
+                </h3>
+                <p className="text-white/90 text-sm md:text-base drop-shadow-md max-w-2xl mx-auto">
+                  When you share it, someone else makes a better decision.
+                </p>
+              </div>
             </div>
           </div>
         </section>
