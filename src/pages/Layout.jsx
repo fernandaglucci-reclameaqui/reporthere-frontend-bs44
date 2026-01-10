@@ -1,27 +1,20 @@
-
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { createPageUrl } from "@/utils";
+import { createPageUrl } from "@/utils/index";
 import { User } from "@/api/entities";
 import { Notification } from "@/api/entities";
 import {
   Shield,
-  FileText,
-  Building2,
-  Settings,
-  User as UserIcon,
   Menu,
   X,
-  LogOut,
   Search,
   ChevronDown,
   Bell,
+  LogOut,
+  User as UserIcon,
+  Settings,
   BriefcaseBusiness,
-  UploadCloud,
-  Send,
-  CreditCard,
-  AlertCircle // Added for ErrorBoundary
+  AlertCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,42 +31,35 @@ class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false, error: null };
-    // Bind handlers for global errors
     this.handleGlobalError = this.handleGlobalError.bind(this);
     this.handleGlobalRejection = this.handleGlobalRejection.bind(this);
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
     return { hasError: true, error };
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
     console.error("Uncaught error (React lifecycle):", error, errorInfo);
   }
 
   componentDidMount() {
-    // Add global error listeners
     window.addEventListener("error", this.handleGlobalError);
     window.addEventListener("unhandledrejection", this.handleGlobalRejection);
   }
 
   componentWillUnmount() {
-    // Clean up global error listeners
     window.removeEventListener("error", this.handleGlobalError);
     window.removeEventListener("unhandledrejection", this.handleGlobalRejection);
   }
 
   handleGlobalError(event) {
-    // Prevent default error handling to allow ErrorBoundary to manage display
     event.preventDefault();
     console.error("Uncaught error (Global):", event.error || event.message || event);
     this.setState({ hasError: true, error: event.error || new Error(event.message || 'An unknown global error occurred.') });
   }
 
   handleGlobalRejection(event) {
-    // Prevent default rejection handling to allow ErrorBoundary to manage display
     event.preventDefault();
     console.error("Uncaught promise rejection (Global):", event.reason);
     this.setState({ hasError: true, error: event.reason || new Error('An unhandled promise rejection occurred.') });
@@ -114,7 +100,6 @@ export default function Layout({ children, currentPageName }) {
   const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
-    // STAGING ONLY BOOT BEACON
     console.log("[BOOT] main.tsx executing");
     if (!document.getElementById('boot-beacon')) {
         document.body.insertAdjacentHTML(
@@ -122,14 +107,9 @@ export default function Layout({ children, currentPageName }) {
           '<div id="boot-beacon" style="position:fixed;z-index:99999;top:4px;left:4px;padding:4px 6px;background:#111;color:#fff;font:12px/1.2 system-ui;border-radius:4px">BOOT</div>'
         );
     }
-    // Global error listeners are now handled by the ErrorBoundary component itself.
-    // Removed redundant listeners from here to avoid conflicts and simplify Layout.
-    return () => {
-      // No specific cleanup needed here for the boot beacon element.
-    };
+    return () => {};
   }, []);
 
-  // Add favicon to head - SHIELD ONLY
   useEffect(() => {
     let favicon = document.querySelector('link[rel="icon"]');
     if (!favicon) {
@@ -145,10 +125,9 @@ export default function Layout({ children, currentPageName }) {
     try {
       const currentUser = await User.me();
       setUser(currentUser);
-      // Re-enable notification fetching with the fix
       if (currentUser && currentUser.email) {
-        const allUserNotifications = await Notification.filter({ user_email: currentUser.email }, '-created_date', 100); // Fetch more to accurately count unread
-        const recentNotifications = allUserNotifications.slice(0, 5); // Display only recent 5 in dropdown
+        const allUserNotifications = await Notification.filter({ user_email: currentUser.email }, '-created_date', 100);
+        const recentNotifications = allUserNotifications.slice(0, 5);
         const userUnreadCount = allUserNotifications.filter(n => !n.read_at).length;
         
         setNotifications(recentNotifications);
@@ -162,16 +141,13 @@ export default function Layout({ children, currentPageName }) {
       setUser(null);
       setNotifications([]);
       setUnreadCount(0);
-      // Note: For errors occurring within async operations that are not explicitly awaited
-      // and whose promises are not handled, window.onunhandledrejection would typically catch them.
-      // With the ErrorBoundary now listening globally, such errors would trigger the fallback UI.
     }
     setLoading(false);
   };
 
   useEffect(() => {
     fetchUserData();
-  }, [location.pathname, location.search]); // More specific dependency
+  }, [location.pathname, location.search]);
 
   const handleLogout = async () => {
     try {
@@ -180,15 +156,23 @@ export default function Layout({ children, currentPageName }) {
       navigate(createPageUrl("home"));
     } catch (error) {
       console.error('Logout failed:', error);
-      // Force logout even if API call fails
       setUser(null);
       navigate(createPageUrl("home"));
     }
   };
 
   const handleLogin = async () => {
-    // Using loginWithRedirect is more robust for session handling after login.
     await User.loginWithRedirect(window.location.href);
+  };
+
+  const handleNotificationClick = async (notification) => {
+    if (!notification.read_at) {
+        await Notification.update(notification.id, { read_at: new Date().toISOString() });
+        fetchUserData();
+    }
+    if (notification.link_url) {
+        navigate(notification.link_url);
+    }
   };
 
   if (loading) {
@@ -198,492 +182,259 @@ export default function Layout({ children, currentPageName }) {
       </div>
     );
   }
-  
-  const handleNotificationClick = async (notification) => {
-    if (!notification.read_at) {
-        await Notification.update(notification.id, { read_at: new Date().toISOString() });
-        fetchUserData(); // Re-fetch to update count
-    }
-    if (notification.link_url) {
-        navigate(notification.link_url);
-    }
-  };
 
   return (
     <ErrorBoundary>
-        <style>{`
-            /* Staging only CSS sanity */
-            * { color: inherit; }
-            body { background: #fff; color: #111; }
-            #root { min-height: 100vh; }
-
-            label.required::after {
-                content: " *";
-                font-size: 14px;
-                font-weight: 700;
-                color: #d92d20;
-                margin-left: 2px;
-            }
-            *:focus-visible {
-                outline: 3px solid rgba(59,130,246,.6) !important;
-                outline-offset: 2px !important;
-                border-color: transparent !important;
-                box-shadow: none !important;
-            }
-            .btn-primary:hover { 
-                filter: brightness(0.95); 
-            }
-        `}</style>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-background flex flex-col font-body">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-                {/* Logo - SHIELD ONLY */}
-                <Link to={createPageUrl("home")} className="flex items-center gap-2">
+        <header className="bg-white border-b border-border sticky top-0 z-50 h-24 flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-full">
+              {/* Logo */}
+              <Link to={createPageUrl("home")} className="flex items-center gap-2">
                 <img 
-                    src="/reporthere-logo.png" 
-                    alt="ReportHere Logo" 
-                    className="h-20 w-auto"
+                  src="/reporthere_logo_concept_shield-1-e1758248341227.png" 
+                  alt="ReportHere Logo" 
+                  className="h-24 w-auto object-contain"
                 />
-                </Link>
+              </Link>
 
-                {/* Main Navigation (Desktop) */}
-                <nav className="hidden lg:flex items-center space-x-1">
-                <Link
-                    to={createPageUrl("companies")}
-                    className="text-gray-700 hover:text-green-700 hover:bg-green-50 font-medium text-lg px-4 py-2 rounded-lg transition-colors"
-                >
-                    Companies
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex items-center space-x-8">
+                <Link to={createPageUrl("companies")} className="text-foreground hover:text-primary font-medium text-lg transition-colors">
+                  Companies
                 </Link>
-
+                
                 <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="text-gray-700 hover:text-green-700 hover:bg-green-50 font-medium text-lg px-4 py-2">
-                        Categories
-                        <ChevronDown className="w-4 h-4 ml-1" />
-                    </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center text-foreground hover:text-primary font-medium text-lg transition-colors focus:outline-none">
+                      Categories <ChevronDown className="w-4 h-4 ml-1" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
                     <DropdownMenuItem asChild>
-                        <Link to={createPageUrl("companies?category=technology")}>Technology</Link>
+                      <Link to={createPageUrl("companies?category=technology")}>Technology</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                        <Link to={createPageUrl("companies?category=retail")}>Retail</Link>
+                      <Link to={createPageUrl("companies?category=retail")}>Retail</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                        <Link to={createPageUrl("companies?category=finance")}>Finance</Link>
+                      <Link to={createPageUrl("companies?category=services")}>Services</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link to={createPageUrl("companies?category=healthcare")}>Healthcare</Link>
-                    </DropdownMenuItem>
-                    </DropdownMenuContent>
+                  </DropdownMenuContent>
                 </DropdownMenu>
 
-                <Link
-                    to={createPageUrl("blog")}
-                    className="text-gray-700 hover:text-green-700 hover:bg-green-50 font-medium text-lg px-4 py-2 rounded-lg transition-colors"
-                >
-                    Blog
+                <Link to={createPageUrl("blog")} className="text-foreground hover:text-primary font-medium text-lg transition-colors">
+                  Blog
                 </Link>
-
-                <Link
-                    to={createPageUrl("about")}
-                    className="text-gray-700 hover:text-green-700 hover:bg-green-50 font-medium text-lg px-4 py-2 rounded-lg transition-colors"
-                >
-                    About
+                <Link to={createPageUrl("about")} className="text-foreground hover:text-primary font-medium text-lg transition-colors">
+                  About
                 </Link>
+              </nav>
 
-                {/* Admin Dashboard Link - Visible only for admin users on desktop */}
-                {user && user.user_type === 'admin' && (
-                    <Link
-                    to={createPageUrl("admin-dashboard")}
-                    className="text-gray-700 hover:text-green-700 hover:bg-green-50 font-medium text-lg flex items-center gap-2 px-4 py-2 rounded-lg transition-colors"
-                    >
-                    <BriefcaseBusiness className="w-5 h-5" />
-                    Admin
-                    </Link>
-                )}
-                </nav>
-
-                {/* Primary CTAs - File Complaint & For Businesses */}
-                <div className="hidden lg:flex items-center gap-3">
-                <Link to={createPageUrl("filecomplaint")}>
-                    <Button className="bg-green-600 hover:bg-green-700 text-white font-medium">
-                    File a Complaint
-                    </Button>
+              {/* Desktop Actions */}
+              <div className="hidden lg:flex items-center space-x-4">
+                <Link to={createPageUrl("for-consumers")}>
+                  <Button variant="ghost" className="text-foreground hover:text-primary font-medium text-base">
+                    For Consumers
+                  </Button>
                 </Link>
                 <Link to={createPageUrl("for-businesses")}>
-                    <Button variant="outline" className="font-medium">
+                  <Button variant="ghost" className="text-foreground hover:text-primary font-medium text-base">
                     For Businesses
-                    </Button>
+                  </Button>
                 </Link>
-                </div>
 
-                {/* Auth Buttons and User Menu */}
-                <div className="flex items-center gap-3">
                 {user ? (
-                    <>
-                    {/* Notification dropdown */}
+                  <div className="flex items-center gap-4">
+                    {/* Notifications */}
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="relative hidden lg:flex">
-                            <Bell className="w-5 h-5 text-gray-700 hover:text-green-600" />
-                            {unreadCount > 0 && (
-                            <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs font-medium text-white">
-                                {unreadCount > 9 ? '9+' : unreadCount}
-                            </span>
-                            )}
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="relative">
+                          <Bell className="h-5 w-5" />
+                          {unreadCount > 0 && (
+                            <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full" />
+                          )}
                         </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-80">
-                        <DropdownMenuLabel className="font-semibold">Notifications</DropdownMenuLabel>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-80">
+                        <DropdownMenuLabel>Notifications</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        {notifications.length > 0 ? (
-                            notifications.map(n => (
-                            <DropdownMenuItem key={n.id} onSelect={() => handleNotificationClick(n)} className={`cursor-pointer ${!n.read_at ? 'bg-green-50' : ''}`}>
-                                <div className="flex items-start gap-2 py-1">
-                                    {!n.read_at && <div className="mt-1 h-2 w-2 rounded-full bg-green-500 shrink-0" />}
-                                    <div className="flex-1">
-                                        <p className="text-sm font-medium leading-snug">{n.title}</p>
-                                        <p className="text-xs text-gray-500 mt-1">
-                                            {formatDistanceToNow(new Date(n.created_date), { addSuffix: true })}
-                                        </p>
-                                    </div>
-                                </div>
-                            </DropdownMenuItem>
-                            ))
+                        {notifications.length === 0 ? (
+                          <div className="p-4 text-center text-sm text-muted-foreground">
+                            No new notifications
+                          </div>
                         ) : (
-                            <p className="px-2 py-4 text-center text-sm text-gray-500">No new notifications.</p>
+                          notifications.map((notification) => (
+                            <DropdownMenuItem 
+                              key={notification.id} 
+                              className={`cursor-pointer ${!notification.read_at ? 'bg-muted/50' : ''}`}
+                              onClick={() => handleNotificationClick(notification)}
+                            >
+                              <div className="flex flex-col gap-1">
+                                <span className="font-medium">{notification.title}</span>
+                                <span className="text-xs text-muted-foreground">{notification.message}</span>
+                                <span className="text-[10px] text-muted-foreground">
+                                  {formatDistanceToNow(new Date(notification.created_date), { addSuffix: true })}
+                                </span>
+                              </div>
+                            </DropdownMenuItem>
+                          ))
                         )}
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                            <Link to={createPageUrl("Notifications")} className="justify-center">View all notifications</Link>
+                          <Link to={createPageUrl("notifications")} className="w-full text-center block">
+                            View all notifications
+                          </Link>
                         </DropdownMenuItem>
-                        </DropdownMenuContent>
+                      </DropdownMenuContent>
                     </DropdownMenu>
 
+                    {/* User Menu */}
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
+                      <DropdownMenuTrigger asChild>
                         <Button variant="ghost" className="flex items-center gap-2">
-                            <UserIcon className="w-5 h-5" />
-                            <span className="hidden sm:inline">{user.full_name?.split(' ')[0] || user.email}</span>
+                          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <UserIcon className="h-4 w-4 text-primary" />
+                          </div>
+                          <span className="hidden xl:inline-block max-w-[100px] truncate">
+                            {user.email}
+                          </span>
+                          <ChevronDown className="h-4 w-4 text-muted-foreground" />
                         </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-56">
-                        <div className="px-2 py-1.5">
-                            <p className="font-semibold">{user.full_name}</p>
-                            <p className="text-sm text-gray-500 truncate">{user.email}</p>
-                        </div>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-56">
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-
-                        {/* User Dashboard */}
                         <DropdownMenuItem asChild>
-                            <Link to={createPageUrl("dashboard")}>
-                            <FileText className="w-4 h-4 mr-2" />
-                            My Dashboard
-                            </Link>
+                          <Link to={createPageUrl("userprofile")}>
+                            <UserIcon className="mr-2 h-4 w-4" /> Profile
+                          </Link>
                         </DropdownMenuItem>
-
-                        {/* Notifications */}
                         <DropdownMenuItem asChild>
-                            <Link to={createPageUrl("Notifications")} className="flex items-center">
-                            <Bell className="w-4 h-4 mr-2" />
-                            Notifications
-                            {unreadCount > 0 && <span className="ml-auto text-xs bg-red-500 text-white rounded-full px-2 py-0.5">{unreadCount}</span>}
-                            </Link>
+                          <Link to={createPageUrl("dashboard")}>
+                            <BriefcaseBusiness className="mr-2 h-4 w-4" /> Dashboard
+                          </Link>
                         </DropdownMenuItem>
-
-                        {/* Conditional Dashboard/Inbox Links for specific user types */}
-                        {user.user_type === 'consumer' && (
-                            <DropdownMenuItem asChild>
-                            <Link to={createPageUrl("dashboard")}>
-                                <FileText className="w-4 h-4 mr-2" />
-                                My Complaints
-                            </Link>
-                            </DropdownMenuItem>
-                        )}
-                        {user.user_type === 'business' && (
-                            <>
-                            <DropdownMenuItem asChild>
-                                <Link to={createPageUrl("business-dashboard")}>
-                                <Building2 className="w-4 h-4 mr-2" />
-                                Business Dashboard
-                                </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to={createPageUrl("company-inbox")}>
-                                <FileText className="w-4 h-4 mr-2" />
-                                Company Inbox
-                                </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to={createPageUrl("billing")}>
-                                <CreditCard className="w-4 h-4 mr-2" />
-                                Billing
-                                </Link>
-                            </DropdownMenuItem>
-                            </>
-                        )}
-
-                        {/* Admin Dashboard */}
-                        {user.user_type === 'admin' && (
-                            <>
-                            <DropdownMenuItem asChild>
-                                <Link to={createPageUrl("admin-dashboard")}>
-                                <BriefcaseBusiness className="w-4 h-4 mr-2" />
-                                Admin Dashboard
-                                </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to={createPageUrl("data-import")}>
-                                <UploadCloud className="w-4 h-4 mr-2" />
-                                Data Import
-                                </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to={createPageUrl("run-notifications")}>
-                                <Send className="w-4 h-4 mr-2" />
-                                Run Notifications
-                                </Link>
-                            </DropdownMenuItem>
-                            </>
-                        )}
-
+                        <DropdownMenuItem asChild>
+                          <Link to={createPageUrl("settings")}>
+                            <Settings className="mr-2 h-4 w-4" /> Settings
+                          </Link>
+                        </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:bg-red-50 focus:text-red-700">
-                            <LogOut className="w-4 h-4 mr-2" />
-                            Logout
+                        <DropdownMenuItem onClick={handleLogout} className="text-red-600">
+                          <LogOut className="mr-2 h-4 w-4" /> Log out
                         </DropdownMenuItem>
-                        </DropdownMenuContent>
+                      </DropdownMenuContent>
                     </DropdownMenu>
-                    
-                    {/* Temporary logout button - visible fix while debugging dropdown */}
-                    <Button 
-                        variant="ghost" 
-                        size="sm"
-                        onClick={handleLogout} 
-                        className="text-red-600 hover:bg-red-50 hover:text-red-700 ml-2"
-                        title="Logout"
-                    >
-                        <LogOut className="w-4 h-4" />
-                    </Button>
-                    </>
+                  </div>
                 ) : (
-                    <Button variant="outline" onClick={handleLogin} className="hover:bg-gray-100">
-                        Login
-                    </Button>
+                  <Button 
+                    onClick={handleLogin}
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 rounded-full"
+                  >
+                    Login
+                  </Button>
                 )}
+              </div>
 
-                {/* Mobile menu button */}
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="lg:hidden"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {/* Mobile Menu Button */}
+              <div className="lg:hidden">
+                <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                  {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                 </Button>
-                </div>
+              </div>
             </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden py-4 border-t">
-              <div className="space-y-2">
-                {!user && (
-                  <>
-                    <Link
-                      to={createPageUrl("filecomplaint")}
-                      className="block px-4 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg mx-4 text-center font-medium"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      File a Complaint
-                    </Link>
-                    <Link
-                      to={createPageUrl("for-businesses")}
-                      className="block px-4 py-2 text-green-600 border border-green-600 hover:bg-green-50 rounded-lg mx-4 text-center font-medium"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      For Businesses
-                    </Link>
-                  </>
-                )}
-                <Link
-                  to={createPageUrl("companies")}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Browse Companies
-                </Link>
-                <Link
-                  to={createPageUrl("ClaimProfile")}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Claim Your Profile
-                </Link>
-                <Link
-                  to={createPageUrl("blog")}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Blog
-                </Link>
-                <Link
-                  to={createPageUrl("about")}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About
-                </Link>
-
-                {/* Conditional Mobile Links for logged-in users */}
-                {user && (
-                  <>
-                    <Link
-                      to={createPageUrl("dashboard")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      My Dashboard
-                    </Link>
-                    <Link
-                      to={createPageUrl("Notifications")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Notifications
-                      {unreadCount > 0 && <span className="ml-2 text-xs bg-red-500 text-white rounded-full px-2 py-0.5">{unreadCount}</span>}
-                    </Link>
-                  </>
-                )}
-
-                {user && user.user_type === 'consumer' && (
-                  <Link
-                    to={createPageUrl("dashboard")}
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    My Complaints
+            <div className="lg:hidden absolute top-24 left-0 w-full bg-white border-b border-border shadow-lg py-4 px-4 flex flex-col space-y-4">
+              <Link to={createPageUrl("companies")} className="text-lg font-medium text-foreground" onClick={() => setMobileMenuOpen(false)}>Companies</Link>
+              <Link to={createPageUrl("blog")} className="text-lg font-medium text-foreground" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
+              <Link to={createPageUrl("about")} className="text-lg font-medium text-foreground" onClick={() => setMobileMenuOpen(false)}>About</Link>
+              <div className="h-px bg-border my-2" />
+              <Link to={createPageUrl("for-consumers")} className="text-base font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>For Consumers</Link>
+              <Link to={createPageUrl("for-businesses")} className="text-base font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>For Businesses</Link>
+              <div className="h-px bg-border my-2" />
+              {user ? (
+                <>
+                  <Link to={createPageUrl("userprofile")} className="flex items-center gap-2 text-base font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    <UserIcon className="h-4 w-4" /> Profile
                   </Link>
-                )}
-                {user && user.user_type === 'business' && (
-                  <>
-                    <Link
-                      to={createPageUrl("business-dashboard")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Business Dashboard
-                    </Link>
-                    <Link
-                      to={createPageUrl("company-inbox")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Company Inbox
-                    </Link>
-                    <Link
-                      to={createPageUrl("billing")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Billing
-                    </Link>
-                  </>
-                )}
-                {user && user.user_type === 'admin' && (
-                  <>
-                    <Link
-                      to={createPageUrl("admin-dashboard")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Admin Dashboard
-                    </Link>
-                    <Link
-                      to={createPageUrl("data-import")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Data Import
-                    </Link>
-                    <Link
-                      to={createPageUrl("run-notifications")}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Run Notifications
-                    </Link>
-                  </>
-                )}
-              </div>
+                  <Link to={createPageUrl("dashboard")} className="flex items-center gap-2 text-base font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    <BriefcaseBusiness className="h-4 w-4" /> Dashboard
+                  </Link>
+                  <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="flex items-center gap-2 text-base font-medium text-red-600 text-left">
+                    <LogOut className="h-4 w-4" /> Log out
+                  </button>
+                </>
+              ) : (
+                <Button onClick={() => { handleLogin(); setMobileMenuOpen(false); }} className="w-full bg-primary text-primary-foreground rounded-full">
+                  Login
+                </Button>
+              )}
             </div>
           )}
         </header>
 
         {/* Main Content */}
-        <main className="flex-1">
+        <main className="flex-grow">
           {children}
         </main>
 
         {/* Footer */}
-        <footer className="bg-white border-t border-gray-200 mt-12">
-          <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-              {/* About Column */}
+        <footer className="bg-white border-t border-border py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {/* Brand */}
+              <div className="col-span-1 md:col-span-1">
+                <Link to={createPageUrl("home")} className="flex items-center gap-2 mb-4">
+                  <Shield className="h-8 w-8 text-primary fill-current" />
+                  <span className="text-xl font-bold text-foreground">ReportHere</span>
+                </Link>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Building trust through transparency. Read real reviews, share your experiences, and help others make better decisions.
+                </p>
+              </div>
+
+              {/* Links */}
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">About</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li><Link to={createPageUrl("about")} className="hover:text-emerald-600 transition-colors">About Us</Link></li>
+                <h4 className="font-bold text-foreground mb-4">Platform</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link to={createPageUrl("about")} className="hover:text-primary transition-colors">About Us</Link></li>
+                  <li><Link to={createPageUrl("companies")} className="hover:text-primary transition-colors">Browse Companies</Link></li>
+                  <li><Link to={createPageUrl("blog")} className="hover:text-primary transition-colors">Blog</Link></li>
+                  <li><Link to={createPageUrl("careers")} className="hover:text-primary transition-colors">Careers</Link></li>
                 </ul>
               </div>
-              
-              {/* For Users Column */}
+
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">For Users</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li><Link to={createPageUrl("for-consumers")} className="hover:text-emerald-600 transition-colors">For Consumers</Link></li>
-                  <li><Link to={createPageUrl("for-businesses")} className="hover:text-emerald-600 transition-colors">For Businesses</Link></li>
+                <h4 className="font-bold text-foreground mb-4">Community</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link to={createPageUrl("guidelines")} className="hover:text-primary transition-colors">Community Guidelines</Link></li>
+                  <li><Link to={createPageUrl("trust")} className="hover:text-primary transition-colors">Trust & Safety</Link></li>
+                  <li><Link to={createPageUrl("help")} className="hover:text-primary transition-colors">Help Center</Link></li>
+                  <li><Link to={createPageUrl("contact")} className="hover:text-primary transition-colors">Contact Us</Link></li>
                 </ul>
               </div>
-              
-              {/* Support Column */}
+
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Support</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li><Link to={createPageUrl("faq")} className="hover:text-emerald-600 transition-colors">FAQ</Link></li>
-                  <li><Link to={createPageUrl("contact")} className="hover:text-emerald-600 transition-colors">Contact</Link></li>
-                </ul>
-              </div>
-              
-              {/* Legal Column */}
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Legal</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li><Link to={createPageUrl("terms")} className="hover:text-emerald-600 transition-colors">Terms of Service</Link></li>
-                  <li><Link to={createPageUrl("privacy")} className="hover:text-emerald-600 transition-colors">Privacy Policy</Link></li>
-                  <li><Link to={createPageUrl("legal-disclaimer")} className="hover:text-emerald-600 transition-colors">Legal Disclaimer</Link></li>
+                <h4 className="font-bold text-foreground mb-4">Legal</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link to={createPageUrl("terms")} className="hover:text-primary transition-colors">Terms of Service</Link></li>
+                  <li><Link to={createPageUrl("privacy")} className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                  <li><Link to={createPageUrl("cookie")} className="hover:text-primary transition-colors">Cookie Policy</Link></li>
                 </ul>
               </div>
             </div>
             
-            <div className="border-t border-gray-200 pt-6 text-center">
-              <div className="mb-3">
-                <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full mb-2">BETA</span>
-                <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-                  ReportHere is currently in beta. We're actively improving the platform and welcome your feedback.
-                </p>
-              </div>
-              <div className="text-sm text-gray-600 mb-2">
-                <p className="italic">
-                  ReportHere is an independent platform and is not affiliated with, endorsed by, or connected to any similar complaint or reputation management platforms.
-                </p>
-              </div>
-              <div className="text-sm text-gray-600">
-                &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
+            <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-muted-foreground">
+                © {new Date().getFullYear()} ReportHere. All rights reserved.
+              </p>
+              <div className="flex items-center gap-6">
+                {/* Social icons could go here */}
               </div>
             </div>
           </div>
@@ -692,4 +443,3 @@ export default function Layout({ children, currentPageName }) {
     </ErrorBoundary>
   );
 }
-
