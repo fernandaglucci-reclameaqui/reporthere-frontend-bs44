@@ -43,7 +43,7 @@ export default function Home() {
       <section className="relative bg-hug-gradient pt-20 pb-32 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="max-w-2xl">
+            <div className="max-w-2xl pr-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-foreground leading-tight mb-6">
                 Check first. <br />
                 <span className="text-primary">Speak up</span> if something went wrong.

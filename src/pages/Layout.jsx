@@ -101,12 +101,6 @@ export default function Layout({ children, currentPageName }) {
 
   useEffect(() => {
     console.log("[BOOT] main.tsx executing");
-    if (!document.getElementById('boot-beacon')) {
-        document.body.insertAdjacentHTML(
-          "afterbegin",
-          '<div id="boot-beacon" style="position:fixed;z-index:99999;top:4px;left:4px;padding:4px 6px;background:#111;color:#fff;font:12px/1.2 system-ui;border-radius:4px">BOOT</div>'
-        );
-    }
     return () => {};
   }, []);
 
@@ -191,7 +185,7 @@ export default function Layout({ children, currentPageName }) {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-full">
               {/* Logo */}
-              <Link to={createPageUrl("home")} className="flex items-center gap-3">
+              <Link to={createPageUrl("home")} className="flex items-center gap-3 mr-12">
                 <img 
                   src="/images/logo-shield-check.png" 
                   alt="ReportHere Logo" 
