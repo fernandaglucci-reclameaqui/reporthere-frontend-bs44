@@ -5,16 +5,33 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-
+import Placeholder from "./pages/Placeholder";
+import Layout from "./components/Layout";
 
 function Router() {
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/companies" component={Placeholder} />
+        <Route path="/categories" component={Placeholder} />
+        <Route path="/blog" component={Placeholder} />
+        <Route path="/about" component={Placeholder} />
+        <Route path="/consumers" component={Placeholder} />
+        <Route path="/businesses" component={Placeholder} />
+        <Route path="/login" component={Placeholder} />
+        <Route path="/search" component={Placeholder} />
+        <Route path="/reviews" component={Placeholder} />
+        <Route path="/business/claim" component={Placeholder} />
+        <Route path="/business/plans" component={Placeholder} />
+        <Route path="/business/resources" component={Placeholder} />
+        <Route path="/business/contact" component={Placeholder} />
+        <Route path="/careers" component={Placeholder} />
+        <Route path="/legal/privacy" component={Placeholder} />
+        <Route path="/legal/terms" component={Placeholder} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   );
 }
 
