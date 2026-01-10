@@ -191,12 +191,13 @@ export default function Layout({ children, currentPageName }) {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-full">
               {/* Logo */}
-              <Link to={createPageUrl("home")} className="flex items-center gap-2">
+              <Link to={createPageUrl("home")} className="flex items-center gap-3">
                 <img 
-                  src="/reporthere_logo_concept_shield-1-e1758248341227.png" 
+                  src="/images/logo-shield-check.png" 
                   alt="ReportHere Logo" 
-                  className="h-24 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
+                <span className="text-2xl font-bold text-slate-900 tracking-tight">ReportHere</span>
               </Link>
 
               {/* Desktop Navigation */}

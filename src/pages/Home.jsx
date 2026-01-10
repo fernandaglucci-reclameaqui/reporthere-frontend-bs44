@@ -146,7 +146,7 @@ export default function Home() {
       </section>
 
       {/* Trust/Transparency Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-24 overflow-hidden bg-white">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
