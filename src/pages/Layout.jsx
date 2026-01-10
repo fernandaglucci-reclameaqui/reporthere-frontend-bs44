@@ -117,7 +117,10 @@ export default function Layout({ children, currentPageName }) {
 
   const fetchUserData = async () => {
     try {
-      const currentUser = await User.me();
+      // Add a timeout to prevent infinite loading
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Request timed out')), 5000));
+      const currentUser = await Promise.race([User.me(), timeoutPromise]);
+      
       setUser(currentUser);
       if (currentUser && currentUser.email) {
         const allUserNotifications = await Notification.filter({ user_email: currentUser.email }, '-created_date', 100);
@@ -178,7 +181,7 @@ export default function Layout({ children, currentPageName }) {
   }
 
   return (
-    <ErrorBoundary>
+    // <ErrorBoundary>
       <div className="min-h-screen bg-background flex flex-col font-body">
         {/* Header */}
         <header className="bg-white border-b border-border sticky top-0 z-50 h-24 flex items-center">
@@ -435,6 +438,6 @@ export default function Layout({ children, currentPageName }) {
           </div>
         </footer>
       </div>
-    </ErrorBoundary>
+    // </ErrorBoundary>
   );
 }

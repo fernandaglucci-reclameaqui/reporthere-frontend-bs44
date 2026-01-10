@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
+  console.log("Home component rendering...");
   const [recentComplaints, setRecentComplaints] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
