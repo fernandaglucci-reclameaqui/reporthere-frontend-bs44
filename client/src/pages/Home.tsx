@@ -9,7 +9,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
         <div className="container flex h-28 items-center justify-between">
           <div className="flex items-center">
-            <img src="/images/logo-full.png" alt="ReportHere" className="h-24 w-auto object-contain" />
+            <img src="/images/logo-official.png" alt="ReportHere" className="h-24 w-auto object-contain" />
           </div>
           
           <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-gray-600">
