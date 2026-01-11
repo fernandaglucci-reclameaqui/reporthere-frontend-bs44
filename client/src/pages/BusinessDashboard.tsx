@@ -194,15 +194,29 @@ export default function BusinessDashboard() {
                         <h4 className="font-medium text-gray-900">Shipping Delay on Order #12345</h4>
                         <span className="text-xs text-gray-500">2h ago</span>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">
-                        Customer is complaining about a 3-day delay in their express shipping...
-                      </p>
+                      
+                      {/* AI Summarization Stub (Req #4) */}
+                      <div className="bg-slate-50 p-2 rounded-md mb-2 border border-slate-100">
+                        <p className="text-xs text-slate-500 flex items-center gap-1 mb-1">
+                          <Star className="h-3 w-3 text-indigo-500" /> 
+                          <span className="font-semibold text-indigo-600">AI Summary:</span>
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Customer is frustrated due to a 3-day delay in express shipping. Requesting immediate refund of shipping fees.
+                        </p>
+                      </div>
+
                       <div className="flex gap-2">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                          Shipping
+                        {/* AI Categorization Stub (Req #2) */}
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100">
+                          <Star className="h-3 w-3 mr-1" />
+                          Category: Shipping
                         </span>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                          High Priority
+                        
+                        {/* AI Severity Flagging Stub (Req #3) */}
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-700 border border-red-100">
+                          <AlertCircle className="h-3 w-3 mr-1" />
+                          Severity: High
                         </span>
                       </div>
                     </div>

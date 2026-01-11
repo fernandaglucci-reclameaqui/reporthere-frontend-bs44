@@ -10,13 +10,13 @@
 ## Phase 2: Data Integration & AI (Mock/Stub)
 - [x] **Mock Data Source:** Create a structured JSON file for "Most Searched Companies" and "Recent Complaints".
 - [x] **Connect Home Page:** Update the Home page to pull "Most Searched Companies" from this source.
-- [ ] **AI Categorization (Req #2, #25):** (Stub) Add a "Category" field to complaints and a function to "suggest" categories based on keywords.
-- [ ] **AI Severity Flagging (Req #3):** (Stub) Add a "Severity" badge (High/Medium/Low) to the complaint list.
-- [ ] **AI Summarization (Req #4):** (Stub) Add a "Summary" field to the complaint detail view.
+- [x] **AI Categorization (Req #2, #25):** (Stub) Add a "Category" field to complaints and a function to "suggest" categories based on keywords.
+- [x] **AI Severity Flagging (Req #3):** (Stub) Add a "Severity" badge (High/Medium/Low) to the complaint list.
+- [x] **AI Summarization (Req #4):** (Stub) Add a "Summary" field to the complaint detail view.
 
 ## Phase 3: Authentication & User Roles
-- [ ] **Login Page:** Create a professional Login page with "Business" and "Consumer" tabs.
-- [ ] **Signup Page:** Create a Signup page with email/password fields.
+- [x] **Login Page:** Create a professional Login page with "Business" and "Consumer" tabs.
+- [x] **Signup Page:** Create a Signup page with email/password fields.
 - [ ] **Role Management (Req #5, #11, #24):** (Stub) Create a "Team" page in the Business Dashboard to list members and roles (Admin, Support, Analyst).
 
 ## Phase 4: Consumer Features
