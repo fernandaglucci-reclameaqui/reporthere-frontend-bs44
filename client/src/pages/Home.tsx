@@ -8,7 +8,7 @@ export default function Home() {
       <section className="relative h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/hero-v2.jpg" 
+            src="/images/hero-final-real.png" 
             alt="Woman walking in city" 
             className="w-full h-full object-cover object-center"
           />
@@ -244,11 +244,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sentiment Analysis {/* Transparency Section */}
+      {/* Transparency Section */}
       <section className="relative h-[500px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/city-conversation.png" 
+            src="/images/transparency-final-real.png" 
             alt="Couple talking in city" 
             className="w-full h-full object-cover object-center"
           />
