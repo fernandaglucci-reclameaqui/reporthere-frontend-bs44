@@ -8,8 +8,8 @@
 - [x] **Interactive Tutorial (Req #1):** Add a "Start Tutorial" button that triggers a guided tour (using a library like `driver.js` or custom overlay).
 
 ## Phase 2: Data Integration & AI (Mock/Stub)
-- [ ] **Mock Data Source:** Create a structured JSON file for "Most Searched Companies" and "Recent Complaints".
-- [ ] **Connect Home Page:** Update the Home page to pull "Most Searched Companies" from this source.
+- [x] **Mock Data Source:** Create a structured JSON file for "Most Searched Companies" and "Recent Complaints".
+- [x] **Connect Home Page:** Update the Home page to pull "Most Searched Companies" from this source.
 - [ ] **AI Categorization (Req #2, #25):** (Stub) Add a "Category" field to complaints and a function to "suggest" categories based on keywords.
 - [ ] **AI Severity Flagging (Req #3):** (Stub) Add a "Severity" badge (High/Medium/Low) to the complaint list.
 - [ ] **AI Summarization (Req #4):** (Stub) Add a "Summary" field to the complaint detail view.

@@ -22,6 +22,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 import { cn } from "@/lib/utils";
+import companiesData from "../data/companies.json";
 
 // Mock Data for Chart
 const data = [
@@ -36,6 +37,9 @@ const data = [
 
 export default function BusinessDashboard() {
   const [showTutorial, setShowTutorial] = useState(true);
+  
+  // Simulate using the first company from our data source as the "current user's company"
+  const currentCompany = companiesData[0]; // Amazon for demo purposes
 
   return (
     <BusinessLayout>
@@ -87,16 +91,16 @@ export default function BusinessDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <MetricCard 
           title="Reputation Score" 
-          value="4.8" 
-          trend="+0.2" 
-          trendUp={true}
+          value={`${currentCompany.score}/10.0`}
+          trend={currentCompany.trend === 'up' ? '+0.2' : '-0.1'}
+          trendUp={currentCompany.trend === 'up'}
           icon={Star}
           color="text-yellow-500"
           bg="bg-yellow-50"
         />
         <MetricCard 
           title="Profile Views" 
-          value="1,245" 
+          value={currentCompany.views.toLocaleString()}
           trend="+12%" 
           trendUp={true}
           icon={Users}
@@ -105,7 +109,7 @@ export default function BusinessDashboard() {
         />
         <MetricCard 
           title="Unresolved Issues" 
-          value="3" 
+          value={Math.round(currentCompany.complaints * 0.05).toString()} 
           trend="-2" 
           trendUp={true} // Good that it went down
           icon={AlertCircle}
@@ -114,7 +118,7 @@ export default function BusinessDashboard() {
         />
         <MetricCard 
           title="Response Rate" 
-          value="98%" 
+          value={`${currentCompany.responseRate}%`}
           trend="+1%" 
           trendUp={true}
           icon={MessageSquare}

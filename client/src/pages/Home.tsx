@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Search, PenLine, Store, MessageSquareWarning, MessageSquareQuote, Users } from "lucide-react";
+import { Search, PenLine, Store, MessageSquareWarning, MessageSquareQuote, Users, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import companiesData from "../data/companies.json";
 
 export default function Home() {
   return (
@@ -181,65 +182,28 @@ export default function Home() {
               <div className="col-span-2 text-right">Rank</div>
             </div>
 
-            {/* Row 1 */}
-            <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
-                <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
-                  <img src="/images/amazon-logo.png" alt="Amazon" className="max-h-full max-w-full object-contain" />
+            {companiesData.map((company) => (
+              <div key={company.id} className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0 group cursor-pointer">
+                <div className="col-span-8 md:col-span-6 flex items-center gap-3">
+                  <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1 overflow-hidden">
+                    {/* Fallback to initials if logo fails (simulated here by checking if logo string is empty, though in real app we'd handle onError) */}
+                    {company.logo ? (
+                      <img src={company.logo} alt={company.name} className="max-h-full max-w-full object-contain" />
+                    ) : (
+                      <span className="text-xs font-bold text-gray-400">{company.name.substring(0, 2).toUpperCase()}</span>
+                    )}
+                  </div>
+                  <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">{company.name}</span>
                 </div>
-                <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Amazon</span>
-              </div>
-              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Online Retail</div>
-              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#1</div>
-            </div>
-
-            {/* Row 2 */}
-            <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
-                <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
-                  <img src="/images/maelys-logo.png" alt="Maelys" className="max-h-full max-w-full object-contain" />
+                <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">{company.category}</div>
+                <div className="col-span-4 md:col-span-2 text-right flex items-center justify-end gap-2">
+                  <span className="font-bold text-green-600">#{company.rank}</span>
+                  {company.trend === 'up' && <TrendingUp className="h-3 w-3 text-green-500" />}
+                  {company.trend === 'down' && <TrendingDown className="h-3 w-3 text-red-500" />}
+                  {company.trend === 'stable' && <Minus className="h-3 w-3 text-gray-400" />}
                 </div>
-                <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Maelys Cosmetics</span>
               </div>
-              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Beauty & Cosmetics</div>
-              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#2</div>
-            </div>
-
-            {/* Row 3 */}
-            <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
-                <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
-                  <img src="/images/delta-logo.png" alt="Delta" className="max-h-full max-w-full object-contain" />
-                </div>
-                <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Delta Airlines</span>
-              </div>
-              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Airlines</div>
-              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#3</div>
-            </div>
-
-            {/* Row 4 */}
-            <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-            <div className="col-span-8 md:col-span-6 flex items-center gap-3">
-                <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
-                  <img src="/images/target-logo.png" alt="Target" className="max-h-full max-w-full object-contain" />
-                </div>
-                <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Target</span>
-              </div>
-              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Retail</div>
-              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#4</div>
-            </div>
-
-            {/* Row 5 */}
-            <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors group cursor-pointer">
-              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
-                <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
-                  <img src="/images/paypal-logo.png" alt="PayPal" className="max-h-full max-w-full object-contain" />
-                </div>
-                <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">PayPal</span>
-              </div>
-              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Financial Services</div>
-              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#5</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

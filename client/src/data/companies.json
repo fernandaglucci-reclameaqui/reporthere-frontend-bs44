@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "Amazon",
+    "logo": "/images/amazon-logo.png",
+    "category": "Online Retail",
+    "rank": 1,
+    "score": 8.5,
+    "trend": "up",
+    "views": 12500,
+    "complaints": 450,
+    "responseRate": 98
+  },
+  {
+    "id": "2",
+    "name": "Uber",
+    "logo": "/images/uber-logo.png",
+    "category": "Transportation",
+    "rank": 2,
+    "score": 7.2,
+    "trend": "down",
+    "views": 9800,
+    "complaints": 320,
+    "responseRate": 85
+  },
+  {
+    "id": "3",
+    "name": "Apple",
+    "logo": "/images/apple-logo.png",
+    "category": "Electronics",
+    "rank": 3,
+    "score": 9.1,
+    "trend": "stable",
+    "views": 8500,
+    "complaints": 150,
+    "responseRate": 95
+  },
+  {
+    "id": "4",
+    "name": "Netflix",
+    "logo": "/images/netflix-logo.png",
+    "category": "Streaming",
+    "rank": 4,
+    "score": 6.8,
+    "trend": "down",
+    "views": 7200,
+    "complaints": 210,
+    "responseRate": 78
+  },
+  {
+    "id": "5",
+    "name": "Airbnb",
+    "logo": "/images/airbnb-logo.png",
+    "category": "Travel",
+    "rank": 5,
+    "score": 7.5,
+    "trend": "up",
+    "views": 6500,
+    "complaints": 180,
+    "responseRate": 88
+  }
+]
