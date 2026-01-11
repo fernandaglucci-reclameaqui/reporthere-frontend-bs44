@@ -233,12 +233,12 @@ export default function Layout({ children, currentPageName }) {
               {/* Desktop Actions */}
               <div className="hidden lg:flex items-center space-x-4">
                 <Link to={createPageUrl("for-consumers")}>
-                  <Button variant="ghost" className="text-foreground hover:text-primary font-medium text-base">
+                  <Button className="bg-[#1a3b28] text-white hover:bg-[#1a3b28]/90 font-medium text-base rounded-full px-6">
                     For Consumers
                   </Button>
                 </Link>
                 <Link to={createPageUrl("for-businesses")}>
-                  <Button variant="ghost" className="text-foreground hover:text-primary font-medium text-base">
+                  <Button variant="outline" className="text-foreground border-gray-300 hover:bg-gray-50 font-medium text-base rounded-full px-6">
                     For Businesses
                   </Button>
                 </Link>
