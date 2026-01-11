@@ -95,3 +95,4 @@ export default function Layout({ children }: LayoutProps) {
     </div>
   );
 }
+// Force rebuild Sun Jan 11 09:48:47 EST 2026
