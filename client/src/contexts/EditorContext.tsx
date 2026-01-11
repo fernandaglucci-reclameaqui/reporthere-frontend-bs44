@@ -47,7 +47,7 @@ export const EditorProvider = ({ children }: EditorProviderProps) => {
 
   const saveChanges = () => {
     localStorage.setItem('site_content', JSON.stringify(content));
-    alert('Changes saved locally! (In a real app, this would save to the database)');
+    console.log('Changes saved locally!');
     setIsEditing(false);
   };
 
