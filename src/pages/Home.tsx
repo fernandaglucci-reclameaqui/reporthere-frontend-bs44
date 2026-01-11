@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Search, PenLine, Store, MessageSquareWarning, MessageSquareQuote, Users, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import companiesData from "../data/companies.json";
 
@@ -189,26 +189,28 @@ export default function Home() {
             </div>
 
             {companiesData.map((company) => (
-              <div key={company.id} className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0 group cursor-pointer">
-                <div className="col-span-8 md:col-span-6 flex items-center gap-3">
-                  <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1 overflow-hidden">
-                    {/* Fallback to initials if logo fails (simulated here by checking if logo string is empty, though in real app we'd handle onError) */}
-                    {company.logo ? (
-                      <img src={company.logo} alt={company.name} className="max-h-full max-w-full object-contain" />
-                    ) : (
-                      <span className="text-xs font-bold text-gray-400">{company.name.substring(0, 2).toUpperCase()}</span>
-                    )}
+              <Link key={company.id} href={`/company/${company.id}`}>
+                <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0 group cursor-pointer">
+                  <div className="col-span-8 md:col-span-6 flex items-center gap-3">
+                    <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1 overflow-hidden">
+                      {/* Fallback to initials if logo fails (simulated here by checking if logo string is empty, though in real app we'd handle onError) */}
+                      {company.logo ? (
+                        <img src={company.logo} alt={company.name} className="max-h-full max-w-full object-contain" />
+                      ) : (
+                        <span className="text-xs font-bold text-gray-400">{company.name.substring(0, 2).toUpperCase()}</span>
+                      )}
+                    </div>
+                    <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">{company.name}</span>
                   </div>
-                  <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">{company.name}</span>
+                  <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">{company.category}</div>
+                  <div className="col-span-4 md:col-span-2 text-right flex items-center justify-end gap-2">
+                    <span className="font-bold text-green-600">#{company.rank}</span>
+                    {company.trend === 'up' && <TrendingUp className="h-3 w-3 text-green-500" />}
+                    {company.trend === 'down' && <TrendingDown className="h-3 w-3 text-red-500" />}
+                    {company.trend === 'stable' && <Minus className="h-3 w-3 text-gray-400" />}
+                  </div>
                 </div>
-                <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">{company.category}</div>
-                <div className="col-span-4 md:col-span-2 text-right flex items-center justify-end gap-2">
-                  <span className="font-bold text-green-600">#{company.rank}</span>
-                  {company.trend === 'up' && <TrendingUp className="h-3 w-3 text-green-500" />}
-                  {company.trend === 'down' && <TrendingDown className="h-3 w-3 text-red-500" />}
-                  {company.trend === 'stable' && <Minus className="h-3 w-3 text-gray-400" />}
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
