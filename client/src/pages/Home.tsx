@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* Value Props Section - Fluid Gradient Background */}
-      <section className="py-8 bg-gradient-to-b from-background via-muted/10 to-background">
+      <section className="py-12 bg-[#F9F7F2]">
         <div className="container">
           {/* 3 Columns with Vertical Dividers */}
           <div className="grid md:grid-cols-3 gap-8 mb-8 relative">
@@ -178,70 +178,70 @@ export default function Home() {
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-12 gap-4 p-4 bg-gray-50/80 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              <div className="col-span-6 md:col-span-4">Company</div>
-              <div className="col-span-4 md:col-span-4 text-center hidden md:block">Category</div>
-              <div className="col-span-6 md:col-span-4 text-right">Rank</div>
+            <div className="hidden md:grid grid-cols-12 gap-4 p-4 bg-gray-50/80 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <div className="col-span-6">Company</div>
+              <div className="col-span-4 text-center">Category</div>
+              <div className="col-span-2 text-right">Rank</div>
             </div>
 
             {/* Row 1 */}
             <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-              <div className="col-span-6 md:col-span-4 flex items-center gap-3">
+              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
                 <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
                   <img src="/images/amazon-logo.png" alt="Amazon" className="max-h-full max-w-full object-contain" />
                 </div>
                 <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Amazon</span>
               </div>
-              <div className="col-span-4 md:col-span-4 text-center text-sm text-gray-500 hidden md:block">Online Retail</div>
-              <div className="col-span-6 md:col-span-4 text-right font-bold text-green-600">#1</div>
+              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Online Retail</div>
+              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#1</div>
             </div>
 
             {/* Row 2 */}
             <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-              <div className="col-span-6 md:col-span-4 flex items-center gap-3">
+              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
                 <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
                   <img src="/images/maelys-logo.png" alt="Maelys" className="max-h-full max-w-full object-contain" />
                 </div>
                 <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Maelys Cosmetics</span>
               </div>
-              <div className="col-span-4 md:col-span-4 text-center text-sm text-gray-500 hidden md:block">Beauty & Cosmetics</div>
-              <div className="col-span-6 md:col-span-4 text-right font-bold text-green-600">#2</div>
+              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Beauty & Cosmetics</div>
+              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#2</div>
             </div>
 
             {/* Row 3 */}
             <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-              <div className="col-span-6 md:col-span-4 flex items-center gap-3">
+              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
                 <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
                   <img src="/images/delta-logo.png" alt="Delta" className="max-h-full max-w-full object-contain" />
                 </div>
                 <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Delta Airlines</span>
               </div>
-              <div className="col-span-4 md:col-span-4 text-center text-sm text-gray-500 hidden md:block">Airlines</div>
-              <div className="col-span-6 md:col-span-4 text-right font-bold text-green-600">#3</div>
+              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Airlines</div>
+              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#3</div>
             </div>
 
             {/* Row 4 */}
             <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors border-b border-gray-50 group cursor-pointer">
-              <div className="col-span-6 md:col-span-4 flex items-center gap-3">
+            <div className="col-span-8 md:col-span-6 flex items-center gap-3">
                 <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
                   <img src="/images/target-logo.png" alt="Target" className="max-h-full max-w-full object-contain" />
                 </div>
                 <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">Target</span>
               </div>
-              <div className="col-span-4 md:col-span-4 text-center text-sm text-gray-500 hidden md:block">Retail</div>
-              <div className="col-span-6 md:col-span-4 text-right font-bold text-green-600">#4</div>
+              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Retail</div>
+              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#4</div>
             </div>
 
             {/* Row 5 */}
             <div className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors group cursor-pointer">
-              <div className="col-span-6 md:col-span-4 flex items-center gap-3">
+              <div className="col-span-8 md:col-span-6 flex items-center gap-3">
                 <div className="h-8 w-8 rounded bg-white border border-gray-100 flex items-center justify-center p-1">
                   <img src="/images/paypal-logo.png" alt="PayPal" className="max-h-full max-w-full object-contain" />
                 </div>
                 <span className="font-medium text-gray-900 group-hover:text-primary transition-colors">PayPal</span>
               </div>
-              <div className="col-span-4 md:col-span-4 text-center text-sm text-gray-500 hidden md:block">Financial Services</div>
-              <div className="col-span-6 md:col-span-4 text-right font-bold text-green-600">#5</div>
+              <div className="col-span-4 text-center text-sm text-gray-500 hidden md:block">Financial Services</div>
+              <div className="col-span-4 md:col-span-2 text-right font-bold text-green-600">#5</div>
             </div>
           </div>
         </div>
