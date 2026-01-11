@@ -61,21 +61,24 @@ const EditableImage: React.FC<EditableImageProps> = ({
       
       {isEditing && (
         <div className={cn(
-          "absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-200 z-50",
-          isHovered || isEditingUrl ? "opacity-100" : "opacity-0"
+          "absolute inset-0 z-[60] pointer-events-none",
+          isEditing ? "opacity-100" : "opacity-0"
         )}>
           {!isEditingUrl ? (
-            <Button 
-              onClick={handleEditClick}
-              variant="secondary" 
-              size="sm"
-              className="gap-2 shadow-lg"
-            >
-              <Pencil className="h-4 w-4" />
-              Change Image
-            </Button>
+            <div className="absolute top-4 right-4 pointer-events-auto">
+              <Button 
+                onClick={handleEditClick}
+                variant="secondary" 
+                size="sm"
+                className="gap-2 shadow-lg"
+              >
+                <Pencil className="h-4 w-4" />
+                Change Image
+              </Button>
+            </div>
           ) : (
-            <div className="bg-background p-3 rounded-lg shadow-xl w-[90%] max-w-md space-y-3 animate-in fade-in zoom-in-95 duration-200 z-[60]">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-auto">
+              <div className="bg-background p-3 rounded-lg shadow-xl w-[90%] max-w-md space-y-3 animate-in fade-in zoom-in-95 duration-200">
               <div className="space-y-1">
                 <label className="text-xs font-medium text-muted-foreground">Image URL</label>
                 <Input 
@@ -104,6 +107,7 @@ const EditableImage: React.FC<EditableImageProps> = ({
                   <Check className="h-3 w-3 mr-1" />
                   Save
                 </Button>
+              </div>
               </div>
             </div>
           )}
