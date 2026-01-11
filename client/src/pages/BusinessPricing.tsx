@@ -16,8 +16,75 @@ const BusinessPricing = () => {
         </div>
       </div>
 
+      {/* Customer Karma Insights Section */}
+      <div className="container mx-auto px-4 -mt-10 pb-10 relative z-10">
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 max-w-4xl mx-auto border border-gray-100">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Customer Karma™ Insights</h2>
+            <p className="text-gray-600">See how people felt across five emotional categories</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {/* Sentiment 1: Very Satisfied */}
+            <div className="flex flex-col items-center space-y-3 group">
+              <div className="h-20 w-20 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 p-2">
+                <img src="/images/very_satisfied.svg" alt="Loved you" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-bold text-green-600">Green — Loved you</p>
+              </div>
+            </div>
+
+            {/* Sentiment 2: Neutral */}
+            <div className="flex flex-col items-center space-y-3 group">
+              <div className="h-20 w-20 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 p-2">
+                <img src="/images/okay.svg" alt="Neutral" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-bold text-yellow-500">Yellow — Neutral</p>
+              </div>
+            </div>
+
+            {/* Sentiment 3: Not great */}
+            <div className="flex flex-col items-center space-y-3 group">
+              <div className="h-20 w-20 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 p-2">
+                <img src="/images/could_be_better.svg" alt="Not great" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-bold text-orange-500">Orange — Not great</p>
+              </div>
+            </div>
+
+            {/* Sentiment 4: Negative */}
+            <div className="flex flex-col items-center space-y-3 group">
+              <div className="h-20 w-20 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 p-2">
+                <img src="/images/disappointing.svg" alt="Negative" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-bold text-red-600">Red — Negative</p>
+              </div>
+            </div>
+
+            {/* Sentiment 5: Unresponded */}
+            <div className="flex flex-col items-center space-y-3 group">
+              <div className="h-20 w-20 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 p-2">
+                <img src="/images/no_response.svg" alt="Unresponded" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-bold text-purple-600">Purple — Unresponded/Ignored</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pricing Plans Title */}
+      <div className="container mx-auto px-4 pt-10 pb-10 text-center">
+        <h2 className="text-3xl font-bold text-gray-900">Pricing Plans</h2>
+      </div>
+
       {/* Pricing Cards */}
-      <div className="container mx-auto px-4 -mt-16 pb-20">
+      <div className="container mx-auto px-4 pb-20">
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           
           {/* Free Plan */}
