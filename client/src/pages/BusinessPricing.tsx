@@ -133,6 +133,9 @@ const BusinessPricing = () => {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2C4A3B] text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
               Most Popular
             </div>
+            <div className="absolute top-4 right-4 bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded-full">
+              14 Days Free
+            </div>
             
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-gray-900">Professional</h3>
@@ -168,7 +171,7 @@ const BusinessPricing = () => {
 
             <Link href="/business/signup?plan=pro">
               <Button className="w-full py-6 text-lg font-bold bg-[#2C4A3B] hover:bg-[#1e3329] text-white shadow-lg">
-                Start 14-Day Trial
+                Start 14-Day Free Trial
               </Button>
             </Link>
           </div>
