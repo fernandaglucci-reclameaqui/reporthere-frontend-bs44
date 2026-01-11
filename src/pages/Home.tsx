@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useLocation, Link } from "wouter";
 import { Search, PenLine, Store, MessageSquareWarning, MessageSquareQuote, Users, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import EditableText from "@/components/EditableText";
 import companiesData from "../data/companies.json";
 
 export default function Home() {
@@ -25,14 +26,19 @@ export default function Home() {
         <div className="container relative z-10 pt-10 pb-12">
           <div className="max-w-2xl space-y-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1]">
-              Check first. <br />
-              <span className="text-primary">Speak up</span> if <br />
-              something went wrong.
+              <EditableText 
+                id="home_hero_title" 
+                defaultText="Check first. Speak up if something went wrong." 
+                as="span"
+              />
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-foreground/90 mb-4 font-medium drop-shadow-sm">
-              Read real experiences before you buy — or share yours to help the next person choose better.
-            </h2>
+            <EditableText 
+              id="home_hero_subtitle"
+              defaultText="Read real experiences before you buy — or share yours to help the next person choose better."
+              className="text-xl md:text-2xl text-foreground/90 mb-4 font-medium drop-shadow-sm"
+              as="h2"
+            />
             <p className="text-sm text-muted-foreground/80 mb-8">
               Every experience helps build a clearer picture.
             </p>
