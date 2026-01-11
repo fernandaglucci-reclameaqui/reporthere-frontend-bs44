@@ -10,6 +10,9 @@ import BusinessDashboard from "./pages/BusinessDashboard";
 import SearchResults from "./pages/SearchResults";
 import CompanyProfile from "./pages/CompanyProfile";
 import Blog from "./pages/Blog";
+import BusinessPricing from "./pages/BusinessPricing";
+import ClaimProfile from "./pages/ClaimProfile";
+import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import FileComplaint from "./pages/FileComplaint";
@@ -27,7 +30,11 @@ function Router() {
         <Route path="/about" component={Placeholder} />
         <Route path="/consumers" component={ConsumerDashboard} />
         <Route path="/file-complaint" component={FileComplaint} />
-        <Route path="/businesses" component={BusinessDashboard} />
+        <Route path="/businesses" component={BusinessPricing} />
+        <Route path="/business/dashboard" component={BusinessDashboard} />
+        <Route path="/business/claim" component={ClaimProfile} />
+        <Route path="/business/signup" component={ClaimProfile} />
+        <Route path="/admin" component={AdminDashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/search" component={SearchResults} />
