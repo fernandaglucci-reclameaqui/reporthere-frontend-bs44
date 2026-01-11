@@ -8,7 +8,7 @@ export default function Home() {
       <section className="relative h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/hero-street.png" 
+            src="/images/hero-v2.jpg" 
             alt="Woman walking in city" 
             className="w-full h-full object-cover object-center"
           />
