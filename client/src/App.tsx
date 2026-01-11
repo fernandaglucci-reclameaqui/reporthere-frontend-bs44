@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Placeholder from "./pages/Placeholder";
+import BusinessDashboard from "./pages/BusinessDashboard";
 import Layout from "./components/Layout";
 
 function Router() {
@@ -18,7 +19,7 @@ function Router() {
         <Route path="/blog" component={Placeholder} />
         <Route path="/about" component={Placeholder} />
         <Route path="/consumers" component={Placeholder} />
-        <Route path="/businesses" component={Placeholder} />
+        <Route path="/businesses" component={BusinessDashboard} />
         <Route path="/login" component={Placeholder} />
         <Route path="/search" component={Placeholder} />
         <Route path="/reviews" component={Placeholder} />
