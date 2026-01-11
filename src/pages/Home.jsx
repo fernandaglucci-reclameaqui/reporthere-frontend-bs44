@@ -71,13 +71,23 @@ export default function Home() {
             
             <div className="relative hidden lg:block h-[600px]">
               {/* Hero Image - Woman Walking */}
-              <div className="absolute top-0 right-0 w-full h-full rounded-[2rem] overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-700">
+              <div className="absolute top-0 right-0 w-full h-full rounded-[2rem] overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-700 z-10">
                 <img 
                   src="/images/hero-woman-walking.jpg" 
                   alt="Woman walking confidently" 
                   className="w-full h-full object-cover object-[center_20%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+              
+              {/* Background Text - Contained within Hero */}
+              <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 select-none pointer-events-none z-0 opacity-50 w-[200%]">
+                <h1 className="text-[10rem] lg:text-[12rem] font-bold text-slate-900/5 leading-none whitespace-nowrap">
+                  Check first. Speak up
+                </h1>
+                <h1 className="text-[10rem] lg:text-[12rem] font-bold text-slate-900/5 leading-none whitespace-nowrap ml-32">
+                  if something went wrong
+                </h1>
               </div>
               
               {/* Floating Card 1 - Trust */}

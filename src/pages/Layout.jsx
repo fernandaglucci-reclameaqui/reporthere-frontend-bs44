@@ -192,9 +192,9 @@ export default function Layout({ children, currentPageName }) {
                 <img 
                   src="/images/logo-shield-check.png" 
                   alt="ReportHere Logo" 
-                  className="h-10 w-auto object-contain"
+                  className="h-14 w-auto object-contain"
                 />
-                <span className="text-2xl font-bold text-slate-900 tracking-tight">ReportHere</span>
+                <span className="text-3xl font-bold text-slate-900 tracking-tight">ReportHere</span>
               </Link>
 
               {/* Desktop Navigation */}
