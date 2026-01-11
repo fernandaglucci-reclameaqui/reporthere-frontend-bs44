@@ -85,60 +85,7 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#1A2E25] text-white py-16 border-t border-[#2C4A3B]">
-        <div className="container">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div className="space-y-6">
-              <div className="flex items-center gap-2">
-                <img src="/images/logo-official.png" alt="ReportHere" className="h-12 w-auto brightness-0 invert opacity-90" />
-              </div>
-              <p className="text-gray-400 leading-relaxed">
-                Building trust through transparency. We help consumers make better decisions and businesses improve through honest feedback.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-bold text-lg mb-6 text-[#8BA888]">For Consumers</h4>
-              <ul className="space-y-4 text-gray-300">
-                <li><Link href="/search" className="hover:text-white transition-colors">Search Companies</Link></li>
-                <li><Link href="/reviews" className="hover:text-white transition-colors">Write a Review</Link></li>
-                <li><Link href="/categories" className="hover:text-white transition-colors">Browse Categories</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition-colors">Consumer Blog</Link></li>
-              </ul>
-            </div>
 
-            <div>
-              <h4 className="font-bold text-lg mb-6 text-[#8BA888]">For Businesses</h4>
-              <ul className="space-y-4 text-gray-300">
-                <li><Link href="/business/claim" className="hover:text-white transition-colors">Claim Your Profile</Link></li>
-                <li><Link href="/business/plans" className="hover:text-white transition-colors">Business Plans</Link></li>
-                <li><Link href="/business/resources" className="hover:text-white transition-colors">Success Stories</Link></li>
-                <li><Link href="/business/contact" className="hover:text-white transition-colors">Contact Sales</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-6 text-[#8BA888]">Company</h4>
-              <ul className="space-y-4 text-gray-300">
-                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-                <li><Link href="/legal/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/legal/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="pt-8 border-t border-[#2C4A3B] flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
-            <p>&copy; 2026 ReportHere. All rights reserved.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Twitter</a>
-              <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-white transition-colors">Instagram</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
