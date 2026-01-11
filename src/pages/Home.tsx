@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 import { Search, PenLine, Store, MessageSquareWarning, MessageSquareQuote, Users, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import companiesData from "../data/companies.json";
 
 export default function Home() {
+  const [_, setLocation] = useLocation();
+
+  const handleSearch = () => {
+    setLocation('/search');
+  };
   return (
     <>
       {/* Hero Section */}
@@ -32,7 +38,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="rounded-full h-14 px-8 text-lg font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 gap-2">
+              <Button onClick={handleSearch} size="lg" className="rounded-full h-14 px-8 text-lg font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 gap-2">
                 <Search className="h-5 w-5" />
                 Search a company
               </Button>
@@ -134,7 +140,7 @@ export default function Home() {
               <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
                 Research companies before you buy. See how they treat their customers when things go wrong.
               </p>
-              <Button variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-sm">
+              <Button onClick={handleSearch} variant="link" className="text-primary font-bold hover:text-primary/80 p-0 h-auto text-sm">
                 Search companies &rarr;
               </Button>
               {/* Vertical Divider (Desktop only) */}

@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Placeholder from "./pages/Placeholder";
 import BusinessDashboard from "./pages/BusinessDashboard";
+import SearchResults from "./pages/SearchResults";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import FileComplaint from "./pages/FileComplaint";
@@ -27,7 +28,7 @@ function Router() {
         <Route path="/businesses" component={BusinessDashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/search" component={Placeholder} />
+        <Route path="/search" component={SearchResults} />
         <Route path="/reviews" component={Placeholder} />
         <Route path="/business/claim" component={Placeholder} />
         <Route path="/business/plans" component={Placeholder} />
