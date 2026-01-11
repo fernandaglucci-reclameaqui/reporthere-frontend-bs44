@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useLocation, Link } from "wouter";
 import { Search, PenLine, Store, MessageSquareWarning, MessageSquareQuote, Users, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import EditableText from "@/components/EditableText";
+import EditableImage from "@/components/EditableImage";
 import companiesData from "../data/companies.json";
 
 export default function Home() {
@@ -15,8 +16,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/hero-v2.jpg" 
+          <EditableImage 
+            id="home_hero_image"
+            defaultSrc="/images/hero-v2.jpg" 
             alt="Woman walking in city" 
             className="w-full h-full object-cover object-center"
           />
@@ -124,7 +126,12 @@ export default function Home() {
             {/* Card 1 */}
             <div className="flex flex-col items-center space-y-4 group relative">
               <div className="h-14 w-14 flex items-center justify-center mb-1 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <img src="/images/icon-file-complaint.png" alt="File a Complaint" className="w-full h-full object-contain drop-shadow-md" />
+                <EditableImage 
+                  id="home_icon_complaint"
+                  defaultSrc="/images/icon-file-complaint.png" 
+                  alt="File a Complaint" 
+                  className="w-full h-full object-contain drop-shadow-md" 
+                />
               </div>
               <h3 className="text-lg font-bold text-foreground">File a Complaint</h3>
               <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
@@ -140,7 +147,12 @@ export default function Home() {
             {/* Card 2 */}
             <div className="flex flex-col items-center space-y-4 group relative">
               <div className="h-14 w-14 flex items-center justify-center mb-1 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <img src="/images/icon-browse-3d.png" alt="Browse Complaints" className="w-full h-full object-contain drop-shadow-md" />
+                <EditableImage 
+                  id="home_icon_browse"
+                  defaultSrc="/images/icon-browse-3d.png" 
+                  alt="Browse Complaints" 
+                  className="w-full h-full object-contain drop-shadow-md" 
+                />
               </div>
               <h3 className="text-lg font-bold text-foreground">Browse Complaints</h3>
               <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
@@ -156,7 +168,12 @@ export default function Home() {
             {/* Card 3 */}
             <div className="flex flex-col items-center space-y-4 group">
               <div className="h-14 w-14 flex items-center justify-center mb-1 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <img src="/images/icon-business.png" alt="For Businesses" className="w-full h-full object-contain drop-shadow-md" />
+                <EditableImage 
+                  id="home_icon_business"
+                  defaultSrc="/images/icon-business.png" 
+                  alt="For Businesses" 
+                  className="w-full h-full object-contain drop-shadow-md" 
+                />
               </div>
               <h3 className="text-lg font-bold text-foreground">For Businesses</h3>
               <p className="text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed">
