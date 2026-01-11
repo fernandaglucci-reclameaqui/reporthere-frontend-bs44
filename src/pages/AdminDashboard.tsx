@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'wouter';
-import { Users, Building2, MessageSquareWarning, TrendingUp, AlertTriangle, CheckCircle, Search } from 'lucide-react';
+import { Users, Building2, MessageSquareWarning, TrendingUp, AlertTriangle, CheckCircle, Search, PenTool } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 const AdminDashboard = () => {
@@ -49,6 +49,10 @@ const AdminDashboard = () => {
               <Users className="w-5 h-5" />
               Users
             </a>
+            <Link href="/" className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition-colors">
+              <PenTool className="w-5 h-5" />
+              Site Editor
+            </Link>
             <div className="pt-4 mt-4 border-t border-gray-100">
               <a href="#" className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition-colors">
                 Settings
