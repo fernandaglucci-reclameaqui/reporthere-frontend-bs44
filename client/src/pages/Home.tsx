@@ -8,7 +8,7 @@ export default function Home() {
       <section className="relative h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/hero-final-real.png" 
+            src="/images/hero-v4-fixed.png" 
             alt="Woman walking in city" 
             className="w-full h-full object-cover object-center"
           />
@@ -248,7 +248,7 @@ export default function Home() {
       <section className="relative h-[500px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/transparency-final-real.png" 
+            src="/images/transparency-v4-fixed.png" 
             alt="Couple talking in city" 
             className="w-full h-full object-cover object-center"
           />
