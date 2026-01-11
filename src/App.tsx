@@ -7,6 +7,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Placeholder from "./pages/Placeholder";
 import BusinessDashboard from "./pages/BusinessDashboard";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Layout from "./components/Layout";
 
 function Router() {
@@ -20,7 +22,8 @@ function Router() {
         <Route path="/about" component={Placeholder} />
         <Route path="/consumers" component={Placeholder} />
         <Route path="/businesses" component={BusinessDashboard} />
-        <Route path="/login" component={Placeholder} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
         <Route path="/search" component={Placeholder} />
         <Route path="/reviews" component={Placeholder} />
         <Route path="/business/claim" component={Placeholder} />
