@@ -61,7 +61,7 @@ const EditableImage: React.FC<EditableImageProps> = ({
       
       {isEditing && (
         <div className={cn(
-          "absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-200",
+          "absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-200 z-50",
           isHovered || isEditingUrl ? "opacity-100" : "opacity-0"
         )}>
           {!isEditingUrl ? (
@@ -75,7 +75,7 @@ const EditableImage: React.FC<EditableImageProps> = ({
               Change Image
             </Button>
           ) : (
-            <div className="bg-background p-3 rounded-lg shadow-xl w-[90%] max-w-md space-y-3 animate-in fade-in zoom-in-95 duration-200">
+            <div className="bg-background p-3 rounded-lg shadow-xl w-[90%] max-w-md space-y-3 animate-in fade-in zoom-in-95 duration-200 z-[60]">
               <div className="space-y-1">
                 <label className="text-xs font-medium text-muted-foreground">Image URL</label>
                 <Input 
