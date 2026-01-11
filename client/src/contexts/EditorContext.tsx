@@ -39,6 +39,7 @@ export const EditorProvider = ({ children }: EditorProviderProps) => {
   };
 
   const updateContent = (key: string, value: string) => {
+    console.log('Updating content:', key, value);
     setContent(prev => ({
       ...prev,
       [key]: value

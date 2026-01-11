@@ -34,6 +34,7 @@ const EditableImage: React.FC<EditableImageProps> = ({
   const handleSave = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log('Saving image:', id, tempUrl);
     if (tempUrl.trim()) {
       updateContent(id, tempUrl.trim());
     }
@@ -53,6 +54,7 @@ const EditableImage: React.FC<EditableImageProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <img 
+        key={currentSrc}
         src={currentSrc} 
         alt={alt} 
         className={cn("w-full h-full object-cover", className)}
