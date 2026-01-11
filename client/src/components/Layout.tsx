@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "wouter";
 import Tutorial from "./Tutorial";
+import NotificationCenter from "./NotificationCenter";
+import AdminBar from "./AdminBar";
 
 interface LayoutProps {
   children: ReactNode;
@@ -45,6 +47,7 @@ export default function Layout({ children }: LayoutProps) {
                 For Businesses
               </Button>
             </Link>
+            <NotificationCenter />
             <Link href="/login">
               <Button variant="ghost" className="text-gray-600 hover:text-[#2C4A3B] font-medium hover:bg-gray-100 text-lg">
                 Login
@@ -86,6 +89,7 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
       <Tutorial />
+      <AdminBar />
 
 
     </div>
