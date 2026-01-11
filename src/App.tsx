@@ -9,6 +9,8 @@ import Placeholder from "./pages/Placeholder";
 import BusinessDashboard from "./pages/BusinessDashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import FileComplaint from "./pages/FileComplaint";
+import ConsumerDashboard from "./pages/ConsumerDashboard";
 import Layout from "./components/Layout";
 
 function Router() {
@@ -20,7 +22,8 @@ function Router() {
         <Route path="/categories" component={Placeholder} />
         <Route path="/blog" component={Placeholder} />
         <Route path="/about" component={Placeholder} />
-        <Route path="/consumers" component={Placeholder} />
+        <Route path="/consumers" component={ConsumerDashboard} />
+        <Route path="/file-complaint" component={FileComplaint} />
         <Route path="/businesses" component={BusinessDashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
