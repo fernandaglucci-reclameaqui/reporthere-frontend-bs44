@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "wouter";
+import Tutorial from "./Tutorial";
 
 interface LayoutProps {
   children: ReactNode;
@@ -84,6 +85,7 @@ export default function Layout({ children }: LayoutProps) {
       <main className="flex-1">
         {children}
       </main>
+      <Tutorial />
 
 
     </div>

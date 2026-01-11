@@ -85,11 +85,15 @@ const SearchResults = () => {
                 <div key={company.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center p-2 border border-gray-100">
-                        <img src={company.logo} alt={company.name} className="max-w-full max-h-full object-contain" />
-                      </div>
+                      <Link href={`/company/${company.id}`}>
+                        <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center p-2 border border-gray-100 cursor-pointer hover:border-green-200 transition-colors">
+                          <img src={company.logo} alt={company.name} className="max-w-full max-h-full object-contain" />
+                        </div>
+                      </Link>
                       <div>
-                        <h3 className="text-xl font-bold text-gray-900">{company.name}</h3>
+                        <Link href={`/company/${company.id}`}>
+                          <h3 className="text-xl font-bold text-gray-900 hover:text-green-600 cursor-pointer transition-colors">{company.name}</h3>
+                        </Link>
                         <p className="text-sm text-gray-500">{company.category}</p>
                         <div className="flex items-center gap-4 mt-2">
                           <div className="flex items-center gap-1 text-sm text-gray-600">
