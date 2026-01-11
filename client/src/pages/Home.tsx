@@ -5,17 +5,14 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[600px] flex items-center overflow-hidden bg-hug-gradient">
-        {/* Background Image with Fade */}
+      <section className="relative h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/hero-official.png" 
+            src="/images/hero-street.png" 
             alt="Woman walking in city" 
-            className="w-full h-full object-cover object-[center_20%]"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent w-full md:w-3/4 lg:w-2/3"></div>
-          {/* Stronger bottom fade to blend with next section */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent h-48 bottom-0"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent"></div>
         </div>
 
         <div className="container relative z-10 pt-10 pb-12">
@@ -247,11 +244,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sentiment Analysis Section */}
-      <section className="py-6 bg-background">
-        <div className="container text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">How Did You Feel?</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-10 text-base">
+      {/* Sentiment Analysis {/* Transparency Section */}
+      <section className="relative h-[500px] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/city-conversation.png" 
+            alt="Couple talking in city" 
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="max-w-lg">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">This is about<br />transparency.</h2>
+            <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+              We believe that when companies know people are watching, they do better. And when consumers have the full picture, they choose better.
+            </p>
+            <Button variant="outline" className="rounded-full px-8 border-gray-400 text-gray-700 hover:bg-gray-50">
+              Read our mission
+            </Button>
+          </div>
+
+          <div className="flex justify-center md:justify-end">
+            <div className="bg-[#1B3B36] rounded-2xl p-8 text-white max-w-md w-full shadow-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-white/10 rounded-lg">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <span className="font-semibold text-lg">Join the Community</span>
+              </div>
+              <p className="text-gray-300 mb-6 text-sm">
+                Thousands of people helping each other make smarter decisions every day.
+              </p>
+              <Button className="w-full bg-white text-[#1B3B36] hover:bg-gray-100 font-semibold rounded-lg h-12">
+                Sign up free
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sentiment Section */}
+      <section className="py-20 bg-[#F9F7F2]">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">How Did You Feel?</h2>
+          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
             After every interaction, we ask one simple question: How did you feel?
             <br />
             Your answer helps others understand what to expect.
@@ -316,85 +356,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Combined Trust & Footer Image Section */}
-      <section className="relative w-full overflow-hidden">
-        {/* Single Container with Full Height Image */}
-        <div className="relative w-full min-h-[600px] flex flex-col justify-between">
-          {/* Full width background image */}
-          <div className="absolute inset-0 w-full h-full">
-            <img 
-              src="/images/city-conversation-full.png" 
-              alt="City conversation scene" 
-              className="w-full h-full object-cover object-[center_top]"
-            />
+      {/* Footer */}
+      <footer className="bg-[#1B3B36] text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-sm text-gray-400 mb-2">* 100% free for consumers. Free for businesses on the basic package.</p>
           </div>
           
-          {/* Top Content Area */}
-          <div className="relative z-10 w-full flex flex-col md:flex-row justify-between items-start pt-16 md:pt-24 px-8 md:px-16 lg:px-24">
-            {/* Left: Trust Text (Over lighter background) */}
-            <div className="max-w-md space-y-6 bg-background/80 backdrop-blur-sm p-8 rounded-2xl md:bg-transparent md:backdrop-blur-none md:p-0">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                This is about transparency.
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We believe that when companies know people are watching, they do better. And when consumers have the full picture, they choose better.
-              </p>
-              <div className="pt-4">
-                <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary/90 hover:text-white font-bold rounded-full px-8 h-12 transition-all">
-                  Read our mission
-                </Button>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center md:text-left">
+            <div>
+              <h4 className="font-bold text-white mb-6">About</h4>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">For Consumers</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">For Businesses</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-6">Support</h4>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-6">Legal</h4>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Legal Disclaimer</a></li>
+              </ul>
+            </div>
+            <div className="flex flex-col items-center md:items-start">
+               {/* Placeholder for social icons or additional links if needed */}
             </div>
           </div>
-
-          {/* Bottom Content Area (Over Green Table) */}
-          <div className="relative z-10 w-full flex flex-col items-center justify-end pb-12 pt-32 md:pt-48 px-4 space-y-8">
-            {/* Community Card (Centered) */}
-            <div className="max-w-sm w-full">
-              <div className="bg-[#2C4A3B]/95 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-white/10">
-                <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-center gap-2">
-                  <Users className="h-5 w-5 text-green-300" />
-                  Join the Community
-                </h3>
-                <p className="text-green-100 text-sm mb-4 text-center">
-                  Thousands of people helping each other make smarter decisions every day.
-                </p>
-                <Button size="sm" className="bg-white text-[#2C4A3B] hover:bg-green-50 font-bold w-full h-10">
-                  Sign up free
-                </Button>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 drop-shadow-md">
-                Your experience doesn't end with you.
-              </h3>
-              <p className="text-white/90 text-sm md:text-base drop-shadow-md max-w-2xl mx-auto">
-                When you share it, someone else makes a better decision.
-              </p>
-            </div>
+          
+          <div className="text-center mt-16 pt-8 border-t border-white/10">
+            <div className="inline-block px-3 py-1 border border-white/20 rounded text-xs text-gray-400 mb-4">BETA</div>
+            <p className="text-xs text-gray-400 max-w-2xl mx-auto mb-4 leading-relaxed">
+              ReportHere is currently in beta. We're actively improving the platform and welcome your feedback.
+              <br />
+              ReportHere is an independent platform and is not affiliated with, endorsed by, or connected to any similar complaint or reputation management platforms.
+            </p>
+            <p className="text-xs text-gray-500">
+              &copy; {new Date().getFullYear()} ReportHere. All rights reserved.
+            </p>
           </div>
         </div>
-      </section>
-
-      {/* Footer Section - Buttons & Links */}
-      <section className="relative w-full">
-        {/* White Section with Buttons */}
-        <div className="bg-background py-12 border-b border-border/40">
-          <div className="container max-w-4xl mx-auto text-center">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-[#2C4A3B] hover:bg-[#1a3b2e] text-white px-8 h-12 text-base w-full sm:w-auto">
-                <Search className="mr-2 h-5 w-5" />
-                Search a company
-              </Button>
-              <Button size="lg" variant="outline" className="px-8 h-12 text-base w-full sm:w-auto">
-                <PenLine className="mr-2 h-5 w-5" />
-                Share an experience
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      </footer>
     </>
   );
 }
