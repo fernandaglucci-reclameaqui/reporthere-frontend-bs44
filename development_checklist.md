@@ -1,11 +1,11 @@
 # Development Checklist - Jan 9th Requirements
 
 ## Phase 1: Business Dashboard (Priority)
-- [ ] **Dashboard Layout:** Create a professional layout with sidebar navigation (Overview, Complaints, Analytics, Team, Settings).
-- [ ] **Key Metrics Cards:** Display "Reputation Score", "Profile Views", "Unresolved Complaints", and "Response Rate".
-- [ ] **Recent Activity Feed:** Show a list of recent complaints or interactions.
-- [ ] **Charts:** Implement a chart showing complaint volume over time (using Recharts).
-- [ ] **Interactive Tutorial (Req #1):** Add a "Start Tutorial" button that triggers a guided tour (using a library like `driver.js` or custom overlay).
+- [x] **Dashboard Layout:** Create a professional layout with sidebar navigation (Overview, Complaints, Analytics, Team, Settings).
+- [x] **Key Metrics Cards:** Display "Reputation Score", "Profile Views", "Unresolved Complaints", and "Response Rate".
+- [x] **Recent Activity Feed:** Show a list of recent complaints or interactions.
+- [x] **Charts:** Implement a chart showing complaint volume over time (using Recharts).
+- [x] **Interactive Tutorial (Req #1):** Add a "Start Tutorial" button that triggers a guided tour (using a library like `driver.js` or custom overlay).
 
 ## Phase 2: Data Integration & AI (Mock/Stub)
 - [ ] **Mock Data Source:** Create a structured JSON file for "Most Searched Companies" and "Recent Complaints".
